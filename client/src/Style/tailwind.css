@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media (min-width: 768px) {
+  .gross_layout::before {
+    content: " ";
+    position: absolute;
+    display: inline-block;
+    background-image: url("../Images/dark_bg_img.png");
+    width: 35%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+  }
+  .right_gross_layout::before {
+    content: " ";
+    position: absolute;
+    display: inline-block;
+    background-image: url("../Images/dark_bg_img2.png");
+    width: 35%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+  }
+}
+
+/* .gross_layout::after {
+  content: " ";
+  position: absolute;
+  display: inline-block;
+  background: rgba(10, 139, 199, 0.8);
+  width: 35%;
+  height: 100%;
+  top: 0;
+  right: 0;
+
+  z-index: 10;
+} */
+
+/* .right_gross_layout::after {
+  content: " ";
+  position: absolute;
+  display: inline-block;
+  background: rgba(10, 139, 199, 0.8);
+  width: 35%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  z-index: 10;
+} */
+
+.block-ul::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  /* top: 90%; */
+  top: 0;
+  right: 22px;
+  transform: translateY(-100%);
+  width: 0px;
+  height: 0px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid rgba(243, 244, 246, var(--tw-bg-opacity)); /* Tam giác phía dưới được đổ màu */
+}
