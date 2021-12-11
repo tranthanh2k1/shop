@@ -5,7 +5,7 @@ import {
   updateStatusAdminApi,
   listAllBookingStatusApi,
 } from "../../api/booking";
-import { API } from "../../constants";
+import { API } from "../../constant";
 
 export const getListBookingAll = (page) => async (dispatch) => {
   const data = await listAllApi(page);
@@ -66,7 +66,8 @@ export const listAllBookingStatusAction = (status) => async (dispatch) => {
 export const adminFilterByDateBookingAction = (date) => async (dispatch) => {
   try {
     const { data } = await axios.post(`${API}/booking/filterByDate`, { date });
-    console.log("data", data);
+    console.log(data);
+
     dispatch({
       type: "FILTER_DATE_BOOKING",
       payload: data.booking,

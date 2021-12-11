@@ -1,5 +1,4 @@
-import { API } from "../constants";
-import { isAuthenticated } from "./auth";
+import { API, isAuthenticated } from "../constant";
 
 const { token } = isAuthenticated();
 

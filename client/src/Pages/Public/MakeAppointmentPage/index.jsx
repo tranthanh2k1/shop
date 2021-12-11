@@ -15,7 +15,6 @@ const MakeAppointment = () => {
   const { listService } = useSelector(state => state.service)
 
   const { user } = isAuthenticated()
-  console.log(user)
 
   const dispatch = useDispatch()
 
@@ -24,7 +23,6 @@ const MakeAppointment = () => {
 
   useEffect(() => {
     dispatch(listServiceAction())
-    dispatch(getUserLocalStorage())
   }, [])
 
   const onSubmit = async (dataForm, e) => {

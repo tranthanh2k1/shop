@@ -509,6 +509,7 @@ exports.searchBookingAdmin = async (req, res) => {
 
 exports.filterByDate = (req, res) => {
   const { date } = req.body;
+  console.log(date);
 
   if (!date) {
     return res.status(400).json({
@@ -525,7 +526,7 @@ exports.filterByDate = (req, res) => {
   })
     .then((data) => {
       res.status(200).json({
-        success: false,
+        success: true,
         message: "Lấy đơn đặt lịch thành công",
         booking: data,
       });
