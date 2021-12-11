@@ -11,7 +11,8 @@ const service = () => {
           <div className="mt-[50px]">
             <div className="grid grid-cols-[0.2fr,1.7fr,1fr] px-[10px] font-medium  pb-[15px] border-b-2 border-gray-500">
               <div>#</div>
-              <div>Dịch vụ</div>
+              <div>Tên dịch vụ</div>
+             
               <div>
                 <button className="text-white px-2 py-[5px] text-[14px] bg-green-500 rounded-[5px]">
                   Thêm dịch vụ

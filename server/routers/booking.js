@@ -6,13 +6,14 @@ const {
   getListBookingUser,
   listBooking,
   detailBooking,
-  cancelBooking,
   listAllBookingStatus,
   searchBookingUser,
-  searchBookingAdmin,
-  filterByDate,
+  Validate,
+  userValidationResult,
+  checkMail,
+  checkPhone
 } = require("../controllers/booking.js");
-const { verifyToken, isAdmin } = require("../middleware/auth.js");
+const { verifyToken, isAdmin, } = require("../middleware/auth.js");
 const router = express.Router();
 
 // api admin
@@ -24,15 +25,12 @@ router.put(
   isAdmin,
   updateBookingStatusAdmin
 );
-// router.post("/booking/status", listAllBookingStatus);
 router.post("/booking/status", listAllBookingStatus);
-router.get("/booking/admin/search", verifyToken, isAdmin, searchBookingAdmin);
-router.post("/booking/filterByDate", filterByDate);
 
 // api user
 router.post("/booking", create);
-router.get("/booking/cancel/:bookingId", verifyToken, cancelBooking);
 router.get("/booking/user", verifyToken, getListBookingUser);
-router.get("/booking/user/status", verifyToken, getBookingStatusUser);
+router.post("/booking/user/status", verifyToken, getBookingStatusUser);
+router.post("/booking/user/search", verifyToken, searchBookingUser);
 
 module.exports = router;

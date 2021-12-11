@@ -15,19 +15,19 @@ const ContactPage = () => {
       >
         <div className="container mx-auto">
           <p className="hidden md:block text-white text-[40px] mb-[15px] leading-[45px] font-bold">
-            Contact
+            Liên hệ
           </p>
           <div className="flex">
             <Link to="/" className="text-[#039ee3]">
-              Home
+              Trang chủ
             </Link>
-            <span className="text-white ml-[5px]"> / Contact</span>
+            <span className="text-white ml-[5px]"> / Liên hệ</span>
           </div>
         </div>
       </div>
       <div className="mt-[100px]">
         <p className="text-center text-[30px] md:text-[35px] leading-[36px] font-medium relative before:content-[''] before:absolute before:w-[100px] before:h-[5px] before:bg-blue-400 before:top-[60px] before:left-[50%] before:translate-x-[-50%]">
-          GET IN TOUCH
+          LIÊN LẠC
         </p>
         <div className="mx-[15px] md:mx-[30px] lg:max-w-[55%] lg:mx-auto  mt-[100px] py-[50px] border-t border-b border-[#e1e1e1]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[50px]">
@@ -36,19 +36,19 @@ const ContactPage = () => {
                 <i className="fas fa-road"></i>
               </span>
               <p className="text-[16px] font-medium text-[#000]">
-                Lorem Ipsum is simply dummy text..
+                Số 1 Trịnh Văn Bô - Nam Từ Liêm - Hà Nội
               </p>
-              <p className="text-[#737373] text-[15px]">Melbourne Australia</p>
+              <p className="text-[#737373] text-[15px]">Nam Từ Liêm - Hà Nội</p>
             </div>
             <div className="text-center">
               <span className="text-[#039ee3] text-[30px]">
                 <i className="fas fa-user"></i>
               </span>
               <p className="text-[16px] font-medium text-[#000]">
-                0011 234 56789
+                0982 999 999 
               </p>
               <p className="text-[#737373] text-[15px]">
-                Mon-Fri 8:30am-6:30pm
+                Mở cửa 8:30am-6:30pm
               </p>
             </div>
             <div className="text-center">
@@ -56,16 +56,17 @@ const ContactPage = () => {
                 <i className="fas fa-envelope"></i>
               </span>
               <p className="text-[16px] font-medium text-[#000]">
-                Example@gmail.com
+                aceshop123@gmail.com
               </p>
-              <p className="text-[#737373] text-[15px]">24/7 online support</p>
+              <p className="text-[#737373] text-[15px]">Hỗ trợ online 24/7</p>
             </div>
           </div>
         </div>
       </div>
       <div className="mx-[15px] md:mx-[30px] lg:max-w-[55%] lg:mx-auto mt-[90px] ">
         <p className="text-center text-[30px] md:text-[35px] leading-[36px] font-medium ">
-          SEND MESSAGER
+          
+GỬI TIN NHẮN
         </p>
         <div className="grid grid-cols-2 gap-[10px] mt-[30px]">
           <input
@@ -109,23 +110,20 @@ const ContactPage = () => {
         className="mt-[100px] py-[130px] bg-cover bg-center bg-no-repeat relative mb-[130px]"
         style={{
           backgroundImage: `url(${test_bg})`,
-          // backgroundSize: "100%",
         }}
       >
         <div className="container mx-auto">
           <div className="text-white">
             <p className="text-[35px] leading-[36px] font-medium mb-[15px]">
-              What Clients Say?
+              Khách hàng nói gì?
             </p>
             <p className="text-[20px] mb-[10px] relative before:content-[''] before:absolute before:w-[80px] before:h-[4px] before:bg-blue-400 before:top-[45px] before:left-0">
-              Here are testimonials from clients..
+            Đây là lời chứng thực từ khách hàng ..
             </p>
 
             <div className="md:w-[500px] mt-[50px]">
               <p className="">
-                You guys rock! Thank you for making it painless, pleasant and
-                most of all hassle free! I wish I would have thought of it
-                first. I am really satisfied with my first laptop service.
+              Cảm ơn bạn đã làm cho nó không đau, dễ chịu và hơn hết là không rắc rối! Tôi ước gì tôi sẽ nghĩ về nó đầu tiên. Tôi thực sự hài lòng với dịch vụ máy tính xách tay đầu tiên của mình.
               </p>
               <p className="text-[18px] mt-[30px]  font-medium">
                 Maria Anderson
@@ -141,16 +139,16 @@ const ContactPage = () => {
             </div>
             <div className="text-white  ml-[30px]">
               <p className="mt-[8px] mb-[5px] text-[24px] md:text-[35px] font-bold">
-                REQUEST A FREE QUOTE
+              YÊU CẦU BÁO GIÁ MIỄN PHÍ
               </p>
               <p className="">
-                Get answers and advice from people you want it from.
+              Nhận câu trả lời và lời khuyên từ những người bạn muốn. 
               </p>
             </div>
           </div>
           <div className="">
             <button className=" bg-[#252525] text-white text-[14px] rounded-[100px] px-[30px] py-[15px] hover:text-black hover:bg-white font-medium">
-              CONTACT US
+              LIÊN HỆ
             </button>
           </div>
         </div>
