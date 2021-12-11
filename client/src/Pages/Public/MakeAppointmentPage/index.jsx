@@ -1,10 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import axios from "axios";
+import { listServiceAction } from "../../../redux/actions/services";
+import { useForm } from 'react-hook-form';
+import { API, isAuthenticated } from '../../../constant';
+import { getUserLocalStorage } from '../../../redux/actions/auth';
 import { Link } from "react-router-dom";
 import inner_page_banner from "../../../Images/inner_page_banner.jpg";
 import test_bg from "../../../Images/test_bg.png";
 import phone_icon from "../../../Images/phone_icon.png";
 
 const MakeAppointment = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { listService } = useSelector(state => state.service)
+
+  const { user } = isAuthenticated()
+  console.log(user)
+
+  const dispatch = useDispatch()
+
+  const [error, setError] = useState("")
+  const [message, setMessage] = useState("")
+
+  useEffect(() => {
+    dispatch(listServiceAction())
+    dispatch(getUserLocalStorage())
+  }, [])
+
+  const onSubmit = async (dataForm, e) => {
+    const dataBooking = {
+      ...dataForm,
+      user_id: user && user._id
+    }
+
+    const { data } = await axios.post(`${API}/booking`, dataBooking)
+
+    if (data.success) {
+      e.target.reset()
+      setError("")
+      setMessage(data.message)
+      alert(data.message)
+    } else {
+      setError(data.message)
+      alert(data.message)
+    }
+  }
+
   return (
     <>
       <div className="m-0">
@@ -28,69 +69,139 @@ const MakeAppointment = () => {
           </div>
         </div>
         <div className="mt-[100px]">
+          {error ? error : message}
           <p className="text-center text-[30px] md:text-[35px] leading-[36px] font-medium relative before:content-[''] before:absolute before:w-[100px] before:h-[5px] before:bg-blue-400 before:top-[60px] before:left-[50%] before:translate-x-[-50%]">
             Make Appointment
           </p>
 
-          <div className="w-full px-[15px] md:px-[30px] lg:max-w-[55%] lg:mx-auto mt-[90px] ">
+          <form action="" className="w-full px-[15px] md:px-[30px] lg:max-w-[55%] lg:mx-auto mt-[90px]" onSubmit={handleSubmit(onSubmit)} >
+
             <div className="grid grid-cols-2 gap-[10px]">
-              <input
-                type="text"
-                className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-                placeholder=" Họ và tên"
-              />
-              <input
-                type="text"
-                className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-                placeholder="Phone number"
-              />
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+                  placeholder=" Họ và tên"
+                  {...register('name', {
+                    required: true,
+                    isLength: ({ min: 6, max: 30 })
+                  })}
+                />
+                {errors?.name?.type === "required" && <p className="form__error">Name không được để trống</p>}
+                {errors?.name?.type === "isLength" && <p className="form__error">Name phải dài từ 3 đến 30 kí tự</p>}
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="phone"
+                  className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+                  placeholder="Phone number"
+                  {...register('phone', {
+                    required: true,
+                    pattern: /((09|03|07|08|05)+([0-9]{8})\b)/g
+                  })}
+                />
+                {errors?.phone?.type === "required" && <p className="form__error">Phone không được để trống</p>}
+                {errors?.phone?.type === "pattern" && (<p className="form__error">Phone chưa đúng định dạng</p>)}
+              </div>
             </div>
+
             <div className="mt-[10px] grid grid-cols-2 gap-[10px]">
-              <input
-                type="text"
-                className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-                placeholder=" Email"
-              />
-              <input
-                type="text"
-                className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-                placeholder="Địa chỉ"
-              />
+              <div>
+                <input
+                  type="text"
+                  name="email"
+                  className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+                  placeholder=" Email"
+                  {...register('email', {
+                    required: true,
+                    pattern: /^([\w]*[\w\.]*(?!\.)@gmail.com)/
+                  })}
+                />
+                {errors?.email?.type === "required" && <p className="form__error">Email không được để trống</p>}
+                {errors?.email?.type === "pattern" && (<p className="form__error">Email chưa đúng định dạng</p>)}
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="address"
+                  className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+                  placeholder="Địa chỉ"
+                  {...register("address", {
+                    required: true
+                  })}
+                />
+                {errors?.address?.type === "required" && <p className="form__error">Địa chỉ không được để trống</p>}
+              </div>
             </div>
+
             <div className="mt-[10px] ">
               <select
-                name=""
-                id=""
+                name="service_id"
+                id="service_id"
                 className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600 text-gray-400"
+                {...register("service_id", {
+                  required: true
+                })}
               >
-                <option value="" className="text-gray-500">
-                  Chọn dịch vụ
-                </option>
+                <option value="" className="text-gray-500"> Chọn dịch vụ</option>
+                {listService.map(item => (
+                  <>
+                    <option key={item._id} value={item._id}>{item.name}</option>
+                  </>
+                ))}
               </select>
+              {errors?.service_id?.type === "required" && <p className="form__error">Bạn chưa chọn dịch vụ</p>}
             </div>
+
             <div className="mt-[10px] grid grid-cols-2 gap-[10px]">
-              <input
-                type="datetime-local"
-                className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] text-gray-400 bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-              />
-              <input
-                type="time"
-                className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] text-gray-400 bg-[#f8f8f8]  focus:outline-none focus:border focus:border-gray-600"
-              />
+              <div>
+                <input
+                  name="repair_time"
+                  type="date"
+                  className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] text-gray-400 bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+                  {...register('repair_time', {
+                    required: true
+                  })}
+                />
+                {errors?.repair_time?.type === "required" && <p className="form__error">Ngày không được để trống</p>}
+              </div>
+              <div>
+                <input
+                  name="correction_time"
+                  type="time"
+                  className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] text-gray-400 bg-[#f8f8f8]  focus:outline-none focus:border focus:border-gray-600"
+                  min="08:00"
+                  max="18:00"
+                  {...register('correction_time', {
+                    required: true,
+                  })}
+                />
+                {errors?.correction_time?.type === "required" && <p className="form__error">Giờ không được để trống</p>}
+              </div>
             </div>
+
             <div className="mt-[10px] ">
               <textarea
+                name="description_error"
                 type="text"
                 className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px]  bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
                 placeholder="Mô tả lỗi"
+                {...register('description_error', {
+                  required: true,
+                })}
               />
+              {errors?.description_error?.type === "required" && <p className="form__error" > Mô tả không được để trống</p>}
             </div>
+
             <div className="text-center mt-[25px]">
-              <button className="bg-[#17a5e9] text-white border-none height-[50px] min-w-[170px] text-[14px] hover:bg-[#25d8ed] rounded-[100px] py-[15px] text-center font-bold">
+              <button type="submit" className="bg-[#17a5e9] text-white border-none height-[50px] min-w-[170px] text-[14px] hover:bg-[#25d8ed] rounded-[100px] py-[15px] text-center font-bold">
                 ĐĂT LỊCH
               </button>
             </div>
-          </div>
+
+          </form>
         </div>
         <div
           className="mt-[100px] py-[130px] bg-cover bg-center bg-no-repeat relative mb-[130px]"

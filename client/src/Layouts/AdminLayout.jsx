@@ -8,8 +8,11 @@ import Header from "../Pages/Private/Commons/Header";
 import SlideBar from "../Pages/Private/Commons/SlideBar";
 import Dashboard from "../Pages/Private/Dashboard";
 import service from "../Pages/Private/Service";
+import AddServicePage from "../Pages/Private/Service/add-service";
+import EditServicePage from "../Pages/Private/Service/edit-service";
 import Users from "../Pages/Private/User";
 import PrivateRouter from "../Routes/PrivateRouter";
+
 // import AccountManager from "src/Pages/Private/AccountManager";
 
 const AdminLayout = () => {
@@ -23,6 +26,8 @@ const AdminLayout = () => {
             <div className="flex flex-col flex-wrap sm:flex-row ">
               <Switch>
                 <PrivateRouter path={path.ADMIN_SERVICE} component={service} />
+                <PrivateRouter path={path.ADD_SERVICE} component={AddServicePage} />
+                <PrivateRouter path={path.EDIT_SERVICE} component={EditServicePage} />
                 <PrivateRouter path={path.ADMIN_USER} component={Users} />
                 <PrivateRouter
                   path={path.ADMIN_BOOKING_DETAIL}

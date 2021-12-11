@@ -8,7 +8,7 @@ const AuthLayout = () => {
   return (
     <Switch>
       <Route exact path={path.REGISTER} component={SignUp} />
-      <Route exact path={path.SIGNIN} component={SignIn} />
+      <Route exact path={path.LOGIN} component={SignIn} />
     </Switch>
   );
 };

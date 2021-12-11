@@ -1,15 +1,68 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import imgSignin from "../../../Images/signin-image.jpg";
 import iconback from "../../../Images/iconBack.png";
+import { useForm } from "react-hook-form"
+import axios from 'axios'
+import { API, isAuthenticated } from "../../../constant";
 
 const SignIn = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm()
+  const [error, setError] = useState("")
+  const [message, setMessage] = useState("")
+  const [redirectToRef, setRedirectToRef] = useState(false)
+
+  const { user } = isAuthenticated()
+
+  const authenticate = (data, next) => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("user", JSON.stringify(data));
+      next();
+    }
+  };
+
+  const onSubmit = async (dataForm, e) => {
+    try {
+      const { data } = await axios.post(`${API}/login`, dataForm)
+
+      const dataGetItem = {
+        token: data.token,
+        user: data.user
+      }
+
+      if (data.success) {
+        setMessage(data.message)
+        setError("")
+        e.target.reset()
+        authenticate(dataGetItem, () => {
+          setRedirectToRef(true)
+        })
+      }
+    } catch (error) {
+      setError(error.response.data.message)
+      setMessage("")
+    }
+  }
+
+  const redirectUser = () => {
+    if (redirectToRef) {
+      if (user.role === 1) {
+        return <Redirect to='/admin' />
+      } else {
+        return <Redirect to='/' />
+      }
+    }
+  }
+
   return (
     <>
+      {redirectUser()}
       <div className="md:bg-gray-100 h-[100vh] flex relative">
         <div className="w-[40px] absolute top-[20px] left-[50px] cursor-pointer">
           {" "}
-          <img src={iconback} alt="" className="w-full" />
+          <Link to="/">
+            <img src={iconback} alt="" className="w-full" />
+          </Link>
         </div>
         <div className="w-[900px] m-auto bg-white md:shadow-xl rounded-[30px] py-[70px]  ">
           <div className=" md:grid md:grid-cols-2">
@@ -24,16 +77,19 @@ const SignIn = () => {
               </Link>
             </div>
             <div className="px-[15px] sm:px-[30px] text-center md:text-left md:px-[30px] lg:pr-[90px] lg:pl-[80px]">
+              {error ? error : message}
               <p className="text-[#222] text-[36px] font-bold">Sign In</p>
-              <form action="" className="mt-[45px]">
+              <form action="" className="mt-[45px]" onSubmit={handleSubmit(onSubmit)}>
                 <div className="relative mb-[30px]">
                   <label htmlFor="" className="absolute bottom-[5px]">
                     <i class="fas fa-user text-[14px]"></i>
                   </label>
                   <input
-                    type="text"
+                    type="email"
+                    name="email"
                     className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
-                    placeholder="Your Name"
+                    placeholder="Email"
+                    {...register('email', { required: true })}
                   />
                 </div>
                 <div className="relative mb-[30px]">
@@ -44,6 +100,8 @@ const SignIn = () => {
                     type="password"
                     className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
                     placeholder="Your Password"
+                    name="password"
+                    {...register('password', { required: true })}
                   />
                 </div>
                 <div className="mb-[40px]">

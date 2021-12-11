@@ -5,6 +5,7 @@ import logo from "../../../../Images/ace.png";
 const Header = () => {
   const [boxUser, setBoxUser] = useState(false);
   const [nav, setNav] = useState(false);
+
   return (
     <>
       <div className="bg-[#039ee3]">
@@ -37,7 +38,7 @@ const Header = () => {
               </span>
             </div>
             <Link
-              to=""
+              to="/makeappointment"
               className=" bg-white text-[14px] hover:bg-black hover:text-white  px-[35px] py-[10px] lg:py-[15px] font-medium"
             >
               Make Appointment
@@ -117,17 +118,17 @@ const Header = () => {
                   <li className=" text-[14px] text-blue-600 hover:bg-blue-200 ">
                     {" "}
                     <Link
-                      to="/auth/lognin"
+                      to="/auth/register"
                       className="py-[5px] px-[15px] inline-block "
                     >
-                      Đăng nhập
+                      Đăng ký
                     </Link>
                   </li>
 
                   <li className=" text-[14px] text-blue-600 hover:bg-blue-200">
                     {" "}
-                    <Link to="" className="py-[5px] px-[15px] inline-block">
-                      Admin
+                    <Link to="/auth/login" className="py-[5px] px-[15px] inline-block">
+                      Đăng nhập
                     </Link>
                   </li>
                 </ul>

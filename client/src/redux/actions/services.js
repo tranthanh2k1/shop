@@ -20,16 +20,12 @@ export const createServiceAction = (dataForm) => async (dispatch) => {
 };
 
 export const listServiceAction = () => async (dispatch) => {
-  try {
-    const data = await list();
+  const data = await list();
 
-    dispatch({
-      type: "LIST_SERVICES",
-      payload: data.listServiceParent,
-    });
-  } catch (error) {
-    console.log(error)
-  }
+  dispatch({
+    type: "LIST_SERVICES",
+    payload: data.listServiceParent,
+  });
 };
 
 export const removeServiceAction = (id) => async (dispatch) => {
