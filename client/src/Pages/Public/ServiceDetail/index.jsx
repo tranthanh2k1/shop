@@ -6,6 +6,7 @@ import post_1 from "../../../Images/post-01.jpg";
 import team_member_1 from "../../../Images/team-member-1.jpg";
 
 const ServiceDetail = () => {
+
   return (
     <>
       <div

@@ -4,13 +4,16 @@ import axios from "axios";
 import { listServiceAction } from "../../../redux/actions/services";
 import { useForm } from 'react-hook-form';
 import { API, isAuthenticated } from '../../../constant';
-import { getUserLocalStorage } from '../../../redux/actions/auth';
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import inner_page_banner from "../../../Images/inner_page_banner.jpg";
 import test_bg from "../../../Images/test_bg.png";
 import phone_icon from "../../../Images/phone_icon.png";
 
 const MakeAppointment = () => {
+  const [error, setError] = useState("")
+  const [message, setMessage] = useState("")
+  const [booking, setBooking] = useState(false)
+
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { listService } = useSelector(state => state.service)
 
@@ -18,54 +21,67 @@ const MakeAppointment = () => {
 
   const dispatch = useDispatch()
 
-  const [error, setError] = useState("")
-  const [message, setMessage] = useState("")
+  const { pathname } = useLocation()
 
   useEffect(() => {
     dispatch(listServiceAction())
   }, [])
 
+  useEffect(() => {
+    pathname === '/makeappointment' && setBooking(true)
+  }, [])
+
+  const history = useHistory()
+
   const onSubmit = async (dataForm, e) => {
+    if (!isAuthenticated()) {
+      alert('Bạn cần đăng nhập vào hệ thống để tiếp tục đặt lịch')
+      return history.push('/auth/login')
+    }
     const dataBooking = {
       ...dataForm,
       user_id: user && user._id
     }
 
-    const { data } = await axios.post(`${API}/booking`, dataBooking)
+    try {
+      const { data } = await axios.post(`${API}/booking`, dataBooking)
 
-    if (data.success) {
-      e.target.reset()
-      setError("")
-      setMessage(data.message)
-      alert(data.message)
-    } else {
-      setError(data.message)
-      alert(data.message)
+      if (data.success) {
+        e.target.reset()
+        setError("")
+        setMessage(data.message)
+        alert(data.message)
+      }
+    } catch (error) {
+      setError("error", error.response.data.message)
+      alert(error.response.data.message)
     }
   }
 
   return (
     <>
       <div className="m-0">
-        <div
-          className="py-[20px] md:py-[30px] lg:h-[245px] bg-center bg-no-repeat flex items-center"
-          style={{
-            backgroundImage: `url(${inner_page_banner})`,
-            backgroundSize: "100%",
-          }}
-        >
-          <div className="container mx-auto">
-            <p className="hidden md:block text-white text-[40px] mb-[15px] leading-[45px] font-bold">
-              Make Appointment
-            </p>
-            <div className="flex">
-              <Link to="/" className="text-[#039ee3]">
-                Home
-              </Link>
-              <span className="text-white ml-[5px]"> / Make Appointment</span>
+        {booking && (
+          <div
+            className="py-[20px] md:py-[30px] lg:h-[245px] bg-center bg-no-repeat flex items-center"
+            style={{
+              backgroundImage: `url(${inner_page_banner})`,
+              backgroundSize: "100%",
+            }}
+          >
+            <div className="container mx-auto">
+              <p className="hidden md:block text-white text-[40px] mb-[15px] leading-[45px] font-bold">
+                Make Appointment
+              </p>
+              <div className="flex">
+                <Link to="/" className="text-[#039ee3]">
+                  Home
+                </Link>
+                <span className="text-white ml-[5px]"> / Make Appointment</span>
+              </div>
             </div>
           </div>
-        </div>
+        )}
         <div className="mt-[100px]">
           {error ? error : message}
           <p className="text-center text-[30px] md:text-[35px] leading-[36px] font-medium relative before:content-[''] before:absolute before:w-[100px] before:h-[5px] before:bg-blue-400 before:top-[60px] before:left-[50%] before:translate-x-[-50%]">
@@ -94,7 +110,7 @@ const MakeAppointment = () => {
                   type="text"
                   name="phone"
                   className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-                  placeholder="Phone number"
+                  placeholder="Số điện thoại"
                   {...register('phone', {
                     required: true,
                     pattern: /((09|03|07|08|05)+([0-9]{8})\b)/g
@@ -138,12 +154,12 @@ const MakeAppointment = () => {
               <select
                 name="service_id"
                 id="service_id"
-                className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600 text-gray-400"
+                className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
                 {...register("service_id", {
                   required: true
                 })}
               >
-                <option value="" className="text-gray-500"> Chọn dịch vụ</option>
+                <option value="" className="text-gray-400"> Chọn dịch vụ</option>
                 {listService.map(item => (
                   <>
                     <option key={item._id} value={item._id}>{item.name}</option>
@@ -155,6 +171,7 @@ const MakeAppointment = () => {
 
             <div className="mt-[10px] grid grid-cols-2 gap-[10px]">
               <div>
+                <label htmlFor="">Ngày sửa</label>
                 <input
                   name="repair_time"
                   type="date"
@@ -166,6 +183,7 @@ const MakeAppointment = () => {
                 {errors?.repair_time?.type === "required" && <p className="form__error">Ngày không được để trống</p>}
               </div>
               <div>
+                <label htmlFor="">Ca sửa:</label>
                 <input
                   name="correction_time"
                   type="time"
@@ -180,7 +198,7 @@ const MakeAppointment = () => {
               </div>
             </div>
 
-            <div className="mt-[10px] ">
+            <div className="mt-[10px]">
               <textarea
                 name="description_error"
                 type="text"

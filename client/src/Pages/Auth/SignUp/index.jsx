@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import imgSignup from "../../../Images/signup-image.jpg";
 import iconback from "../../../Images/iconBack.png";
 import { useForm } from "react-hook-form"
@@ -11,12 +11,18 @@ const SignUp = () => {
   const [error, setError] = useState("")
   const [message, setMessage] = useState("")
 
+  const history = useHistory()
+
   const onSubmit = async (dataForm, e) => {
     try {
       const { data } = await axios.post(`${API}/register`, dataForm)
 
       setMessage(data.message)
       setError("")
+
+      if (data.success) {
+        history.push('/auth/login')
+      }
       e.target.reset()
     } catch (error) {
       setError(error.response.data.message)
@@ -40,20 +46,22 @@ const SignUp = () => {
               <p className="text-[#222] text-[36px] font-bold">Sign Up</p>
               <form action="" className="mt-[45px]" onSubmit={handleSubmit(onSubmit)}>
 
-                <div className="relative mb-[25px]">
-                  <label htmlFor="" className="absolute bottom-[5px]">
-                    <i class="fas fa-user text-[14px]"></i>
-                  </label>
-                  <input
-                    id="username"
-                    type="text"
-                    className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
-                    placeholder="Your Name"
-                    {...register('username', {
-                      required: true,
-                    })}
-                  />
-                  {errors?.username?.type === "required" && <p className="">Username không được để trống</p>}
+                <div className="mb-[25px]">
+                  <div className="relative">
+                    <label htmlFor="" className="absolute bottom-[5px]">
+                      <i class="fas fa-user text-[14px]"></i>
+                    </label>
+                    <input
+                      id="username"
+                      type="text"
+                      className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
+                      placeholder="Họ và tên"
+                      {...register('username', {
+                        required: true,
+                      })}
+                    />
+                  </div>
+                  {errors?.username?.type === "required" && <p className="text-red-600">Username không được để trống</p>}
                 </div>
 
                 <div className="relative mb-[25px]">
@@ -64,14 +72,14 @@ const SignUp = () => {
                     type="text"
                     id="phone"
                     className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
-                    placeholder="Your Phone"
+                    placeholder="Số điện thoại"
                     {...register('phone', {
                       required: true,
                       pattern: /((09|03|07|08|05)+([0-9]{8})\b)/g
                     })}
                   />
-                  {errors?.phone?.type === "required" && <p className="">Phone không được để trống</p>}
-                  {errors?.phone?.type === "pattern" && (<p className="">Phone chưa đúng định dạng</p>)}
+                  {errors?.phone?.type === "required" && <p className="text-red-600">Phone không được để trống</p>}
+                  {errors?.phone?.type === "pattern" && (<p className="text-red-600">Phone chưa đúng định dạng</p>)}
                 </div>
 
                 <div className="relative mb-[25px]">
@@ -82,14 +90,14 @@ const SignUp = () => {
                     id="email"
                     type="email"
                     className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
-                    placeholder="Your Email"
+                    placeholder="Email"
                     {...register('email', {
                       required: true,
                       pattern: /^([\w]*[\w\.]*(?!\.)@gmail.com)/
                     })}
                   />
-                  {errors?.email?.type === "required" && <p className="form__error">Email không đc để trống</p>}
-                  {errors?.email?.type === "pattern" && (<p className="form__error">Email chưa đúng định dạng</p>)}
+                  {errors?.email?.type === "required" && <p className="form__error text-red-600">Email không đc để trống</p>}
+                  {errors?.email?.type === "pattern" && (<p className="form__error text-red-600">Email chưa đúng định dạng</p>)}
                 </div>
 
                 <div className="relative mb-[25px]">
@@ -100,14 +108,14 @@ const SignUp = () => {
                     id="password"
                     type="password"
                     className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
-                    placeholder="Your password"
+                    placeholder="Mật khẩu"
                     {...register('password', {
                       required: true,
                       minLength: 6
                     })}
                   />
-                  {errors?.password?.type === "required" && <p className="form__error">Mật khẩu không đc để trống</p>}
-                  {errors?.password?.type === "minLength" && (<p className="form__error">Mật khẩu ít nhất 6 kí tự</p>)}
+                  {errors?.password?.type === "required" && <p className="form__error text-red-600">Mật khẩu không đc để trống</p>}
+                  {errors?.password?.type === "minLength" && (<p className="form__error text-red-600">Mật khẩu ít nhất 6 kí tự</p>)}
                 </div>
 
                 <button type="submit" className="bg-[#6dabe4] px-[39px] mt-[20px] py-[15px] border-none rounded-[5px] text-[14px] text-white">

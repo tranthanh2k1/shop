@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Booked = () => {
   return (
@@ -64,42 +64,48 @@ const Booked = () => {
           </div>
           <div className="pl-[15px]">
             <div className="flex text-gray-700 mt-[3px]">
-              <Link
+              <NavLink
                 to="/user/booked"
+                exact activeStyle={{ color: '#ee4d2d', borderBottom: '2px solid #ee4d2d' }}
                 className="pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-red-500"
               >
                 Tất cả
-              </Link>
-              <Link
-                to=""
+              </NavLink>
+              <NavLink
+                to="/user/booked/type1"
+                exact activeStyle={{ color: '#ee4d2d', borderBottom: '2px solid #ee4d2d' }}
                 className="pb-[15px] border-b-2 flex-1 overflow-hidden items-center  text-center justify-center border-gray-300"
               >
                 Chờ xác nhận
-              </Link>
-              <Link
-                to=""
+              </NavLink>
+              <NavLink
+                to="/user/booked/type2"
+                exact activeStyle={{ color: '#ee4d2d', borderBottom: '2px solid #ee4d2d' }}
                 className="pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-gray-300"
               >
                 Xác nhận
-              </Link>
-              <Link
-                to=""
+              </NavLink>
+              <NavLink
+                to="/user/booked/type3"
+                exact activeStyle={{ color: '#ee4d2d', borderBottom: '2px solid #ee4d2d' }}
                 className="pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-gray-300"
               >
                 Đang sửa
-              </Link>
-              <Link
-                to=""
+              </NavLink>
+              <NavLink
+                to="/user/booked/type4"
+                exact activeStyle={{ color: '#ee4d2d', borderBottom: '2px solid #ee4d2d' }}
                 className="pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-gray-300"
               >
                 Sửa thành công
-              </Link>
-              <Link
-                to=""
+              </NavLink>
+              <NavLink
+                to="/user/booked/type5"
+                exact activeStyle={{ color: '#ee4d2d', borderBottom: '2px solid #ee4d2d' }}
                 className="pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-gray-300"
               >
                 Hủy lịch
-              </Link>
+              </NavLink>
             </div>
             <form className="py-[12px] my-[12px] flex items-center shadow-sm text-[#212121] bg-[#eaeaea] rounded-[2px]">
               <span className="text-[20px] mx-[15px]">
@@ -111,7 +117,7 @@ const Booked = () => {
                 className="flex-1 text-[14px] leading-[16px] bg-[#eaeaea] focus:outline-none"
               />
             </form>
-            <div className="mt-[40px] bg-white shadow-md py-[15px]">
+            <div className="mt-[20px] bg-white shadow-md py-[15px]">
               <div className="px-[20px]">
                 <div className="flex justify-end">
                   <p className="text-gray-700">
@@ -148,7 +154,7 @@ const Booked = () => {
                 </div>
               </div>
             </div>
-            <div className="mt-[40px] bg-white shadow-md py-[15px]">
+            <div className="mt-[20px] bg-white shadow-md py-[15px]">
               <div className="px-[20px]">
                 <div className="flex justify-end">
                   <p className="text-gray-700">

@@ -24,9 +24,11 @@ const ListServicePage = () => {
                     <p className="text-[22px] font-medium ">Danh sách dịch vụ</p>
                 </div>
                 <div className="mt-[50px]">
-                    <div className="grid grid-cols-[0.2fr,1.7fr,1fr] px-[10px] font-medium  pb-[15px] border-b-2 border-gray-500">
+                    <div className="grid grid-cols-[0.2fr,1.7fr,0.7fr,1.7fr,1fr] px-[10px] font-medium  pb-[15px] border-b-2 border-gray-500">
                         <div>#</div>
                         <div>Dịch vụ</div>
+                        <div>Ảnh</div>
+                        <div>Mô tả</div>
                         <div>
                             <Link to="/admin/service/add" className="text-white px-2 py-[5px] text-[14px] bg-green-500 rounded-[5px]">
                                 Thêm dịch vụ
@@ -35,9 +37,11 @@ const ListServicePage = () => {
                     </div>
                     <div className="text-[14px]">
                         {listService.map((item, index) => (
-                            <div key={index} className="grid grid-cols-[0.2fr,1.7fr,1fr] py-[10px] px-[10px] border-b border-gray-300">
+                            <div key={index} className="grid grid-cols-[0.2fr,1.7fr,0.7fr,1.7fr,1fr] py-[10px] px-[10px] border-b border-gray-300">
                                 <div className="font-medium">{index}</div>
                                 <div className="pr-[10px]">{item.name}</div>
+                                <div className="pr-[10px]">iaegvj ajvh aj</div>
+                                <div className="pr-[10px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet ad quibusdam ipsum incidunt ipsam magnam numquam modi maxime voluptatibus blanditiis magni fugiat repellat ratione laudantium, corrupti, sit, officiis nesciunt ab.</div>
                                 <div className="">
                                     <Link to={`/admin/service/edit/${item._id}`} className="text-white px-3 py-1 bg-blue-500 rounded-[5px]">
                                         Sửa

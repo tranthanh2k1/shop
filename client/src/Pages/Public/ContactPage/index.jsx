@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import inner_page_banner from "../../../Images/inner_page_banner.jpg";
 import test_bg from "../../../Images/test_bg.png";
 import phone_icon from "../../../Images/phone_icon.png";
+
 const ContactPage = () => {
   return (
     <>

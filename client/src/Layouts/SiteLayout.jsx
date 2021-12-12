@@ -12,18 +12,19 @@ import ServicesList from "../Pages/Public/ServicesList";
 import ServiceDetail from "../Pages/Public/ServiceDetail";
 import Booked from "../Pages/Public/Booked";
 
-const SiteLayout = () => {
+const SiteLayout = ({ children }) => {
   return (
     <>
       <Header />
-      <Switch>
+      {children}
+      {/* <Switch>
         <PublicRouter exact path={path.HOME} component={HomePage} />
         <PublicRouter path={path.MAKEAPPOINTMENT} component={MakeAppointment} />
         <PublicRouter path={path.CONTACT} component={ContactPage} />
         <PublicRouter path={path.SERVICES_LIST} component={ServicesList} />
         <PublicRouter path={path.SERVICES_DETAIL} component={ServiceDetail} />
         <PublicRouter path={path.USER_BOOKED} component={Booked} />
-      </Switch>
+      </Switch> */}
       <Footer />
     </>
   );

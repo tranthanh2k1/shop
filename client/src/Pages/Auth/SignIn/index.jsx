@@ -77,7 +77,7 @@ const SignIn = () => {
               </Link>
             </div>
             <div className="px-[15px] sm:px-[30px] text-center md:text-left md:px-[30px] lg:pr-[90px] lg:pl-[80px]">
-              {error ? error : message}
+              {error ? <span className="text-red-600">{error}</span> : message}
               <p className="text-[#222] text-[36px] font-bold">Sign In</p>
               <form action="" className="mt-[45px]" onSubmit={handleSubmit(onSubmit)}>
                 <div className="relative mb-[30px]">
@@ -91,6 +91,8 @@ const SignIn = () => {
                     placeholder="Email"
                     {...register('email', { required: true })}
                   />
+                  {errors?.email?.type === "required" && <p className="text-red-600">Email không đc để trống</p>}
+                  {errors?.email?.type === "pattern" && (<p className="text-red-600">Email chưa đúng định dạng</p>)}
                 </div>
                 <div className="relative mb-[30px]">
                   <label htmlFor="" className="absolute bottom-[5px]">
@@ -99,10 +101,12 @@ const SignIn = () => {
                   <input
                     type="password"
                     className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
-                    placeholder="Your Password"
+                    placeholder="Mật khẩu"
                     name="password"
                     {...register('password', { required: true })}
                   />
+                  {errors?.password?.type === "required" && <p className="text-red-600">Mật khẩu không đc để trống</p>}
+                  {errors?.password?.type === "minLength" && (<p className="text-red-600">Mật khẩu ít nhất 6 kí tự</p>)}
                 </div>
                 <div className="mb-[40px]">
                   <label htmlFor="" className="flex items-center space-x-3">

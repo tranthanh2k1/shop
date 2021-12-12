@@ -1,5 +1,6 @@
-import React from "react";
-import { Route, Switch } from "react-router";
+import React, { Children } from "react";
+import { Redirect, Route, Switch } from "react-router";
+import { isAuthenticated } from "../constant";
 // import Dashboard from "src/Pages/Private/Dashboard";
 import { path } from "../Constants";
 import Booking from "../Pages/Private/Booking";
@@ -17,7 +18,7 @@ import PrivateRouter from "../Routes/PrivateRouter";
 
 // import AccountManager from "src/Pages/Private/AccountManager";
 
-const AdminLayout = () => {
+const AdminLayout = ({ children }) => {
   return (
     <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl h-screen overflow-hidden relative">
       <div className="flex items-start justify-between">
@@ -26,20 +27,18 @@ const AdminLayout = () => {
           <Header />
           <div className="overflow-auto h-screen pb-24 pt-2 pr-2 pl-2 md:pt-0 md:pr-0 md:pl-0">
             <div className="flex flex-col flex-wrap sm:flex-row ">
-              <Switch>
+              {children}
+              {/* <Switch>
                 <PrivateRouter exact path={path.ADMIN_SERVICE} component={service} />
                 <PrivateRouter exact path={path.ADD_SERVICE} component={AddServicePage} />
                 <PrivateRouter exact path={path.EDIT_SERVICE} component={EditServicePage} />
                 <PrivateRouter exact path={path.ADMIN_USER} component={Users} />
-                <PrivateRouter exact
-                  path={path.ADMIN_BOOKING_DETAIL}
-                  component={Bookingdetail}
-                />
+                <PrivateRouter exact path={path.ADMIN_BOOKING_DETAIL} component={Bookingdetail} />
                 <PrivateRouter exact path={path.ADMIN_BOOKING} component={Booking} />
                 <PrivateRouter exact path={path.SEARCH_BOOKING} component={SearchBookingAdmin} />
-                {/* <PrivateRouter path={path.ADMIN_BOOKING} component={DetailBookingPage} /> */}
+                <PrivateRouter path={path.ADMIN_BOOKING} component={DetailBookingPage} />
                 <PrivateRouter exact path={path.ADMIN} component={Dashboard} />
-              </Switch>
+              </Switch> */}
             </div>
           </div>
         </div>

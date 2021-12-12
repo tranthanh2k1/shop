@@ -1,11 +1,11 @@
 /* .service {
 } */
 
-.service__form {
+/* .service__form {
   width: 500px;
   background-color: #fff;
   border-radius: 15px;
-}
+} */
 
 .service__form-group {
   display: flex;
@@ -13,7 +13,7 @@
   justify-content: center;
 }
 
-.service__form-input {
+/* .service__form-input {
   width: 80%;
   height: 40px;
   outline: none;
@@ -21,7 +21,7 @@
   padding: 10px 20px;
   margin: 10px 0;
   border-radius: 5px;
-}
+} */
 
 .service__button {
   border-radius: 8px;

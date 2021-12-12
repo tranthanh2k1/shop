@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { adminFilterByDateBookingAction, getListBookingAll, listAllBookingStatusAction } from "../../../redux/actions/booking-admin";
 
 const Booking = () => {
@@ -190,50 +190,51 @@ const Booking = () => {
                     </button>
                   </div>
                   <div className="">
-                    <button className="text-white px-2 py-1 bg-green-400 rounded-[5px]">
+                    <Link to={`/admin/booking/detail/${item._id}`} className="text-white px-2 py-1 bg-green-400 rounded-[5px]">
                       Xem chi tiết
-                    </button>
+                    </Link>
                   </div>
                 </div>
               ))}
             </div>
           </div>
           {totalPage && (
-            <nav aria-label="Page navigation example" ref={paginationRef}>
-              <ul className="pagination">
-                <li className="page-item">
-                  {query > 1 && (
-                    <Link
-                      className='page-link'
-                      to={`/admin/booking/list?page=${Number(query) - 1}`}
-                    >
-                      Previous
-                    </Link>
-                  )}
-                </li>
-                {Array(totalPage).fill(1).map((item, index) => (
-                  <li className="page-item" key={index}>
-                    <Link
-                      className="page-link"
+            <div class="flex flex-col items-center my-12">
+              <div class="flex text-gray-700">
+                {query > 1 && (
+                  <Link
+                    to={`/admin/booking/list?page=${Number(query) - 1}`}
+                    class="h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left w-6 h-6">
+                      <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                  </Link>
+                )}
+                <div class="flex h-12 font-medium rounded-full bg-gray-200">
+                  {Array(totalPage).fill(1).map((item, index) => (
+                    <NavLink
+                      // exact
+                      // activeStyle={{ backgroundColor: 'red' }}
                       to={`/admin/booking/list?page=${index + 1}`}
-                    >{index + 1}</Link>
-                  </li>
-                ))}
-                <li className="page-item">
-                  {query < totalPage && (
-                    <Link
-                      className="page-link"
-                      to={`/admin/booking/list?page=${Number(query) + 1}`}
-                    >
-                      Next
-                    </Link>
-                  )}
-                </li>
-              </ul>
-            </nav>
+                      class="w-12 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full  ">{index + 1}
+                    </NavLink>
+                  ))}
+
+                </div>
+                {query < totalPage && (
+                  <Link
+                    to={`/admin/booking/list?page=${Number(query) + 1}`}
+                    class="h-12 w-12 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right w-6 h-6">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </Link>
+                )}
+              </div>
+            </div>
           )}
         </div>
-      </div>
+      </div >
     </>
   );
 };

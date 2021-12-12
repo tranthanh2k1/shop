@@ -16,6 +16,7 @@ import phone_icon from "../../../Images/phone_icon.png";
 import post01 from "../../../Images/post-03.jpg";
 import post02 from "../../../Images/post-04.jpg";
 import post03 from "../../../Images/post-06.jpg";
+import MakeAppointment from "../MakeAppointmentPage";
 
 const HomePage = () => {
   const [box1, setBox1] = useState(false);
@@ -38,6 +39,7 @@ const HomePage = () => {
           </p>
         </div>
       </div>
+      <MakeAppointment />
       <div className="container mx-auto mt-[100px]">
         <div className=" text-center ">
           <p className=" text-[30px] md:text-[35px] text-[#000] font-medium mt-[15px] uppercase">
