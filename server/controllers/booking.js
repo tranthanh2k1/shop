@@ -382,6 +382,7 @@ exports.getListBookingUser = async (req, res) => {
 
   Booking.find({ user_id: user._id })
     .sort({ createdAt: -1 })
+    .populate("service_id", "name")
     .exec((err, listBooking) => {
       if (err) {
         return res.status(400).json({
@@ -415,6 +416,7 @@ exports.getBookingStatusUser = (req, res) => {
   ) {
     Booking.find({ status, user_id: user._id })
       .sort({ createdAt: -1 })
+      .populate("service_id", "name")
       .exec((err, listBooking) => {
         if (err) {
           return res.status(400).json({

@@ -15,7 +15,7 @@ exports.serviceId = (req, res, next, id) => {
 };
 
 exports.create = async (req, res) => {
-  const { name, parent_id } = req.body;
+  const { name, parent_id, image, description } = req.body;
 
   if (!name) {
     return res.status(401).json({
@@ -37,6 +37,8 @@ exports.create = async (req, res) => {
     const newService = new Service({
       name,
       parent_id: parent_id || null,
+      image,
+      description,
     });
 
     newService.save((err, service) => {
@@ -115,7 +117,7 @@ exports.listByParentId = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  const { name, parent_id } = req.body;
+  const { name, parent_id, image, description } = req.body;
 
   if (!name) {
     return res.status(401).json({
@@ -128,6 +130,8 @@ exports.update = async (req, res) => {
     let updatedService = {
       name,
       parent_id: parent_id || null,
+      image,
+      description,
     };
 
     const serviceUpdateCondition = { _id: req.params.id };

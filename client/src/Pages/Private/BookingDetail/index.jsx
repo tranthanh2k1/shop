@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { detaiBookingAction, updateStatusBookingAdminAction } from "../../../redux/actions/booking-admin";
 
 const Bookingdetail = () => {
@@ -11,7 +11,9 @@ const Bookingdetail = () => {
   const [isDisableSuccessfulFix, setDIsableSuccessfulFix] = useState('true')
   const [isDisableCanellation, setIsDisableCanellation] = useState('true')
 
-  const { id } = useParams()
+  const { pathname } = useLocation()
+  const arrayPathname = pathname.split("/")
+  const id = arrayPathname[arrayPathname.length - 1]
 
   const { detailBooking, message, error } = useSelector(state => state.bookingAdmin)
 

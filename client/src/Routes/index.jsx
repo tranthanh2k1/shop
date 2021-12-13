@@ -19,6 +19,12 @@ import ServicesList from "../Pages/Public/ServicesList";
 import ServiceDetail from "../Pages/Public/ServiceDetail";
 import ContactPage from "../Pages/Public/ContactPage";
 import Bookingdetail from "../Pages/Private/BookingDetail";
+import WaitForComfirmationPage from "../Pages/Public/Booked/wait-confirmation";
+import ConfirmBookingUser from "../Pages/Public/Booked/confirm";
+import ListBookedFixingUser from "../Pages/Public/Booked/fixing";
+import SuccessfullBookedPage from "../Pages/Public/Booked/successfull";
+import CencelledBookedUserPage from "../Pages/Public/Booked/cencelled";
+import ListAllBookedUserPage from "../Pages/Public/Booked/listAllBookedUser";
 
 const RootRoute = () => {
   return (
@@ -34,30 +40,33 @@ const RootRoute = () => {
         <Route path="/admin/:path?/:path?">
           <AdminLayout>
             <Switch>
-              <Route exact path="/admin">
+              <PrivateRouter exact path="/admin">
                 <Redirect to="/admin/dashboard" />
-              </Route>
-              {/* <Route exact path="/admin/dashboard">
+              </PrivateRouter>
+              {/* <PrivateRouter exact path="/admin/dashboard">
                 <AdminDashboard title="Dịch vụ" />
-              </Route> */}
-              <Route exact path="/admin/service/list">
+              </PrivateRouter> */}
+              <PrivateRouter exact path="/admin/service/list">
                 <ListServicePage title="Dịch vụ" />
-              </Route>
-              <Route exact path="/admin/service/add">
+              </PrivateRouter>
+              <PrivateRouter exact path="/admin/service/add">
                 <AddServicePage title="Dịch vụ" />
-              </Route>
-              <Route exact path="/admin/service/edit/:id">
+              </PrivateRouter>
+              <PrivateRouter exact path="/admin/service/edit/:id">
                 <EditServicePage title="Dịch vụ" />
-              </Route>
-              <Route exact path="/admin/booking/list">
+              </PrivateRouter>
+              <PrivateRouter exact path="/admin/booking/list">
                 <Booking />
-              </Route>
-              <Route exact path="/admin/booking/detail/:id">
+              </PrivateRouter>
+              <PrivateRouter exact path="/admin/booking/detail/:id">
                 <Bookingdetail />
-              </Route>
-              <Route exact path="/admin/booking/search">
+              </PrivateRouter>
+              <PrivateRouter exact path="/admin/booking/search">
                 <SearchBookingAdmin />
-              </Route>
+              </PrivateRouter>
+              <PrivateRouter exact path="/admin/**">
+                hello
+              </PrivateRouter>
             </Switch>
           </AdminLayout>
         </Route>
@@ -74,9 +83,29 @@ const RootRoute = () => {
               <Route path={path.CONTACT} component={ContactPage} />
               {/* <BookedUserPage> */}
               {/* <Switch> */}
-              <Route exact path="/user/booked">
-                <Booked />
-              </Route>
+              <Booked>
+                <Switch>
+                  <Route exact path="/user/booked">
+                    <ListAllBookedUserPage />
+                  </Route>
+                  <Route exact path="/user/booked/type1">
+                    <WaitForComfirmationPage />
+                  </Route>
+                  <Route exact path="/user/booked/type2">
+                    <ConfirmBookingUser />
+                  </Route>
+                  <Route exact path="/user/booked/type3">
+                    <ListBookedFixingUser />
+                  </Route>
+                  <Route exact path="/user/booked/type4">
+                    <SuccessfullBookedPage />
+                  </Route>
+                  <Route exact path="/user/booked/type5">
+                    <CencelledBookedUserPage />
+                  </Route>
+                </Switch>
+              </Booked>
+
               {/* <Route exact path="/user/booked/type1">
                     <WaitForComfirmationPage />
                   </Route>

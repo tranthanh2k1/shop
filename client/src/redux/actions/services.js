@@ -42,6 +42,7 @@ export const removeServiceAction = (id) => async (dispatch) => {
 
 export const updateServiceAction = (id, dataForm) => async (dispatch) => {
   const data = await update(id, dataForm);
+  console.log(data);
 
   if (data.success) {
     dispatch({
