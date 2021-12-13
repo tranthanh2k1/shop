@@ -11,6 +11,7 @@ exports.create = async (req, res) => {
     repair_time,
     correction_time,
     description_error,
+    payment_method,
     service_id,
   } = req.body;
   if (
@@ -52,6 +53,7 @@ exports.create = async (req, res) => {
       description_error,
       status: "Wait for confirmation",
       service_id,
+      payment_method: payment_method || "unpaid",
     });
 
     newBooking.save((err, booking) => {
@@ -114,7 +116,7 @@ exports.create = async (req, res) => {
 exports.updateBookingStatusAdmin = async (req, res) => {
   const bookingId = req.params.bookingId;
 
-  const { status } = req.body;
+  const { status, total_price } = req.body;
 
   const getBookingDB = await Booking.findOne({ _id: bookingId });
 
@@ -187,9 +189,18 @@ exports.updateBookingStatusAdmin = async (req, res) => {
         });
       }
     case "Successful fix":
+      if (!total_price) {
+        return res.status(401).json({
+          success: false,
+          message: "Bạn cần nhập giá",
+        });
+      }
+
       if (getBookingDB.status === "Fixing") {
         updatedStatusBookingAdmin = {
           status,
+          total_price,
+          payment_method: "paid",
         };
 
         updatedStatusBookingAdmin = await Booking.findOneAndUpdate(
@@ -262,7 +273,7 @@ exports.updateBookingStatusAdmin = async (req, res) => {
 exports.listBooking = (req, res) => {
   let page = req.query.page;
 
-  const page_size = 5;
+  const page_size = 10;
 
   if (page) {
     page = parseInt(page);
@@ -330,7 +341,7 @@ exports.detailBooking = (req, res) => {
       message: "Lấy chi tiết đơn đặt lịch thành công",
       detailBooking,
     });
-  });
+  }).populate("service_id", "name");
 };
 
 exports.listAllBookingStatus = (req, res) => {

@@ -80,31 +80,35 @@ const SignIn = () => {
               {error ? <span className="text-red-600">{error}</span> : message}
               <p className="text-[#222] text-[36px] font-bold">Sign In</p>
               <form action="" className="mt-[45px]" onSubmit={handleSubmit(onSubmit)}>
-                <div className="relative mb-[30px]">
-                  <label htmlFor="" className="absolute bottom-[5px]">
-                    <i class="fas fa-user text-[14px]"></i>
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
-                    placeholder="Email"
-                    {...register('email', { required: true })}
-                  />
+                <div className="mb-[30px]">
+                  <div className="relative">
+                    <label htmlFor="" className="absolute bottom-[5px]">
+                      <i class="fas fa-user text-[14px]"></i>
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
+                      placeholder="Email"
+                      {...register('email', { required: true })}
+                    />
+                  </div>
                   {errors?.email?.type === "required" && <p className="text-red-600">Email không đc để trống</p>}
                   {errors?.email?.type === "pattern" && (<p className="text-red-600">Email chưa đúng định dạng</p>)}
                 </div>
-                <div className="relative mb-[30px]">
-                  <label htmlFor="" className="absolute bottom-[5px]">
-                    <i class="fas fa-lock text-[14px]"></i>
-                  </label>
-                  <input
-                    type="password"
-                    className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
-                    placeholder="Mật khẩu"
-                    name="password"
-                    {...register('password', { required: true })}
-                  />
+                <div className="mb-[30px]">
+                  <div className="relative">
+                    <label htmlFor="" className="absolute bottom-[5px]">
+                      <i class="fas fa-lock text-[14px]"></i>
+                    </label>
+                    <input
+                      type="password"
+                      className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
+                      placeholder="Mật khẩu"
+                      name="password"
+                      {...register('password', { required: true })}
+                    />
+                  </div>
                   {errors?.password?.type === "required" && <p className="text-red-600">Mật khẩu không đc để trống</p>}
                   {errors?.password?.type === "minLength" && (<p className="text-red-600">Mật khẩu ít nhất 6 kí tự</p>)}
                 </div>

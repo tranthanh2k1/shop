@@ -80,6 +80,7 @@ const Booking = () => {
 
   const paginationRef = useRef(null)
   const inputDateRef = useRef(date)
+  const colorRef = useRef(null)
 
   const handleSelectStatus = (e) => {
     if (e.target.value === 'all') {
@@ -105,6 +106,10 @@ const Booking = () => {
 
   const handleFilterDateOrder = () => {
     dispatch(adminFilterByDateBookingAction(date))
+  }
+
+  const handleColor = () => {
+    colorRef.current.style.backgroundColor = 'red'
   }
 
   return (
@@ -212,12 +217,10 @@ const Booking = () => {
                 )}
                 <div class="flex h-12 font-medium rounded-full bg-gray-200">
                   {Array(totalPage).fill(1).map((item, index) => (
-                    <NavLink
-                      // exact
-                      // activeStyle={{ backgroundColor: 'red' }}
+                    <Link
                       to={`/admin/booking/list?page=${index + 1}`}
                       class="w-12 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full  ">{index + 1}
-                    </NavLink>
+                    </Link>
                   ))}
 
                 </div>

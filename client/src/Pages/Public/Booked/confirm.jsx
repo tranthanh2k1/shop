@@ -62,7 +62,7 @@ const ConfirmBookingUser = () => {
                         </div>
                         <div className="border-gray-400 pl-[10px] pb-[20px] text-[15px] font-medium">
                             <p className="text-gray-600 pb-[5px] text-[16px] font-bold">
-                                Mã hóa đơn: {item.code_bill}
+                                Mã hóa đơn: #{item.code_bill}
                             </p>
                             <p className="text-gray-600 pb-[5px]">
                                 Họ tên: {item.name}
@@ -81,7 +81,9 @@ const ConfirmBookingUser = () => {
                         <div className="flex justify-end pb-[20px]">
                             <div className="text-[14px]">
                                 <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
-                                    Thứ 2 - 25/12
+                                    <Moment format="hh:mm' DD/MM/YYYY">
+                                        {item.repair_time}
+                                    </Moment>
                                 </button>
                                 <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
                                     9:00 AM
@@ -89,9 +91,9 @@ const ConfirmBookingUser = () => {
                                 <button className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
                                     Liên hệ
                                 </button>
-                                <button className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
+                                {/* <button className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
                                     Hủy lịch
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </div>

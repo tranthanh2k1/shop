@@ -38,6 +38,7 @@ const MakeAppointment = () => {
       alert('Bạn cần đăng nhập vào hệ thống để tiếp tục đặt lịch')
       return history.push('/auth/login')
     }
+
     const dataBooking = {
       ...dataForm,
       user_id: user && user._id
@@ -51,6 +52,8 @@ const MakeAppointment = () => {
         setError("")
         setMessage(data.message)
         alert(data.message)
+
+        history.push('/user/booked')
       }
     } catch (error) {
       setError("error", error.response.data.message)
@@ -102,8 +105,8 @@ const MakeAppointment = () => {
                     isLength: ({ min: 6, max: 30 })
                   })}
                 />
-                {errors?.name?.type === "required" && <p className="form__error">Name không được để trống</p>}
-                {errors?.name?.type === "isLength" && <p className="form__error">Name phải dài từ 3 đến 30 kí tự</p>}
+                {errors?.name?.type === "required" && <p className="text-red-600">Name không được để trống</p>}
+                {errors?.name?.type === "isLength" && <p className="text-red-600">Name phải dài từ 3 đến 30 kí tự</p>}
               </div>
               <div>
                 <input
@@ -116,8 +119,8 @@ const MakeAppointment = () => {
                     pattern: /((09|03|07|08|05)+([0-9]{8})\b)/g
                   })}
                 />
-                {errors?.phone?.type === "required" && <p className="form__error">Phone không được để trống</p>}
-                {errors?.phone?.type === "pattern" && (<p className="form__error">Phone chưa đúng định dạng</p>)}
+                {errors?.phone?.type === "required" && <p className="text-red-600">Phone không được để trống</p>}
+                {errors?.phone?.type === "pattern" && (<p className="text-red-600">Phone chưa đúng định dạng</p>)}
               </div>
             </div>
 
@@ -133,8 +136,8 @@ const MakeAppointment = () => {
                     pattern: /^([\w]*[\w\.]*(?!\.)@gmail.com)/
                   })}
                 />
-                {errors?.email?.type === "required" && <p className="form__error">Email không được để trống</p>}
-                {errors?.email?.type === "pattern" && (<p className="form__error">Email chưa đúng định dạng</p>)}
+                {errors?.email?.type === "required" && <p className="text-red-600">Email không được để trống</p>}
+                {errors?.email?.type === "pattern" && (<p className="text-red-600">Email chưa đúng định dạng</p>)}
               </div>
               <div>
                 <input
@@ -146,7 +149,7 @@ const MakeAppointment = () => {
                     required: true
                   })}
                 />
-                {errors?.address?.type === "required" && <p className="form__error">Địa chỉ không được để trống</p>}
+                {errors?.address?.type === "required" && <p className="text-red-600">Địa chỉ không được để trống</p>}
               </div>
             </div>
 
@@ -166,7 +169,7 @@ const MakeAppointment = () => {
                   </>
                 ))}
               </select>
-              {errors?.service_id?.type === "required" && <p className="form__error">Bạn chưa chọn dịch vụ</p>}
+              {errors?.service_id?.type === "required" && <p className="text-red-600">Bạn chưa chọn dịch vụ</p>}
             </div>
 
             <div className="mt-[10px] grid grid-cols-2 gap-[10px]">
@@ -180,7 +183,7 @@ const MakeAppointment = () => {
                     required: true
                   })}
                 />
-                {errors?.repair_time?.type === "required" && <p className="form__error">Ngày không được để trống</p>}
+                {errors?.repair_time?.type === "required" && <p className="text-red-600">Ngày không được để trống</p>}
               </div>
               <div>
                 <label htmlFor="">Ca sửa:</label>
@@ -194,7 +197,7 @@ const MakeAppointment = () => {
                     required: true,
                   })}
                 />
-                {errors?.correction_time?.type === "required" && <p className="form__error">Giờ không được để trống</p>}
+                {errors?.correction_time?.type === "required" && <p className="text-red-600">Giờ không được để trống</p>}
               </div>
             </div>
 
@@ -208,7 +211,7 @@ const MakeAppointment = () => {
                   required: true,
                 })}
               />
-              {errors?.description_error?.type === "required" && <p className="form__error" > Mô tả không được để trống</p>}
+              {errors?.description_error?.type === "required" && <p className="text-red-600" > Mô tả không được để trống</p>}
             </div>
 
             <div className="text-center mt-[25px]">

@@ -70,8 +70,8 @@ const RootRoute = () => {
             </Switch>
           </AdminLayout>
         </Route>
+        <PublicRouter path={path.AUTH} component={AuthLayout} />
         <Route path="/">
-          <PublicRouter path={path.AUTH} component={AuthLayout} />
           <SiteLayout>
             <Switch>
               <Route exact path="/">

@@ -39,15 +39,16 @@ const Booked = ({ children }) => {
                   </Link>
                 </li>
                 <li className="mt-4 ">
-                  <Link
-                    to=""
+                  <span class="mr-3">
+                    <i class="fal fa-file-invoice"></i>
+                  </span>
+                  <NavLink
+                    to="/user/booked"
+                    activeStyle={{ color: '#ee4d2d' }}
                     className="text-[15px] text-gray-800 hover:text-blue-700"
                   >
-                    <span class="mr-3">
-                      <i class="fal fa-file-invoice"></i>
-                    </span>
                     Hóa đơn
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="mt-4 ">
                   <Link
@@ -64,46 +65,46 @@ const Booked = ({ children }) => {
             </div>
           </div>
           <div className="pl-[15px]">
-            <div className="flex text-gray-700 mt-[3px]">
+            <div className="flex text-gray-700 border-white bg-white">
               <NavLink
                 exact activeStyle={{ color: '#ee4d2d', borderBottom: '2px solid #ee4d2d' }}
                 to="/user/booked"
-                className="pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-gray-300 hover:text-red-500"
+                className="pt-[15px] pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-gray-300 hover:text-red-500"
               >
                 Tất cả
               </NavLink>
               <NavLink
                 exact activeStyle={{ color: '#ee4d2d', borderBottom: '2px solid #ee4d2d' }}
                 to="/user/booked/type1"
-                className="pb-[15px] border-b-2 flex-1 overflow-hidden items-center  text-center justify-center border-gray-300 hover:text-red-500"
+                className="pt-[15px] pb-[15px] border-b-2 flex-1 overflow-hidden items-center  text-center justify-center border-gray-300 hover:text-red-500"
               >
                 Chờ xác nhận
               </NavLink>
               <NavLink
                 exact activeStyle={{ color: '#ee4d2d', borderBottom: '2px solid #ee4d2d' }}
                 to="/user/booked/type2"
-                className="pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-gray-300 hover:text-red-500"
+                className="pt-[15px] pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-gray-300 hover:text-red-500"
               >
                 Xác nhận
               </NavLink>
               <NavLink
                 exact activeStyle={{ color: '#ee4d2d', borderBottom: '2px solid #ee4d2d' }}
                 to="/user/booked/type3"
-                className="pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-gray-300 hover:text-red-500"
+                className="pt-[15px] pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-gray-300 hover:text-red-500"
               >
                 Đang sửa
               </NavLink>
               <NavLink
                 exact activeStyle={{ color: '#ee4d2d', borderBottom: '2px solid #ee4d2d' }}
                 to="/user/booked/type4"
-                className="pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-gray-300 hover:text-red-500"
+                className="pt-[15px] pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-gray-300 hover:text-red-500"
               >
                 Sửa thành công
               </NavLink>
               <NavLink
                 exact activeStyle={{ color: '#ee4d2d', borderBottom: '2px solid #ee4d2d' }}
                 to="/user/booked/type5"
-                className="pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-gray-300 hover:text-red-500"
+                className="pt-[15px] pb-[15px] border-b-2 flex-1 overflow-hidden items-center text-center justify-center border-gray-300 hover:text-red-500"
               >
                 Hủy lịch
               </NavLink>

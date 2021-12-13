@@ -39,6 +39,12 @@ const BookingSchema = new Schema(
       type: String,
       // required: true,
     },
+    total_price: String,
+    payment_method: {
+      type: String,
+      enum: ["unpaid", "paid"],
+      default: "unpaid",
+    },
     status: {
       type: String,
       enum: [

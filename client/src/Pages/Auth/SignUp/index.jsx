@@ -64,56 +64,62 @@ const SignUp = () => {
                   {errors?.username?.type === "required" && <p className="text-red-600">Username không được để trống</p>}
                 </div>
 
-                <div className="relative mb-[25px]">
-                  <label htmlFor="" className="absolute bottom-[5px]">
-                    <i class="fas fa-phone text-[14px]"></i>
-                  </label>
-                  <input
-                    type="text"
-                    id="phone"
-                    className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
-                    placeholder="Số điện thoại"
-                    {...register('phone', {
-                      required: true,
-                      pattern: /((09|03|07|08|05)+([0-9]{8})\b)/g
-                    })}
-                  />
+                <div className="mb-[25px]">
+                  <div className="relative">
+                    <label htmlFor="" className="absolute bottom-[5px]">
+                      <i class="fas fa-phone text-[14px]"></i>
+                    </label>
+                    <input
+                      type="text"
+                      id="phone"
+                      className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
+                      placeholder="Số điện thoại"
+                      {...register('phone', {
+                        required: true,
+                        pattern: /((09|03|07|08|05)+([0-9]{8})\b)/g
+                      })}
+                    />
+                  </div>
                   {errors?.phone?.type === "required" && <p className="text-red-600">Phone không được để trống</p>}
                   {errors?.phone?.type === "pattern" && (<p className="text-red-600">Phone chưa đúng định dạng</p>)}
                 </div>
 
-                <div className="relative mb-[25px]">
-                  <label htmlFor="" className="absolute bottom-[5px]">
-                    <i class="fas fa-envelope text-[14px]"></i>
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
-                    placeholder="Email"
-                    {...register('email', {
-                      required: true,
-                      pattern: /^([\w]*[\w\.]*(?!\.)@gmail.com)/
-                    })}
-                  />
+                <div className="mb-[25px]">
+                  <div className="relative">
+                    <label htmlFor="" className="absolute bottom-[5px]">
+                      <i class="fas fa-envelope text-[14px]"></i>
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
+                      placeholder="Email"
+                      {...register('email', {
+                        required: true,
+                        pattern: /^([\w]*[\w\.]*(?!\.)@gmail.com)/
+                      })}
+                    />
+                  </div>
                   {errors?.email?.type === "required" && <p className="form__error text-red-600">Email không đc để trống</p>}
                   {errors?.email?.type === "pattern" && (<p className="form__error text-red-600">Email chưa đúng định dạng</p>)}
                 </div>
 
-                <div className="relative mb-[25px]">
-                  <label htmlFor="" className="absolute bottom-[5px]">
-                    <i class="fal fa-lock-alt text-[14px]"></i>
-                  </label>
-                  <input
-                    id="password"
-                    type="password"
-                    className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
-                    placeholder="Mật khẩu"
-                    {...register('password', {
-                      required: true,
-                      minLength: 6
-                    })}
-                  />
+                <div className="mb-[25px]">
+                  <div className="relative">
+                    <label htmlFor="" className="absolute bottom-[5px]">
+                      <i class="fal fa-lock-alt text-[14px]"></i>
+                    </label>
+                    <input
+                      id="password"
+                      type="password"
+                      className="w-full outline-none border-b border-gray-400 pl-[30px] py-[6px] text-[14px]"
+                      placeholder="Mật khẩu"
+                      {...register('password', {
+                        required: true,
+                        minLength: 6
+                      })}
+                    />
+                  </div>
                   {errors?.password?.type === "required" && <p className="form__error text-red-600">Mật khẩu không đc để trống</p>}
                   {errors?.password?.type === "minLength" && (<p className="form__error text-red-600">Mật khẩu ít nhất 6 kí tự</p>)}
                 </div>

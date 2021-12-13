@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
+import { convertNumber } from "../../../constant";
 import { detaiBookingAction, updateStatusBookingAdminAction } from "../../../redux/actions/booking-admin";
 
 const Bookingdetail = () => {
@@ -10,6 +11,8 @@ const Bookingdetail = () => {
   const [isDisableFixing, setIsDisableFixing] = useState('true')
   const [isDisableSuccessfulFix, setDIsableSuccessfulFix] = useState('true')
   const [isDisableCanellation, setIsDisableCanellation] = useState('true')
+  const [totalPrice, setTotalPrice] = useState('')
+  const [errorPrice, setErrorPrice] = useState('')
 
   const { pathname } = useLocation()
   const arrayPathname = pathname.split("/")
@@ -49,14 +52,30 @@ const Bookingdetail = () => {
 
   }, [detailBooking, isDisableWaitConfirmation, isDisableConfirm, isDisableFixing, isDisableSuccessfulFix, isDisableCanellation])
 
+  const valueInputRef = useRef(null)
+
   const handleUpdateStatus = (status) => {
     alert("Bạn có muốn cập nhật trạng thái cho đơn đặt lịch này")
 
-    const dataReq = {
+    let dataReq = {
       status
     }
 
-    dispatch(updateStatusBookingAdminAction(dataReq, id))
+    if (status === 'Successful fix') {
+      if (valueInputRef.current.value === '') {
+        setErrorPrice('Bạn cần nhập giá')
+        return false
+      }
+
+      dataReq = {
+        status,
+        total_price: totalPrice
+      }
+    }
+
+    if (!errorPrice) {
+      dispatch(updateStatusBookingAdminAction(dataReq, id))
+    }
   }
 
   const history = useHistory()
@@ -65,6 +84,11 @@ const Bookingdetail = () => {
     if (message) {
       history.push('/admin/booking/list')
     }
+  }
+
+  const handleTotalPrice = (e) => {
+    setErrorPrice('')
+    setTotalPrice(e.target.value)
   }
 
   return (
@@ -97,9 +121,36 @@ const Bookingdetail = () => {
               <p className="text-gray-600 py-[5px]">
                 Lỗi máy: {detailBooking.description_error}
               </p>
-              <p className="text-gray-600 pt-[5px]">
-                Trạng thái: {detailBooking.status}
+              <p className="text-gray-600 py-[5px]">
+                Dịch vụ: {detailBooking?.service_id?.name || 'Dịch vụ ảo'}
               </p>
+              <p className="text-gray-600 pt-[5px]">
+                Trạng thái đơn hàng: {detailBooking.status}
+              </p>
+              <p className="text-gray-600 pt-[5px]">
+                Trạng thái thanh toán: {detailBooking.payment_method === 'unpaid' ? 'Chưa thanh toán' : ''}
+                {detailBooking.payment_method === 'paid' ? 'Đã thanh toán' : ''}
+              </p>
+              {detailBooking.status === 'Fixing' && (
+                <div>
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    Nhập giá tiền:
+                  </label>
+                  <input
+                    type="text"
+                    name="total_price"
+                    ref={valueInputRef}
+                    value={totalPrice}
+                    onChange={handleTotalPrice}
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Nhập giá" />
+                  <span className="text-red-600">{errorPrice}</span>
+                </div>
+              )}
+              {detailBooking.status === 'Successful fix' && (
+                <p className="text-gray-600 pt-[5px]">
+                  Thành tiền: {convertNumber(detailBooking.total_price)}đ
+                </p>
+              )}
             </div>
             <div className="mt-[20px]">
               <button
