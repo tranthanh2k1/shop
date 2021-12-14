@@ -132,6 +132,7 @@ exports.updateBookingStatusAdmin = async (req, res) => {
       if (getBookingDB.status === "Wait for confirmation") {
         updatedStatusBookingAdmin = {
           status,
+          updated_confirm: Date.now(),
         };
 
         updatedStatusBookingAdmin = await Booking.findOneAndUpdate(
@@ -162,6 +163,7 @@ exports.updateBookingStatusAdmin = async (req, res) => {
       if (getBookingDB.status === "Confirm") {
         updatedStatusBookingAdmin = {
           status,
+          updated_fixing: Date.now(),
         };
 
         updatedStatusBookingAdmin = await Booking.findOneAndUpdate(
@@ -200,6 +202,7 @@ exports.updateBookingStatusAdmin = async (req, res) => {
         updatedStatusBookingAdmin = {
           status,
           total_price,
+          updated_success: Date.now(),
           payment_method: "paid",
         };
 
@@ -235,6 +238,7 @@ exports.updateBookingStatusAdmin = async (req, res) => {
       ) {
         updatedStatusBookingAdmin = {
           status,
+          updated_cancel: Date.now(),
         };
 
         updatedStatusBookingAdmin = await Booking.findOneAndUpdate(

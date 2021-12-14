@@ -60,7 +60,7 @@ const SuccessfullBookedPage = () => {
                         <div className="flex justify-end pb-[20px]">
                             <div className="text-[14px]">
                                 <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
-                                    <Moment format="hh:mm' DD/MM/YYYY">
+                                    <Moment format="DD/MM/YYYY">
                                         {item.repair_time}
                                     </Moment>
                                 </button>

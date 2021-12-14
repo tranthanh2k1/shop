@@ -59,6 +59,22 @@ const BookingSchema = new Schema(
       type: mongoose.Types.ObjectId,
       ref: "Service",
     },
+    updated_confirm: {
+      type: Date,
+      default: null,
+    },
+    updated_fixing: {
+      type: Date,
+      default: null,
+    },
+    updated_success: {
+      type: Date,
+      default: null,
+    },
+    updated_cancel: {
+      type: Date,
+      default: null,
+    },
   },
   { timestamps: true }
 );
