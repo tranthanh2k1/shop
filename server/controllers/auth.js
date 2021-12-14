@@ -160,3 +160,33 @@ exports.forgotPassword = (req, res) => {
     }
   });
 };
+
+exports.changepassword = (req, res) => {
+  const {email, old_password, new_password} = req.body;
+  User.findOne({email}, async (err, user) => {
+    if (err || !user){
+      return res.status(400).json({ error: err})
+    }
+
+    if (await argon2.verify(user.password, old_password)) {
+      const hassed_new_password = await argon2.hash(new_password);
+      user.password = hassed_new_password;
+      await User.updateOne({ _id: user._id }, user);
+      res
+      .status(200)
+      .json({
+        type: "success",
+        message: "update password successfully",
+      });
+      // password match
+    } else {
+      res
+      .status(200)
+      .json({
+        type: "success",
+        message: "old password mismatch",
+      });
+      // password did not match
+    }
+  })
+}
