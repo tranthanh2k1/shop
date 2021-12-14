@@ -25,6 +25,7 @@ import ListBookedFixingUser from "../Pages/Public/Booked/fixing";
 import SuccessfullBookedPage from "../Pages/Public/Booked/successfull";
 import CencelledBookedUserPage from "../Pages/Public/Booked/cencelled";
 import ListAllBookedUserPage from "../Pages/Public/Booked/listAllBookedUser";
+import Dashboard from "../Pages/Private/Dashboard";
 
 const RootRoute = () => {
   return (
@@ -43,9 +44,9 @@ const RootRoute = () => {
               <PrivateRouter exact path="/admin">
                 <Redirect to="/admin/dashboard" />
               </PrivateRouter>
-              {/* <PrivateRouter exact path="/admin/dashboard">
-                <AdminDashboard title="Dịch vụ" />
-              </PrivateRouter> */}
+              <PrivateRouter exact path="/admin/dashboard">
+                <Dashboard />
+              </PrivateRouter>
               <PrivateRouter exact path="/admin/service/list">
                 <ListServicePage title="Dịch vụ" />
               </PrivateRouter>

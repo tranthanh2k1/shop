@@ -11,6 +11,9 @@ const {
   searchBookingUser,
   searchBookingAdmin,
   filterByDate,
+  revenueByDay,
+  revenueByDays,
+  businessResultDay,
 } = require("../controllers/booking.js");
 const { verifyToken, isAdmin } = require("../middleware/auth.js");
 const router = express.Router();
@@ -28,6 +31,9 @@ router.put(
 router.post("/booking/status", listAllBookingStatus);
 router.get("/booking/admin/search", verifyToken, isAdmin, searchBookingAdmin);
 router.post("/booking/filterByDate", filterByDate);
+router.get("/booking/admin/revenueByDay", revenueByDay);
+router.get("/booking/admin/revenueByDays", revenueByDays);
+router.get("/booking/admin/businessResultDay", businessResultDay);
 
 // api user
 router.post("/booking", create);

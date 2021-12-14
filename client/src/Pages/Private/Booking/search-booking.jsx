@@ -79,7 +79,7 @@ const SearchBookingAdmin = () => {
                             <form action="/admin/booking/search" className="flex items-center mt-[20px]">
                                 <input
                                     type="text"
-                                    placeholder="Tìm kiếm"
+                                    placeholder="Tìm kiếm theo mã hóa đơn"
                                     name="code"
                                     className="border border-gray-300 text-[14px] px-[15px] py-[3px] rounded-[3px] w-[63%] lg:w-[65%] focus:outline-none focus:border focus:border-gray-700"
                                 />

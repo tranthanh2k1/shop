@@ -1,5 +1,6 @@
 const Booking = require("../models/booking.js");
 const nodemailer = require("nodemailer");
+const moment = require("moment");
 
 exports.create = async (req, res) => {
   const {
@@ -554,5 +555,97 @@ exports.filterByDate = (req, res) => {
         success: false,
         message: "Lấy đơn đặt lịch thất bại",
       });
+    });
+};
+
+exports.revenueByDay = async (req, res) => {
+  const { date } = req.body;
+
+  if (!date) {
+    return res.status(401).json({
+      success: false,
+      message: "Bạn cần nhập đầy đủ thông tin",
+    });
+  }
+
+  const booking = await Booking.find({
+    updated_success: {
+      $gte: new Date(date).setHours(00, 00, 00),
+      $lt: new Date(date).setHours(23, 59, 59),
+    },
+    payment_method: "paid",
+  });
+
+  if (!booking) {
+    return res.status(401).json({
+      success: false,
+      message: "Lấy đơn đặt lịch thất bại",
+    });
+  }
+
+  res.status(200).json(booking);
+};
+
+exports.revenueByDays = async (req, res) => {
+  const { dateStart, dateEnd } = req.body;
+
+  if (!dateStart || !dateEnd) {
+    return res.status(401).json({
+      success: false,
+      message: "Bạn cần nhập đầy đủ thông tin",
+    });
+  }
+
+  const booking = await Booking.find({
+    updated_success: {
+      $gte: new Date(dateStart).setHours(00, 00, 00),
+      $lt: new Date(dateEnd).setHours(23, 59, 59),
+    },
+    payment_method: "paid",
+  });
+
+  if (!booking) {
+    return res.status(401).json({
+      success: false,
+      message: "Lấy đơn đặt lịch thất bại",
+    });
+  }
+
+  res.status(200).json(booking);
+};
+
+exports.businessResultDay = async (req, res) => {
+  const waitBooking = await Booking.find({
+    createdAt: {
+      $gte: new Date(moment()).setHours(00, 00, 00),
+      $lt: new Date(moment()).setHours(23, 59, 59),
+    },
+  });
+
+  const cancelBooking = await Booking.find({
+    status: "Cancellation of booking",
+    updated_cancel: {
+      $gte: new Date(moment()).setHours(00, 00, 00),
+      $lt: new Date(moment()).setHours(23, 59, 59),
+    },
+  });
+
+  Booking.find({
+    status: "Successful fix",
+    updated_success: {
+      $gte: new Date(moment()).setHours(00, 00, 00),
+      $lt: new Date(moment()).setHours(23, 59, 59),
+    },
+    payment_method: "paid",
+  })
+    .then((data) => {
+      res.status(200).json({
+        waitBooking: waitBooking.length,
+        cancelBooking: cancelBooking.length,
+        totalBookingDay: data,
+      });
+    })
+    .catch((error) => {
+      console.log("error", error);
     });
 };
