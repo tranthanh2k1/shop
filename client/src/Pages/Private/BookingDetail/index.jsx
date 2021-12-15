@@ -62,14 +62,16 @@ const Bookingdetail = () => {
     }
 
     if (status === 'Successful fix') {
-      if (valueInputRef.current.value === '') {
-        setErrorPrice('Bạn cần nhập giá')
-        return false
-      }
+      if (detailBooking && detailBooking.total_price === '') {
+        if (valueInputRef.current.value === '') {
+          setErrorPrice('Bạn cần nhập giá')
+          return false
+        }
 
-      dataReq = {
-        status,
-        total_price: totalPrice
+        dataReq = {
+          status,
+          total_price: totalPrice
+        }
       }
     }
 

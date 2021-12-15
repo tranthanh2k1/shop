@@ -163,7 +163,7 @@ const MakeAppointment = () => {
                 })}
               >
                 <option value="" className="text-gray-400"> Chọn dịch vụ</option>
-                {listService.map(item => (
+                {listService && listService.map(item => (
                   <>
                     <option key={item._id} value={item._id}>{item.name}</option>
                   </>

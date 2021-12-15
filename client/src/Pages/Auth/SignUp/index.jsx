@@ -133,7 +133,7 @@ const SignUp = () => {
                 to="/auth/login"
                 className="block md:hidden text-center mt-[40px] text-gray-700 underline hover:text-blue-700"
               >
-                I am already member
+                Bạn đã có tài khoản?
               </Link>
             </div>
 
@@ -144,7 +144,7 @@ const SignUp = () => {
                 to="/auth/login"
                 className="block text-center mt-[40px] text-gray-700 hover:text-blue-700"
               >
-                I am already member
+                Bạn đã có tài khoản?
               </Link>
             </div>
           </div>

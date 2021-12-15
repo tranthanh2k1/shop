@@ -145,13 +145,13 @@ exports.updateBookingStatusAdmin = async (req, res) => {
         if (!updatedStatusBookingAdmin) {
           return res.status(401).json({
             success: false,
-            message: "Update status booking fail",
+            message: "Thay đổi trạng thái đơn đặt lịch thất bại",
           });
         }
 
         res.status(200).json({
           success: true,
-          message: "Update status booking success",
+          message: "Thay đổi trạng thái đơn đặt lịch thành công",
           updatedStatusBookingAdmin,
         });
       } else {
@@ -527,7 +527,6 @@ exports.searchBookingAdmin = async (req, res) => {
 
 exports.filterByDate = (req, res) => {
   const { date } = req.body;
-  console.log(date);
 
   if (!date) {
     return res.status(400).json({
