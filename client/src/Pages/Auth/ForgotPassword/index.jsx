@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { API } from '../../../constant'
 
 const ForgotPasswordPage = () => {
@@ -56,14 +56,14 @@ const ForgotPasswordPage = () => {
                             </div>
                             <hr className="mb-6 border-t" />
                             <div className="text-center">
-                                <a className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" href="./register.html">
-                                    Create an Account!
-                                </a>
+                                <Link className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" to="/auth/register">
+                                    Tạo tài khoản mới?
+                                </Link>
                             </div>
                             <div className="text-center">
-                                <a className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" href="./index.html">
-                                    Already have an account? Login!
-                                </a>
+                                <Link className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" to="/auth/login">
+                                    Bạn đã có tài khoản? Đăng nhập!
+                                </Link>
                             </div>
                         </form>
                     </div>

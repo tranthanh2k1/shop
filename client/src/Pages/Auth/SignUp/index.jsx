@@ -21,6 +21,7 @@ const SignUp = () => {
       setError("")
 
       if (data.success) {
+        alert("Bạn đăng ký tài khoản thành công! Vui lòng đăng nhập để truy cập hệ thống")
         history.push('/auth/login')
       }
       e.target.reset()
@@ -42,8 +43,8 @@ const SignUp = () => {
         <div className="w-[900px] m-auto bg-white md:shadow-xl rounded-[30px] py-[70px]  ">
           <div className="md:grid grid-cols-2">
             <div className="px-[15px] sm:px-[30px] text-center md:text-left lg:pr-[90px] lg:pl-[100px]">
-              {error ? error : message}
-              <p className="text-[#222] text-[36px] font-bold">Sign Up</p>
+              {error ? <span className="text-red-600">{error}</span> : message}
+              <p className="text-[#222] text-[36px] font-bold">Đăng ký</p>
               <form action="" className="mt-[45px]" onSubmit={handleSubmit(onSubmit)}>
 
                 <div className="mb-[25px]">
@@ -125,18 +126,10 @@ const SignUp = () => {
                 </div>
 
                 <button type="submit" className="bg-[#6dabe4] px-[39px] mt-[20px] py-[15px] border-none rounded-[5px] text-[14px] text-white">
-                  Register
+                  Đăng ký
                 </button>
               </form>
-
-              <Link
-                to="/auth/login"
-                className="block md:hidden text-center mt-[40px] text-gray-700 underline hover:text-blue-700"
-              >
-                Bạn đã có tài khoản?
-              </Link>
             </div>
-
             <div className="hidden md:block pl-[30px] pr-[30px] lg:pl-[45px] lg:pr-[20px] mt-[10px]">
               <img src={imgSignup} alt="" />
 

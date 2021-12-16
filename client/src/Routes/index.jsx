@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Link, Redirect, Route, Switch } from "react-router-dom";
 import { path } from "../Constants";
 import AuthLayout from "../Layouts/AuthLayout";
 import SiteLayout from "../Layouts/SiteLayout";
@@ -26,6 +26,8 @@ import SuccessfullBookedPage from "../Pages/Public/Booked/successfull";
 import CencelledBookedUserPage from "../Pages/Public/Booked/cencelled";
 import ListAllBookedUserPage from "../Pages/Public/Booked/listAllBookedUser";
 import Dashboard from "../Pages/Private/Dashboard";
+import Users from "../Pages/Private/User";
+import NotfoundPage from "../Pages/Private/Notfound";
 
 const RootRoute = () => {
   return (
@@ -65,8 +67,11 @@ const RootRoute = () => {
               <PrivateRouter exact path="/admin/booking/search">
                 <SearchBookingAdmin />
               </PrivateRouter>
+              <PrivateRouter exact path="/admin/user/list">
+                <Users />
+              </PrivateRouter>
               <PrivateRouter exact path="/admin/**">
-                hello
+                <NotfoundPage />
               </PrivateRouter>
             </Switch>
           </AdminLayout>

@@ -9,6 +9,8 @@ const serviceRoutes = require("./routers/service.js");
 const bookingRouters = require("./routers/booking.js");
 const contactRouters = require("./routers/contact.js");
 const quoteRouters = require("./routers/quote.js");
+const userRouters = require("./routers/user.js");
+
 dotenv.config();
 const app = express();
 
@@ -39,6 +41,7 @@ app.use("/api", serviceRoutes);
 app.use("/api", bookingRouters);
 app.use("/api", contactRouters);
 app.use("/api", quoteRouters);
+app.use("/api", userRouters);
 
 const PORT = process.env.PORT || 5500;
 

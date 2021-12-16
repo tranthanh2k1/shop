@@ -3,9 +3,8 @@ const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 const { sendMail } = require("../helps/mail-config");
 
-
 exports.register = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, phone } = req.body;
   // Validation
   if (!username || !email || !password) {
     return res.status(400).json({
@@ -23,7 +22,12 @@ exports.register = async (req, res) => {
     }
     // Mã hóa password
     const hassed_password = await argon2.hash(password);
-    const newUser = new User({ username, email, password: hassed_password });
+    const newUser = new User({
+      username,
+      email,
+      password: hassed_password,
+      phone,
+    });
 
     newUser.save((err, user) => {
       if (err) {
@@ -45,8 +49,6 @@ exports.register = async (req, res) => {
     });
   }
 };
-
-
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -148,12 +150,10 @@ exports.forgotPassword = (req, res) => {
         `;
       const result = await sendMail(email, template);
       if (result)
-        res
-          .status(200)
-          .json({
-            type: "success",
-            message: "Please check your email to get new password !",
-          });
+        res.status(200).json({
+          type: "success",
+          message: "Please check your email to get new password !",
+        });
     } catch (error) {
       console.log(error);
       return res.status(400).json({ error });
