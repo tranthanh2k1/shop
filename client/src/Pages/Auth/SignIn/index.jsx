@@ -113,7 +113,7 @@ const SignIn = () => {
                 </div>
                 <div className="mb-[40px]">
                   <label htmlFor="" className="flex items-center space-x-3">
-                    <Link to="/auth/forgorpw" className="text-gray-900 text-[14px]">
+                    <Link to="/auth/forgotpw" className="text-gray-900 text-[14px]">
                       Quên mật khẩu?
                     </Link>
                   </label>

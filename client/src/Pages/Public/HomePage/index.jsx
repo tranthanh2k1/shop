@@ -32,7 +32,7 @@ const HomePage = () => {
       >
         <div className="m-auto relative z-50 before:content-[''] before:block before:absolute before:w-[70%] before:h-[125%] before:top-0 before:left-[50%] before:translate-x-[-50%] before:bg-[#039ee3] before:z-[-1]">
           <p className=" text-[40px] text-center md:text-[60px] lg:text-[76px] text-white font-bold ">
-            Computer Services
+            Dịch vụ sửa chữa laptop
           </p>
           <p className="text-white text-[14px] text-center tracking-[4px] mt-[-10px]">
             Available On It.Next
@@ -286,7 +286,7 @@ const HomePage = () => {
           </button>
         </div>
       </div>
-      <div className="mt-[100px] py-[100px] bg-[#f8f8f8]  gross_layout relative">
+      {/* <div className="mt-[100px] py-[100px] bg-[#f8f8f8]  gross_layout relative">
         <div className="container mx-auto">
           <div className=" text-left ">
             <p className="text-[30px] sm:text-[35px] text-[#000] font-medium mt-[15px] uppercase">
@@ -372,7 +372,7 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="mt-[100px] py-[100px] bg-[#f8f8f8]  right_gross_layout  relative">
         <div className="container mx-auto">

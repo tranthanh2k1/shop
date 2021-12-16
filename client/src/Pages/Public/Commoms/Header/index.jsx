@@ -32,12 +32,12 @@ const Header = () => {
             <p className="text-white">
               <i class="fas fa-home "></i>
               <span className="ml-[5px] text-[13px]">
-                540 Lorem Ipsum New York, AB 90218
+                Nam Từ Liêm - Hà Nội
               </span>
             </p>
             <p className=" text-white ml-[15px]">
               <i class="fal fa-envelope"></i>
-              <span className="ml-[5px] text-[13px]">info@yourdomain.com</span>
+              <span className="ml-[5px] text-[13px]">thanhttph11081@gmail.com</span>
             </p>
           </div>
           <div className="flex items-center">
@@ -59,7 +59,7 @@ const Header = () => {
               to="/makeappointment"
               className=" bg-white text-[14px] hover:bg-black hover:text-white  px-[35px] py-[10px] lg:py-[15px] font-medium"
             >
-              Make Appointment
+              Đặt lịch hẹn
             </Link>
           </div>
         </div>
@@ -93,32 +93,27 @@ const Header = () => {
               </span>
               <li className="px-[18px] py-[20px]">
                 <Link to="/" className="hover:text-[#039ee3]">
-                  HOME
+                  Trang chủ
                 </Link>
               </li>
               <li className="mx-[18px] py-[20px]">
                 <Link to="" className="hover:text-[#039ee3]">
-                  ABOUT US
+                  Giới thiệu
                 </Link>
               </li>
               <li className="mx-[18px] py-[20px]">
-                <Link to="/services_list" className="hover:text-[#039ee3]">
-                  SERVICE
+                <Link to="/services-list" className="hover:text-[#039ee3]">
+                  Dịch vụ
                 </Link>
               </li>
               <li className="mx-[18px] py-[20px]">
                 <Link to="" className="hover:text-[#039ee3]">
-                  BLOG
+                  Bài viết
                 </Link>
               </li>
               <li className="mx-[18px] py-[20px]">
                 <Link to="/contact" className="hover:text-[#039ee3]">
-                  CONTACT
-                </Link>
-              </li>
-              <li className="lg:ml-[18px] lg:mr-[36px] py-[20px]">
-                <Link to="" className="hover:text-[#039ee3]">
-                  QUOTE
+                  Liên hệ
                 </Link>
               </li>
               <li

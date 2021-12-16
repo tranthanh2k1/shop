@@ -7,7 +7,7 @@ export const path = {
   HOME: "/",
   MAKEAPPOINTMENT: "/makeappointment",
   CONTACT: "/contact",
-  SERVICES_LIST: "/services_list",
+  SERVICES_LIST: "/services-list",
   SERVICES_DETAIL: "/service/:id",
 
   //

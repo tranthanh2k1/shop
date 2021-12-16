@@ -10,7 +10,7 @@ const AuthLayout = () => {
     <Switch>
       <Route exact path={path.REGISTER} component={SignUp} />
       <Route exact path={path.LOGIN} component={SignIn} />
-      <Route exact path="/auth/forgorpw" component={ForgotPasswordPage} />
+      <Route exact path="/auth/forgotpw" component={ForgotPasswordPage} />
     </Switch>
   );
 };

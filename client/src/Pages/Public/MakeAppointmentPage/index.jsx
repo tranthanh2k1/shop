@@ -74,13 +74,13 @@ const MakeAppointment = () => {
           >
             <div className="container mx-auto">
               <p className="hidden md:block text-white text-[40px] mb-[15px] leading-[45px] font-bold">
-                Make Appointment
+                Đặt lịch hẹn
               </p>
               <div className="flex">
                 <Link to="/" className="text-[#039ee3]">
-                  Home
+                  Trang chủ
                 </Link>
-                <span className="text-white ml-[5px]"> / Make Appointment</span>
+                <span className="text-white ml-[5px]"> / Đặt lịch hẹn</span>
               </div>
             </div>
           </div>
@@ -88,7 +88,7 @@ const MakeAppointment = () => {
         <div className="mt-[100px]">
           {error ? error : message}
           <p className="text-center text-[30px] md:text-[35px] leading-[36px] font-medium relative before:content-[''] before:absolute before:w-[100px] before:h-[5px] before:bg-blue-400 before:top-[60px] before:left-[50%] before:translate-x-[-50%]">
-            Make Appointment
+            Đặt lịch hẹn
           </p>
 
           <form action="" className="w-full px-[15px] md:px-[30px] lg:max-w-[55%] lg:mx-auto mt-[90px]" onSubmit={handleSubmit(onSubmit)} >

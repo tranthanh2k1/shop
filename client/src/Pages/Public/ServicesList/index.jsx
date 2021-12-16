@@ -28,13 +28,13 @@ const ServicesList = () => {
       >
         <div className="container mx-auto">
           <p className="hidden md:block text-white text-[40px] mb-[15px] leading-[45px] font-bold">
-            Services List
+            Danh sách dịch cụ
           </p>
           <div className="flex">
             <Link to="/" className="text-[#039ee3]">
-              Home
+              Trang chủ
             </Link>
-            <span className="text-white ml-[5px]"> / Services List</span>
+            <span className="text-white ml-[5px]"> / Danh sách dịch vụ</span>
           </div>
         </div>
       </div>
