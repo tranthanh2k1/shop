@@ -16,13 +16,13 @@ const ContactPage = () => {
       >
         <div className="container mx-auto">
           <p className="hidden md:block text-white text-[40px] mb-[15px] leading-[45px] font-bold">
-            Contact
+            Liên hệ
           </p>
           <div className="flex">
             <Link to="/" className="text-[#039ee3]">
-              Home
+              Trang chủ
             </Link>
-            <span className="text-white ml-[5px]"> / Contact</span>
+            <span className="text-white ml-[5px]"> / Liên hệ</span>
           </div>
         </div>
       </div>
@@ -66,7 +66,7 @@ const ContactPage = () => {
       </div>
       <div className="mx-[15px] md:mx-[30px] lg:max-w-[55%] lg:mx-auto mt-[90px] ">
         <p className="text-center text-[30px] md:text-[35px] leading-[36px] font-medium ">
-          SEND MESSAGER
+          Gửi liên hệ
         </p>
         <div className="grid grid-cols-2 gap-[10px] mt-[30px]">
           <input
@@ -102,7 +102,7 @@ const ContactPage = () => {
         </div>
         <div className="text-center mt-[25px]">
           <button className="bg-[#17a5e9] text-white border-none height-[50px] min-w-[170px] text-[14px] hover:bg-[#25d8ed] rounded-[100px] py-[15px] text-center font-bold">
-            SUBMIT NOW
+            Gửi
           </button>
         </div>
       </div>

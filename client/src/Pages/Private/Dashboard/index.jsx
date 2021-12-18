@@ -3,6 +3,28 @@ import axios from 'axios'
 import { API, convertNumber } from '../../../constant'
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
+import moment from 'moment'
+
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import faker from 'faker';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const Dashboard = () => {
   const [totalBooking, setTotalBooking] = useState([])
@@ -11,7 +33,7 @@ const Dashboard = () => {
   const [dateEnd, setDateEnd] = useState('')
 
   const [businessResultDay, setBusinessResultDay] = useState({})
-
+  const [selectInput, setSelectInput] = useState(false);
   const [choseFilter, setChoseFilter] = useState('Thống kê theo ngày')
 
   const dataChoseFilter = ['Thống kê theo ngày', 'Thống kê theo nhiều ngày']
@@ -107,6 +129,65 @@ const Dashboard = () => {
     return acc + Number(item.total_price)
   }, 0)
 
+  // chart
+  function filterMoney() {
+    let arrayDate = filterDate()
+    let arrayMoney = []
+
+    const arrayMoneyDate = arrayDate.map(item => {
+      return totalBooking.filter(it => moment(new Date(it.updated_success)).format("DD/MM") === item)
+    })
+
+    arrayMoneyDate.map(item => {
+      arrayMoney.push(item.reduce((acc, item) => {
+        return acc + Number(item.total_price)
+      }, 0))
+    })
+
+    return arrayMoney
+  }
+
+  function filterDate() {
+    let arrayDate = []
+
+    for (let i = 0; i < totalBooking.length; i++) {
+      const result = moment(new Date(totalBooking[i].updated_success)).format("DD/MM");
+
+      if (!arrayDate.includes(result)) {
+        arrayDate.push(result)
+      }
+    }
+
+    return arrayDate.sort()
+  }
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "'top' as const",
+      },
+      title: {
+        display: true,
+        text: `${choseFilter === 'Thống kê theo ngày' ? 'Thống kê doanh thu theo ngày' : 'Thống kê doanh thu theo nhiều ngày'}`,
+      },
+    },
+  };
+
+  const labels = totalBooking && filterDate();
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Tổng tiền',
+        data: totalBooking && filterMoney(),
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      },
+    ],
+  };
+
+
   return (
     <>
       <div className="p-4 bg-white block w-full items-center justify-between rounded-xl  border-b border-gray-200">
@@ -173,9 +254,10 @@ const Dashboard = () => {
             </main>
           </div>
         </div>
-        <div class="flex justify-center">
-          <div class="mb-3 xl:w-96">
-            <select class="form-select appearance-none
+        <div className="mt-[30px] flex item-center justify-between">
+          <div class="flex items-center">
+            <div className="relative xl:w-96">
+              <select onClick={() => setSelectInput(!selectInput)} class="form-select appearance-none
       block
       w-full
       px-3
@@ -190,97 +272,116 @@ const Dashboard = () => {
       ease-in-out
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example"
-              onChange={handleSelectFilter}
-            >
-              {dataChoseFilter.map(item => (
+                onChange={handleSelectFilter}
+              >
+                {dataChoseFilter.map(item => (
+                  <>
+                    <option
+                      key={item}
+                      value={item}
+                      selected={choseFilter === item}
+                    >{item}</option>
+                  </>
+                ))}
+              </select>
+              <span className={selectInput ? "absolute rotate-[180deg] text-[16px] top-[50%] translate-y-[-50%] right-[15px]" : "absolute text-[16px] top-[50%] translate-y-[-50%] right-[15px]"}><i class="far fa-angle-down"></i></span>
+            </div>
+          </div>
+
+          <div className="">
+            <div className="text-center w-full">
+              {choseFilter === 'Thống kê theo ngày' && (
                 <>
-                  <option
-                    key={item}
-                    value={item}
-                    selected={choseFilter === item}
-                  >{item}</option>
+                  <h5 className="text-[15spx] mb-[7px] text-gray-600 font-medium">Thống kê doanh thu của ngày <span>{date}</span> là: {totalBooking && convertNumber(convertNumber(totalRevenue))}đ</h5>
+                  <div>
+                    <input
+                      type="date"
+                      className="border border-[#e1e1e1] h-[27px] text-[14px] px-[20px] py-[5px] text-gray-400 bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+                      onChange={handleDate}
+                    />
+                    <button onClick={revenueDay} className='bg-red-500 text-white text-[14px] rounded-[3px] ml-[5px] px-[15px] py-[4px]'>Lọc</button>
+                  </div>
                 </>
-              ))}
-            </select>
+              )}
+            </div>
+
+            <div className="text-center">
+              {choseFilter === 'Thống kê theo nhiều ngày' && (
+                <>
+                  <h5 className="text-[15px] mb-[7px] text-gray-600 font-medium">Thống kê doanh thu từ ngày: <span>{dateStart || '...'}</span> đến ngày: <span>{dateEnd || '...'} là: {totalBooking && convertNumber(convertNumber(totalRevenue))}đ</span></h5>
+                  <div>
+                    <input
+                      className="border border-[#e1e1e1] h-[27px] text-[14px] px-[20px] py-[5px] text-gray-400 bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+                      type="date"
+                      onChange={handleDateStart}
+                    />
+                    <input
+                      className="border border-[#e1e1e1] h-[27px] ml-[5px] text-[14px] px-[20px] py-[5px] text-gray-400 bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+                      type="date"
+                      onChange={handleDateEnd}
+                    />
+                    <button
+                      onClick={revenueByDays}
+                      className='bg-red-500 text-white text-[14px] rounded-[3px] ml-[5px] px-[15px] py-[4px]'>
+                      Lọc
+                    </button>
+                  </div>
+                </>
+              )}
+
+
+            </div>
           </div>
         </div>
 
-        {choseFilter === 'Thống kê theo ngày' && (
+        {totalBooking.length > 0 && (
           <>
-            <h5>Thống kê doanh thu của ngày <span>{date}</span> là: {totalBooking && convertNumber(convertNumber(totalRevenue))}đ</h5>
-            <div>
-              <input
-                type="date"
-                className="border border-[#e1e1e1] h-[27px] text-[14px] px-[20px] py-[5px] text-gray-400 bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-                onChange={handleDate}
-              />
-              <button onClick={revenueDay} className='bg-red-500 text-white text-[14px] rounded-[3px] ml-[5px] px-[15px] py-[4px]'>Lọc</button>
-            </div>
+            <Bar className="mt-[30px]" options={options} data={data} />
+            <p></p>
           </>
         )}
 
-        {choseFilter === 'Thống kê theo nhiều ngày' && (
-          <>
-            <h5>Thống kê doanh thu từ ngày: <span>{dateStart || '...'}</span> đến ngày: <span>{dateEnd || '...'} là: {totalBooking && convertNumber(convertNumber(totalRevenue))}đ</span></h5>
-            <div>
-              <input
-                className="border border-[#e1e1e1] h-[27px] text-[14px] px-[20px] py-[5px] text-gray-400 bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-                type="date"
-                onChange={handleDateStart}
-              />
-              <input
-                className="border border-[#e1e1e1] h-[27px] ml-[5px] text-[14px] px-[20px] py-[5px] text-gray-400 bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-                type="date"
-                onChange={handleDateEnd}
-              />
-              <button
-                onClick={revenueByDays}
-                className='bg-red-500 text-white text-[14px] rounded-[3px] ml-[5px] px-[15px] py-[4px]'>
-                Lọc
-              </button>
-            </div>
-          </>
-        )}
-
-        {totalBooking.length > 0 ? (
-          <div className="mb-1 w-full ">
-            <div className="mt-[50px]">
-              <div className="grid grid-cols-[0.5fr,1fr,1fr,1fr,0.6fr,0.8fr] font-medium pb-[15px] border-b-2 border-gray-500 px-[10px]">
-                <div>#</div>
-                <div>Tên</div>
-                <div>Thời gian thanh toán</div>
-                <div>Trạng thái</div>
-                <div>Thành tiền</div>
-                <div></div>
+        <div className="mx-[30px]">
+          {totalBooking.length > 0 ? (
+            <div className="mb-1 w-full ">
+              <div className="mt-[50px]">
+                <div className="grid grid-cols-[0.5fr,1fr,1fr,1fr,0.6fr,0.8fr] font-medium pb-[15px] border-b-2 border-gray-500 px-[10px]">
+                  <div>#</div>
+                  <div>Tên</div>
+                  <div>Thời gian thanh toán</div>
+                  <div>Trạng thái</div>
+                  <div>Thành tiền</div>
+                  <div></div>
+                </div>
+                <div className="text-[14px] pb-[50px]">
+                  {totalBooking.map((item, index) => (
+                    <div key={index} className="grid grid-cols-[0.5fr,1fr,1fr,1fr,0.6fr,0.8fr] py-[10px] border-b border-gray-300 px-[10px]">
+                      <div className="font-medium">{item.code_bill}</div>
+                      <div className="pr-[10px]">{item.name}</div>
+                      <div className="pr-[10px]">
+                        <Moment format="hh:mm' DD/MM/YYYY">
+                          {item.updated_success}
+                        </Moment>
+                      </div>
+                      <div className="">
+                        <button
+                          className="text-white px-2 py-1 bg-yellow-400 rounded-[5px]"
+                          style={{ backgroundColor: `${convertStatusString(item.status).bgr}` }}>
+                          {convertStatusString(item.status).content}
+                        </button>
+                      </div>
+                      <div className="pr-[50px] text-right font-medium">{convertNumber(item.total_price)}đ</div>
+                      <div className="">
+                        <Link to={`/admin/booking/detail/${item._id}`} className="text-white px-2 py-1 bg-green-400 rounded-[5px]">
+                          Xem chi tiết
+                        </Link>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="text-[14px]">
-                {totalBooking.map((item, index) => (
-                  <div key={index} className="grid grid-cols-[0.5fr,1fr,1fr,1fr,0.6fr,0.8fr] py-[10px] border-b border-gray-300 px-[10px]">
-                    <div className="font-medium">{item.code_bill}</div>
-                    <div className="pr-[10px]">{item.name}</div>
-                    <div className="pr-[10px]">
-                      <Moment format="hh:mm' DD/MM/YYYY">
-                        {item.updated_success}
-                      </Moment>
-                    </div>
-                    <div className="">
-                      <button
-                        className="text-white px-2 py-1 bg-yellow-400 rounded-[5px]"
-                        style={{ backgroundColor: `${convertStatusString(item.status).bgr}` }}>
-                        {convertStatusString(item.status).content}
-                      </button>
-                    </div>
-                    <div className="pr-[50px] text-right font-medium">{convertNumber(item.total_price)}đ</div>
-                    <div className="">
-                      <Link to={`/admin/booking/detail/${item._id}`} className="text-white px-2 py-1 bg-green-400 rounded-[5px]">
-                        Xem chi tiết
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>) : 'Không tìm thấy đơn đặt lịch nào'}
+            </div>) : <span className="text-red-500 text-[14px] mt-[30px] block text-center">Không tìm thấy đơn đặt lịch nào</span>}
+        </div>
       </div>
     </>
   );

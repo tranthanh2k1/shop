@@ -25,6 +25,7 @@ const BookingSchema = new Schema(
     },
     repair_time: {
       type: Date,
+      // min: "1987-09-28",
       // required: true,
     },
     user_id: {

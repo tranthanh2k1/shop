@@ -100,6 +100,7 @@ exports.login = async (req, res) => {
         username: user.username,
         email: user.email,
         role: user.role,
+        phone: user.phone,
       },
       token,
     });

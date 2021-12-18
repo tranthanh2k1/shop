@@ -1,7 +1,9 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { isAuthenticated } from "../../../constant";
 
 const Booked = ({ children }) => {
+  const { user } = isAuthenticated()
 
   return (
     <>
@@ -13,7 +15,7 @@ const Booked = ({ children }) => {
                 <i class="fal fa-user m-auto text-[20px] text-gray-500"></i>
               </div>
               <div className="ml-[15px]">
-                <p className="font-bold">ACE Shop</p>
+                <p className="font-bold">{user.username}</p>
                 <Link
                   to=""
                   className="text-gray-500 inline-block hover:text-gray-700 text-[14px] mt-[5px]"

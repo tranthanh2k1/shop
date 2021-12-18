@@ -65,7 +65,7 @@ const CencelledBookedUserPage = () => {
                                     </Moment>
                                 </button>
                                 <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
-                                    9:00 AM
+                                    {item.correction_time}
                                 </button>
                                 <button className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
                                     Liên hệ

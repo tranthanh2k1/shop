@@ -28,7 +28,7 @@ const ServicesList = () => {
       >
         <div className="container mx-auto">
           <p className="hidden md:block text-white text-[40px] mb-[15px] leading-[45px] font-bold">
-            Danh sách dịch cụ
+            Danh sách dịch vụ
           </p>
           <div className="flex">
             <Link to="/" className="text-[#039ee3]">
@@ -41,18 +41,18 @@ const ServicesList = () => {
       <div className="mt-[80px]">
         <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-[40px] gap-y-[70px]">
           {listService.map(item => (
-            <div key={item._id} className="m-0">
-              <div className="w-full">
-                <img src={item.image} alt="" className="w-full w-[300px] h-[250px]" />
+            <div key={item._id} className="m-0 pb-[60px] relative">
+              <div className="w-full ">
+                <img src={item.image} alt="" className=" w-full h-[250px] " />
               </div>
-              <div className="mt-[30px]">
-                <p className="text-[24px] tetx-[#000] font-medium mb-[15px]">
+              <div className="mt-[20px]">
+                <p className="text-[24px] leading-[24px]  text-[#000] font-medium mb-[15px]">
                   {item.name}
                 </p>
-                <p className="text-[#707070] text-[15px] leading-[21px]">
+                <p className="text-[#707070] text-justify text-[15px] leading-[21px]">
                   {item.description || 'Mô tả lỗi'}
                 </p>
-                <div className="mt-[30px]">
+                <div className="absolute bottom-0 left-0">
                   <Link
                     to=""
                     className=" bg-[#039ee3] hover:bg-[#252525] text-white px-[30px] py-[15px] uppercase text-[14px] font-medium  text-white "

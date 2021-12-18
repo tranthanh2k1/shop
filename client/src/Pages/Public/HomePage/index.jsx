@@ -25,9 +25,9 @@ const HomePage = () => {
           <p className=" text-[40px] text-center md:text-[60px] lg:text-[76px] text-white font-bold ">
             Dịch vụ sửa chữa laptop
           </p>
-          <p className="text-white text-[14px] text-center tracking-[4px] mt-[-10px]">
+          {/* <p className="text-white text-[14px] text-center tracking-[4px] mt-[-10px]">
             Available On It.Next
-          </p>
+          </p> */}
         </div>
       </div>
       <MakeAppointment />

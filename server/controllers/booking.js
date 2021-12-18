@@ -30,6 +30,13 @@ exports.create = async (req, res) => {
     });
   }
 
+  if (new Date(repair_time).getDate() < new Date(moment()).getDate()) {
+    return res.status(401).json({
+      success: false,
+      message: "Ngày sửa không phù hợp vui lòng chọn lại",
+    });
+  }
+
   function makeid() {
     var text = "ACE";
     var possible =
@@ -127,7 +134,7 @@ exports.updateBookingStatusAdmin = async (req, res) => {
     case "Wait for confirmation":
       return res.status(401).json({
         success: false,
-        message: "Không thể update status đơn đặt lịch này",
+        message: "Không thể thay đổi trang thái đơn đặt lịch này",
       });
     case "Confirm":
       if (getBookingDB.status === "Wait for confirmation") {
@@ -157,7 +164,7 @@ exports.updateBookingStatusAdmin = async (req, res) => {
       } else {
         return res.status(401).json({
           success: false,
-          message: "Không thể update status này",
+          message: "Không thể thay đổi trạng thái đơn đặt lịch này",
         });
       }
     case "Fixing":
@@ -176,19 +183,19 @@ exports.updateBookingStatusAdmin = async (req, res) => {
         if (!updatedStatusBookingAdmin) {
           return res.status(401).json({
             success: false,
-            message: "Update status booking fail",
+            message: "Thay đổi trạng thái đơn đặt lịch thất bại",
           });
         }
 
         res.status(200).json({
           success: true,
-          message: "Update status booking success",
+          message: "Thay đổi trạng thái đơn đặt lịch thành công",
           updatedStatusBookingAdmin,
         });
       } else {
         return res.status(401).json({
           success: false,
-          message: "Không thể update status này",
+          message: "Không thể thay đổi trạng thái đơn đặt lịch này",
         });
       }
     case "Successful fix":
@@ -216,19 +223,19 @@ exports.updateBookingStatusAdmin = async (req, res) => {
         if (!updatedStatusBookingAdmin) {
           return res.status(401).json({
             success: false,
-            message: "Update status booking fail",
+            message: "Thay đổi trạng thái đơn đặt lịch thất bại",
           });
         }
 
         res.status(200).json({
           success: true,
-          message: "Update status booking success",
+          message: "Thay đổi trạng thái đơn đặt lịch thành công",
           updatedStatusBookingAdmin,
         });
       } else {
         return res.status(401).json({
           success: false,
-          message: "Không thể update status này",
+          message: "Không thể thay đổi trạng thái đơn đặt lịch này",
         });
       }
     case "Cancellation of booking":
@@ -251,19 +258,19 @@ exports.updateBookingStatusAdmin = async (req, res) => {
         if (!updatedStatusBookingAdmin) {
           return res.status(401).json({
             success: false,
-            message: "Update status booking fail",
+            message: "Thay đổi trạng thái đơn đặt lịch thất bại",
           });
         }
 
         res.status(200).json({
           success: true,
-          message: "Update status booking success",
+          message: "Thay đổi trạng thái đơn đặt lịch thành công",
           updatedStatusBookingAdmin,
         });
       } else {
         return res.status(401).json({
           success: false,
-          message: "Không thể update status này",
+          message: "Không thể thay đổi trạng thái đơn đặt lịch này",
         });
       }
     default:
@@ -278,7 +285,7 @@ exports.updateBookingStatusAdmin = async (req, res) => {
 exports.listBooking = (req, res) => {
   let page = req.query.page;
 
-  const page_size = 10;
+  const page_size = 5;
 
   if (page) {
     page = parseInt(page);
@@ -573,7 +580,7 @@ exports.revenueByDay = async (req, res) => {
       $lt: new Date(date).setHours(23, 59, 59),
     },
     payment_method: "paid",
-  });
+  }).sort({ updated_success: 1 });
 
   if (!booking) {
     return res.status(401).json({
@@ -601,7 +608,7 @@ exports.revenueByDays = async (req, res) => {
       $lt: new Date(dateEnd).setHours(23, 59, 59),
     },
     payment_method: "paid",
-  });
+  }).sort({ updated_success: 1 });
 
   if (!booking) {
     return res.status(401).json({

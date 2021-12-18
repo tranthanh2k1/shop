@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Moment from 'react-moment'
-import { API, convertStatusString, isAuthenticated } from "../../../constant";
+import { API, convertNumber, convertStatusString, isAuthenticated } from "../../../constant";
 
 const SuccessfullBookedPage = () => {
     const [listAllBookingUser, setListAllBookingUser] = useState([]);
@@ -56,6 +56,9 @@ const SuccessfullBookedPage = () => {
                             <p className="text-gray-600 pt-[5px]">
                                 Dịch vụ: {item?.service_id?.name || 'không tìm thấy dịch vụ'}
                             </p>
+                            <p className="text-gray-600 pt-[5px] font-bold">
+                                Thành tiền: {convertNumber(item.total_price)}đ
+                            </p>
                         </div>
                         <div className="flex justify-end pb-[20px]">
                             <div className="text-[14px]">
@@ -65,7 +68,7 @@ const SuccessfullBookedPage = () => {
                                     </Moment>
                                 </button>
                                 <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
-                                    9:00 AM
+                                    {item.correction_time}
                                 </button>
                                 <button className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
                                     Liên hệ

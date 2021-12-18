@@ -24,6 +24,12 @@ const Header = () => {
     next()
   }
 
+  function splitName() {
+    const lastName = user.username.split(' ')
+
+    return lastName[lastName.length - 1]
+  }
+
   return (
     <>
       <div className="bg-[#039ee3]">
@@ -41,20 +47,6 @@ const Header = () => {
             </p>
           </div>
           <div className="flex items-center">
-            {/* <div className="text-white text-[15px] mr-[40px] hidden sm:block">
-              <span className="mx-[9px] cursor-pointer">
-                <i class="fab fa-facebook-f"></i>
-              </span>
-              <span className="mx-[9px] cursor-pointer">
-                <i class="fab fa-google-plus-g"></i>
-              </span>
-              <span className="mx-[9px] cursor-pointer">
-                <i class="fab fa-instagram"></i>
-              </span>
-              <span className="mx-[9px] cursor-pointer">
-                <i class="fab fa-twitter"></i>
-              </span>
-            </div> */}
             <Link
               to="/makeappointment"
               className=" bg-white text-[14px] hover:bg-black hover:text-white  px-[35px] py-[10px] lg:py-[15px] font-medium"
@@ -91,53 +83,52 @@ const Header = () => {
               >
                 <i class="fal fa-times"></i>
               </span>
-              <li className="px-[18px] py-[20px]">
+              <li className="px-[18px] py-[20px] text-[18px]">
                 <Link to="/" className="hover:text-[#039ee3]">
                   Trang chủ
                 </Link>
               </li>
-              <li className="mx-[18px] py-[20px]">
+              <li className="mx-[18px] py-[20px] text-[18px]">
                 <Link to="" className="hover:text-[#039ee3]">
                   Giới thiệu
                 </Link>
               </li>
-              <li className="mx-[18px] py-[20px]">
+              <li className="mx-[18px] py-[20px] text-[18px]">
                 <Link to="/services-list" className="hover:text-[#039ee3]">
                   Dịch vụ
                 </Link>
               </li>
-              <li className="mx-[18px] py-[20px]">
+              <li className="mx-[18px] py-[20px] text-[18px]">
                 <Link to="" className="hover:text-[#039ee3]">
                   Bài viết
                 </Link>
               </li>
-              <li className="mx-[18px] py-[20px]">
+              <li className="mx-[18px] py-[20px] text-[18px] mr-[40px]">
                 <Link to="/contact" className="hover:text-[#039ee3]">
                   Liên hệ
                 </Link>
               </li>
+
+              {user && (
+                <li className="py-[20px] ml-[15px] mt-[6px] text-sm">
+                  <Link to="/user/booked" className="hover:text-[#039ee3]">
+                    Xin chào,{splitName()}
+                  </Link>
+                </li>
+              )}
               <li
                 onClick={() => setBoxUser(!boxUser)}
-                className="py-[20px] text-[18px] relative cursor-pointer "
+                className="py-[20px] ml-[5px] text-[18px] relative cursor-pointer"
               >
-                <i class="fas fa-user"></i>
+                <i className="fas fa-user"></i>
                 {pathname !== 'auth/login' && isLogged ? (
                   <ul
                     className={
                       boxUser
-                        ? "absolute w-[150px] right-[50%] translate-x-[20%] top-[80%] z-20  bg-gray-100 rounded-[3px]  block-ul"
+                        ? "absolute w-[150px] right-[50%] translate-x-[20%] top-[80%] z-20 bg-gray-100 rounded-[3px]  block-ul"
                         : "hidden"
                     }
                   >
-                    <li className=" text-[14px] text-blue-600 hover:bg-blue-200 ">
-                      {" "}
-                      <Link
-                        to="/user/booked"
-                        className="py-[5px] px-[15px] inline-block "
-                      >
-                        {user.username}
-                      </Link>
-                    </li>
                     <li className=" text-[14px] text-blue-600 hover:bg-blue-200 ">
                       {" "}
                       <Link

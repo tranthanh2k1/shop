@@ -13,6 +13,9 @@ const Bookingdetail = () => {
   const [isDisableCanellation, setIsDisableCanellation] = useState('true')
   const [totalPrice, setTotalPrice] = useState('')
   const [errorPrice, setErrorPrice] = useState('')
+  const [status, setStatus] = useState('')
+  const [showModal, setShowModal] = useState(false)
+  console.log(status)
 
   const { pathname } = useLocation()
   const arrayPathname = pathname.split("/")
@@ -55,8 +58,6 @@ const Bookingdetail = () => {
   const valueInputRef = useRef(null)
 
   const handleUpdateStatus = (status) => {
-    alert("Bạn có muốn cập nhật trạng thái cho đơn đặt lịch này")
-
     let dataReq = {
       status
     }
@@ -65,6 +66,7 @@ const Bookingdetail = () => {
       if (detailBooking && detailBooking.total_price === '') {
         if (valueInputRef.current.value === '') {
           setErrorPrice('Bạn cần nhập giá')
+          setShowModal(false)
           return false
         }
 
@@ -77,6 +79,7 @@ const Bookingdetail = () => {
 
     if (!errorPrice) {
       dispatch(updateStatusBookingAdminAction(dataReq, id))
+      setShowModal(false)
     }
   }
 
@@ -114,9 +117,9 @@ const Bookingdetail = () => {
                 Địa chỉ: {detailBooking.address}
               </p>
               <p className="text-gray-600 py-[5px]">
-                Thời gian sửa:
-                <Moment format=" hh:mm DD/MM/YYYY">
-                  {detailBooking.require_time}
+                Thời gian hẹn sửa:
+                <Moment format=" DD/MM/YYYY">
+                  {detailBooking.repair_time}
                 </Moment>
               </p>
               <p className="text-gray-600 py-[5px]">Ca sửa: {detailBooking.correction_time}</p>
@@ -159,7 +162,9 @@ const Bookingdetail = () => {
                 className="text-[14px] text-white bg-yellow-400 px-[10px] py-[5px] rounded-[5px] mx-[7px]"
                 style={{ opacity: `${isDisableWaitConfirmation === '' ? '1' : '0.3'}` }}
                 disabled={isDisableWaitConfirmation}
-                onClick={() => handleUpdateStatus('Wait for confirmation')}
+                onClick={() => {
+                  setStatus('Wait for confirmation')
+                }}
               >
                 Chờ xác nhận
               </button>
@@ -167,7 +172,10 @@ const Bookingdetail = () => {
                 className="text-[14px] text-white bg-blue-300 px-[10px] py-[5px] rounded-[5px] mx-[7px]"
                 style={{ opacity: `${isDisableConfirm === '' ? '1' : '0.3'}` }}
                 disabled={isDisableConfirm}
-                onClick={() => handleUpdateStatus('Confirm')}
+                onClick={() => {
+                  setStatus('Confirm')
+                  setShowModal(true)
+                }}
               >
                 Xác nhận
               </button>
@@ -175,7 +183,10 @@ const Bookingdetail = () => {
                 className="text-[14px] text-white bg-blue-500 px-[10px] py-[5px] rounded-[5px] mx-[7px]"
                 style={{ opacity: `${isDisableFixing === '' ? '1' : '0.3'}` }}
                 disabled={isDisableFixing}
-                onClick={() => handleUpdateStatus('Fixing')}
+                onClick={() => {
+                  setStatus('Fixing')
+                  setShowModal(true)
+                }}
               >
                 Đang sửa
               </button>
@@ -183,7 +194,10 @@ const Bookingdetail = () => {
                 className="text-[14px] text-white bg-green-400 px-[10px] py-[5px] rounded-[5px] mx-[7px]"
                 style={{ opacity: `${isDisableSuccessfulFix === '' ? '1' : '0.3'}` }}
                 disabled={isDisableSuccessfulFix}
-                onClick={() => handleUpdateStatus('Successful fix')}
+                onClick={() => {
+                  setStatus('Successful fix')
+                  setShowModal(true)
+                }}
               >
                 Sửa thành công
               </button>
@@ -191,14 +205,56 @@ const Bookingdetail = () => {
                 className="text-[14px] text-white bg-red-500 px-[10px] py-[5px] rounded-[5px] mx-[7px]"
                 style={{ opacity: `${isDisableCanellation === '' ? '1' : '0.3'}` }}
                 disabled={isDisableCanellation}
-                onClick={() => handleUpdateStatus('Cancellation of booking')}
+                onClick={() => {
+                  setStatus('Cancellation of booking')
+                  setShowModal(true)
+                }}
               >
                 Hủy lịch
               </button>
             </div>
+            <div>
+              {showModal ? (
+                <div className="z-40 overflow-auto left-0 top-0 bottom-0 right-0 w-full h-full fixed">
+                  <div className="z-50 relative p-3 mx-auto my-0 max-w-full" style={{ width: 500 }}>
+                    <div className="bg-white rounded shadow-lg border flex flex-col overflow-hidden px-10 py-10">
+                      <div className="text-center text-2xl text-gray-700">Bạn có muốn?</div>
+                      <div className="text-center font-light text-gray-700 mb-8">
+                        thay đổi trạng thái cho đơn đặt lịch này
+                      </div>
+                      <div className="flex justify-center">
+                        <button
+                          type="button"
+                          onClick={() => setShowModal(false)}
+                          className="bg-gray-300 text-gray-900 rounded hover:bg-gray-200 px-6 py-2 focus:outline-none mx-1"
+                        >
+                          Hủy
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleUpdateStatus(status)}
+                          className="bg-red-500 text-gray-200 rounded hover:bg-red-400 px-6 py-2 focus:outline-none mx-1"
+                        >
+                          Thay đổi
+                        </button>
+                        {/* <button
+                          type="button"
+                          className="bg-red-500 text-gray-200 rounded hover:bg-red-400 px-6 py-2 focus:outline-none mx-1"
+                          onCLick={() => console.log("hello")}
+                        >
+                          Thay đổi
+                        </button> */}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="z-40 overflow-auto left-0 top-0 bottom-0 right-0 w-full h-full fixed bg-black opacity-50" />
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
-      )}
+      )
+      }
     </>
   );
 };

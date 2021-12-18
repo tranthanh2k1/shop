@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
-import { API, convertStatusString, isAuthenticated } from "../../../constant";
+import { API, convertNumber, convertStatusString, isAuthenticated } from "../../../constant";
 import Moment from 'react-moment'
 
 const ListAllBookedUserPage = () => {
@@ -85,6 +85,11 @@ const ListAllBookedUserPage = () => {
                             <p className="text-gray-600 pt-[5px]">
                                 Dịch vụ: {item?.service_id?.name || 'không tìm thấy dịch vụ'}
                             </p>
+                            {item.total_price && (
+                                <p className="text-gray-600 pt-[5px] font-bold">
+                                    Thành tiền: {convertNumber(item.total_price)}đ
+                                </p>
+                            )}
                         </div>
                         <div className="flex justify-end pb-[20px]">
                             <div className="text-[14px]">
@@ -94,13 +99,13 @@ const ListAllBookedUserPage = () => {
                                     </Moment>
                                 </button>
                                 <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
-                                    9:00 AM
+                                    {item.correction_time}
                                 </button>
                                 <button className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
                                     Liên hệ
                                 </button>
                                 {item.status === 'Wait for confirmation' && (
-                                    <button onClick={() => handleCancelBooking(item._id)} className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
+                                    <button onClick={() => handleCancelBooking(item._id)} className="text-gray-700 hover:bg-red-500 hover:text-white border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
                                         Hủy lịch
                                     </button>
                                 )}

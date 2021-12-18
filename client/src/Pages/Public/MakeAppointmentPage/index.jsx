@@ -17,6 +17,8 @@ const MakeAppointment = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { listService } = useSelector(state => state.service)
 
+  console.log(new Date().getDate())
+
   const { user } = isAuthenticated()
 
   const dispatch = useDispatch()
@@ -98,6 +100,7 @@ const MakeAppointment = () => {
                 <input
                   type="text"
                   name="name"
+                  defaultValue={user && user.username}
                   className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
                   placeholder=" Họ và tên"
                   {...register('name', {
@@ -105,13 +108,14 @@ const MakeAppointment = () => {
                     isLength: ({ min: 6, max: 30 })
                   })}
                 />
-                {errors?.name?.type === "required" && <p className="text-red-600">Name không được để trống</p>}
-                {errors?.name?.type === "isLength" && <p className="text-red-600">Name phải dài từ 3 đến 30 kí tự</p>}
+                {errors?.name?.type === "required" && <p className="text-red-600">Họ tên không được để trống</p>}
+                {errors?.name?.type === "isLength" && <p className="text-red-600">Họ tên phải dài từ 3 đến 30 kí tự</p>}
               </div>
               <div>
                 <input
                   type="text"
                   name="phone"
+                  defaultValue={user && user.phone}
                   className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
                   placeholder="Số điện thoại"
                   {...register('phone', {
@@ -119,8 +123,8 @@ const MakeAppointment = () => {
                     pattern: /((09|03|07|08|05)+([0-9]{8})\b)/g
                   })}
                 />
-                {errors?.phone?.type === "required" && <p className="text-red-600">Phone không được để trống</p>}
-                {errors?.phone?.type === "pattern" && (<p className="text-red-600">Phone chưa đúng định dạng</p>)}
+                {errors?.phone?.type === "required" && <p className="text-red-600">Số điện thoại không được để trống</p>}
+                {errors?.phone?.type === "pattern" && (<p className="text-red-600">Số điện thoại chưa đúng định dạng</p>)}
               </div>
             </div>
 
@@ -129,6 +133,7 @@ const MakeAppointment = () => {
                 <input
                   type="text"
                   name="email"
+                  defaultValue={user && user.email}
                   className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
                   placeholder=" Email"
                   {...register('email', {
@@ -143,6 +148,7 @@ const MakeAppointment = () => {
                 <input
                   type="text"
                   name="address"
+                  defaultValue={user && user.address}
                   className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
                   placeholder="Địa chỉ"
                   {...register("address", {
@@ -183,7 +189,7 @@ const MakeAppointment = () => {
                     required: true
                   })}
                 />
-                {errors?.repair_time?.type === "required" && <p className="text-red-600">Ngày không được để trống</p>}
+                {errors?.repair_time?.type === "required" && <p className="text-red-600">Ngày sửa không được để trống</p>}
               </div>
               <div>
                 <label htmlFor="">Ca sửa:</label>
@@ -197,7 +203,7 @@ const MakeAppointment = () => {
                     required: true,
                   })}
                 />
-                {errors?.correction_time?.type === "required" && <p className="text-red-600">Giờ không được để trống</p>}
+                {errors?.correction_time?.type === "required" && <p className="text-red-600">Ca sửa không được để trống</p>}
               </div>
             </div>
 
@@ -211,7 +217,7 @@ const MakeAppointment = () => {
                   required: true,
                 })}
               />
-              {errors?.description_error?.type === "required" && <p className="text-red-600" > Mô tả không được để trống</p>}
+              {errors?.description_error?.type === "required" && <p className="text-red-600">Mô tả lỗi không được để trống</p>}
             </div>
 
             <div className="text-center mt-[25px]">

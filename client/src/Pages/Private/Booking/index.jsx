@@ -81,6 +81,7 @@ const Booking = () => {
   const paginationRef = useRef(null)
   const inputDateRef = useRef(date)
   const colorRef = useRef(null)
+  const navLinkRef = useRef(null)
 
   const handleSelectStatus = (e) => {
     if (e.target.value === 'all') {
@@ -108,9 +109,13 @@ const Booking = () => {
     dispatch(adminFilterByDateBookingAction(date))
   }
 
-  const handleColor = () => {
-    colorRef.current.style.backgroundColor = 'red'
-  }
+  // const handleColor = () => {
+  //   colorRef.current.style.backgroundColor = 'red'
+  // }
+
+  // const handleColorBG = () => {
+  //   navLinkRef.current.style.color = 'red'
+  // }
 
   return (
     <>
@@ -122,13 +127,13 @@ const Booking = () => {
               <form action="/admin/booking/search" className="flex items-center mt-[20px]">
                 <input
                   type="text"
-                  placeholder="Tìm kiếm theo mã hóa đơn"
+                  placeholder="Tìm kiếm theo mã"
                   name="code"
                   className="border border-gray-300 text-[14px] px-[15px] py-[3px] rounded-[3px] w-[63%] lg:w-[65%] focus:outline-none focus:border focus:border-gray-700"
                 />
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white text-[14px] rounded-[3px] px-[15px] py-[4px]"
+                  className="ml-1 bg-blue-500 text-white text-[14px] rounded-[3px] px-[15px] py-[4px]"
                 >
                   Tìm kiếm
                 </button>
@@ -145,7 +150,7 @@ const Booking = () => {
                     ref={inputDateRef}
                   />
                   <button
-                    className="bg-red-500 text-white text-[14px] rounded-[3px] px-[15px] py-[4px]"
+                    className="ml-1 bg-red-500 text-white text-[14px] rounded-[3px] px-[15px] py-[4px]"
                     onClick={handleFilterDateOrder}
                   >
                     Lọc
@@ -217,12 +222,16 @@ const Booking = () => {
                 )}
                 <div class="flex h-12 font-medium rounded-full bg-gray-200">
                   {Array(totalPage).fill(1).map((item, index) => (
-                    <Link
+                    <NavLink key={index + 1}
+                      // ref={navLinkRef}
+                      // exact
+                      // activeStyle={{ color: 'red' }}
                       to={`/admin/booking/list?page=${index + 1}`}
-                      class="w-12 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full  ">{index + 1}
-                    </Link>
+                      class="w-12 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full"
+                    // onClick={handleColorBG}
+                    >{index + 1}
+                    </NavLink>
                   ))}
-
                 </div>
                 {query < totalPage && (
                   <Link
