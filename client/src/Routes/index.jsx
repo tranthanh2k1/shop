@@ -28,6 +28,8 @@ import ListAllBookedUserPage from "../Pages/Public/Booked/listAllBookedUser";
 import Dashboard from "../Pages/Private/Dashboard";
 import Users from "../Pages/Private/User";
 import NotfoundPage from "../Pages/Private/Notfound";
+import AboutPage from "../Pages/Public/About";
+import BlogPage from "../Pages/Public/Blog";
 
 const RootRoute = () => {
   return (
@@ -85,8 +87,10 @@ const RootRoute = () => {
               </Route>
               <Route exact path={path.SERVICES_LIST} component={ServicesList} />
               <Route exact path={path.SERVICES_DETAIL} component={ServiceDetail} />
-              <Route path={path.MAKEAPPOINTMENT} component={MakeAppointment} />
-              <Route path={path.CONTACT} component={ContactPage} />
+              <Route exact path={path.MAKEAPPOINTMENT} component={MakeAppointment} />
+              <Route exact path={path.CONTACT} component={ContactPage} />
+              <Route exact path="/about" component={AboutPage} />
+              <Route exact path="/blog" component={BlogPage} />
               {/* <BookedUserPage> */}
               {/* <Switch> */}
               <Booked>

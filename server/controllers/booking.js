@@ -486,6 +486,7 @@ exports.cancelBooking = async (req, res) => {
   ) {
     let updatedStatusBookingAdmin = {
       status: "Cancellation of booking",
+      updated_cancel: Date.now(),
     };
     updatedStatusBookingAdmin = await Booking.findOneAndUpdate(
       { _id: bookingId },
@@ -654,4 +655,15 @@ exports.businessResultDay = async (req, res) => {
     .catch((error) => {
       console.log("error", error);
     });
+};
+
+exports.revenueByMonth = async (req, res) => {
+  const { month } = req.body;
+
+  // const booking = await Booking.find({
+  //   updated_success: { $month: month },
+  //   payment_method: "paid",
+  // });
+
+  // res.status(200).json({ booking, totalMonth: booking.length });
 };

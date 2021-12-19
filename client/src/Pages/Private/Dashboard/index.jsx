@@ -15,7 +15,6 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import faker from 'faker';
 
 ChartJS.register(
   CategoryScale,
@@ -31,12 +30,13 @@ const Dashboard = () => {
   const [date, setDate] = useState('')
   const [dateStart, setDateStart] = useState('')
   const [dateEnd, setDateEnd] = useState('')
+  const [month, setMonth] = useState('')
 
   const [businessResultDay, setBusinessResultDay] = useState({})
   const [selectInput, setSelectInput] = useState(false);
   const [choseFilter, setChoseFilter] = useState('Thống kê theo ngày')
 
-  const dataChoseFilter = ['Thống kê theo ngày', 'Thống kê theo nhiều ngày']
+  const dataChoseFilter = ['Thống kê theo ngày', 'Thống kê theo nhiều ngày', 'Thống kê theo tháng']
 
   const convertStatusString = (status) => {
     if (status === 'Wait for confirmation') {
@@ -101,6 +101,10 @@ const Dashboard = () => {
     setDateEnd(e.target.value)
   }
 
+  const handleMonth = e => {
+    setMonth(e.target.value)
+  }
+
   const revenueDay = async () => {
     try {
       const { data } = await axios.post(`${API}/booking/admin/revenueByDay`, { date })
@@ -119,6 +123,10 @@ const Dashboard = () => {
     } catch (error) {
       console.log("error", error.response)
     }
+  }
+
+  const revenueMonth = async () => {
+    console.log(month)
   }
 
   const totalMoney = businessResultDay.totalBookingDay && businessResultDay.totalBookingDay.reduce((acc, item) => {
@@ -186,7 +194,6 @@ const Dashboard = () => {
       },
     ],
   };
-
 
   return (
     <>
@@ -328,8 +335,26 @@ const Dashboard = () => {
                   </div>
                 </>
               )}
+            </div>
 
-
+            <div className="text-center">
+              {choseFilter === 'Thống kê theo tháng' && (
+                <>
+                  <h5 className="text-[15px] mb-[7px] text-gray-600 font-medium">Thống kê doanh thu tháng: <span>{month || '...'} là: {totalBooking && convertNumber(convertNumber(totalRevenue))}đ</span></h5>
+                  <div>
+                    <input
+                      className="border border-[#e1e1e1] h-[27px] text-[14px] px-[20px] py-[5px] text-gray-400 bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+                      type="month"
+                      onChange={handleMonth}
+                    />
+                    <button
+                      onClick={revenueMonth}
+                      className='bg-red-500 text-white text-[14px] rounded-[3px] ml-[5px] px-[15px] py-[4px]'>
+                      Lọc
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -14,6 +14,7 @@ const {
   revenueByDay,
   revenueByDays,
   businessResultDay,
+  revenueByMonth,
 } = require("../controllers/booking.js");
 const { verifyToken, isAdmin } = require("../middleware/auth.js");
 const router = express.Router();
@@ -34,6 +35,7 @@ router.post("/booking/filterByDate", filterByDate);
 router.post("/booking/admin/revenueByDay", revenueByDay);
 router.post("/booking/admin/revenueByDays", revenueByDays);
 router.get("/booking/admin/businessResultDay", businessResultDay);
+router.post("/booking/admin/revenueByMonth", revenueByMonth);
 
 // api user
 router.post("/booking", create);

@@ -5,6 +5,9 @@ import { API, convertNumber, convertStatusString, isAuthenticated } from "../../
 import Moment from 'react-moment'
 
 const ListAllBookedUserPage = () => {
+    const [showModal, setShowModal] = useState(false)
+    const [bookedId, setBookedId] = useState(null)
+
     const [listAllBookingUser, setListAllBookingUser] = useState([])
 
     const { token } = isAuthenticated()
@@ -105,7 +108,11 @@ const ListAllBookedUserPage = () => {
                                     Liên hệ
                                 </button>
                                 {item.status === 'Wait for confirmation' && (
-                                    <button onClick={() => handleCancelBooking(item._id)} className="text-gray-700 hover:bg-red-500 hover:text-white border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
+                                    <button onClick={() => {
+                                        setShowModal(true)
+                                        setBookedId(item._id)
+                                    }}
+                                        className="text-gray-700 hover:bg-red-500 hover:text-white border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
                                         Hủy lịch
                                     </button>
                                 )}
@@ -114,6 +121,40 @@ const ListAllBookedUserPage = () => {
                     </div>
                 </div>
             )) : ('Không tìm thấy đơn đặt lịch nào')}
+            <div>
+                {showModal ? (
+                    <div className="z-40 overflow-auto left-0 top-0 bottom-0 right-0 w-full h-full fixed">
+                        <div className="z-50 relative p-3 mx-auto my-0 max-w-full" style={{ width: 500 }}>
+                            <div className="bg-white rounded shadow-lg border flex flex-col overflow-hidden px-10 py-10">
+                                <div className="text-center text-2xl text-gray-700">Bạn có muốn?</div>
+                                <div className="text-center font-light text-gray-700 mb-8">
+                                    hủy đơn đặt lịch này
+                                </div>
+                                <div className="flex justify-center">
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowModal(false)}
+                                        className="bg-gray-300 text-gray-900 rounded hover:bg-gray-200 px-6 py-2 focus:outline-none mx-1"
+                                    >
+                                        Trở lại
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setShowModal(false)
+                                            handleCancelBooking(bookedId)
+                                        }}
+                                        className="bg-red-500 text-gray-200 rounded hover:bg-red-400 px-6 py-2 focus:outline-none mx-1"
+                                    >
+                                        Hủy lịch
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="z-40 overflow-auto left-0 top-0 bottom-0 right-0 w-full h-full fixed bg-black opacity-50" />
+                    </div>
+                ) : null}
+            </div>
         </div>
     )
 }

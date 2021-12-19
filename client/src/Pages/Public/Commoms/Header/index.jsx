@@ -89,7 +89,7 @@ const Header = () => {
                 </Link>
               </li>
               <li className="mx-[18px] py-[20px] text-[18px]">
-                <Link to="" className="hover:text-[#039ee3]">
+                <Link to="/about" className="hover:text-[#039ee3]">
                   Giới thiệu
                 </Link>
               </li>
@@ -99,7 +99,7 @@ const Header = () => {
                 </Link>
               </li>
               <li className="mx-[18px] py-[20px] text-[18px]">
-                <Link to="" className="hover:text-[#039ee3]">
+                <Link to="/blog" className="hover:text-[#039ee3]">
                   Bài viết
                 </Link>
               </li>
