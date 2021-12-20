@@ -5,7 +5,6 @@ import { API } from '../../../constant'
 
 const Users = () => {
   const [dataUser, setDataUser] = useState()
-  console.log(dataUser)
 
   const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -52,9 +51,6 @@ const Users = () => {
               <div>Số điện thoại</div>
               <div>Trạng thái</div>
               <div>
-                {/* <Link to="/admin/service/add" className="text-white px-2 py-[5px] text-[14px] bg-green-500 rounded-[5px]">
-                  Thêm dịch vụ
-                </Link> */}
               </div>
             </div>
             <div className="text-[14px]">

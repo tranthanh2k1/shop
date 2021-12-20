@@ -125,6 +125,7 @@ exports.updateBookingStatusAdmin = async (req, res) => {
   const bookingId = req.params.bookingId;
 
   const { status, total_price, exact_error, image_desc_error } = req.body;
+  console.log("image", image_desc_error);
 
   const getBookingDB = await Booking.findOne({ _id: bookingId });
 

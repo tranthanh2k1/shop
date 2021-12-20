@@ -18,9 +18,10 @@ const Bookingdetail = () => {
   const [showModal, setShowModal] = useState(false)
 
   const [imageError, setImageError] = useState('')
+  console.log("clg", imageError)
   const [exactError, setExactError] = useState('')
-  console.log(imageError)
-  console.log(exactError)
+  const imageRef = useRef(null)
+  console.log("ref", imageRef)
 
   const { pathname } = useLocation()
   const arrayPathname = pathname.split("/")
@@ -74,6 +75,7 @@ const Bookingdetail = () => {
         exact_error: exactError
       }
     }
+    console.log("data", dataReq)
 
     if (status === 'Successful fix') {
       if (detailBooking && detailBooking.total_price === '') {
@@ -90,10 +92,10 @@ const Bookingdetail = () => {
       }
     }
 
-    if (!errorPrice) {
-      dispatch(updateStatusBookingAdminAction(dataReq, id))
-      setShowModal(false)
-    }
+    // if (!errorPrice) {
+    //   dispatch(updateStatusBookingAdminAction(dataReq, id))
+    //   setShowModal(false)
+    // }
   }
 
   const history = useHistory()
@@ -110,11 +112,12 @@ const Bookingdetail = () => {
   }
 
   const handleImageError = e => {
-    const serviceImage = e.target.value[0];
+    const serviceImage = e.target.files[0];
     let storageRef = firebase.storage().ref(`images/${serviceImage && serviceImage.name}`);
     storageRef.put(serviceImage).then(() => {
       storageRef.getDownloadURL().then(async (url) => {
-        setImageError(url)
+        imageRef.current = url
+        // setImageError(url)
       })
     })
   }
@@ -209,7 +212,7 @@ const Bookingdetail = () => {
                   </div>
                 </>
               )}
-              {detailBooking.status === 'Successful fix' && (
+              {detailBooking.status === 'Fixing' && (
                 <>
                   {detailBooking.image_desc_error && (
                     <>
@@ -222,6 +225,10 @@ const Bookingdetail = () => {
                   <p className="text-gray-600 pt-[5px]">
                     Mô tả chính xác lỗi của máy: {detailBooking.exact_error}
                   </p>
+                </>
+              )}
+              {detailBooking.status === 'Successful fix' && (
+                <>
                   <p className="text-gray-600 pt-[5px]">
                     Thành tiền: {convertNumber(detailBooking.total_price)}đ
                   </p>
