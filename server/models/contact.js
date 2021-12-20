@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 
 const contentSchema = new Schema(
@@ -27,7 +26,26 @@ const contentSchema = new Schema(
             type: String,
             maxLength: 3000,
             required: true
-        }
+        },
+        user_id: {
+            type: mongoose.Types.ObjectId,
+            ref: "User",
+        },
+        status: {
+            type: String,
+            enum: [
+                "handling",
+                "no process"
+            ]
+        },
+        updated_handling: {
+            type: Date,
+            default: null
+        },
+        updated_noprocess: {
+            type: Date,
+            default: null
+        },
     },
     {timestamps : true}, 
 )
