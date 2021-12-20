@@ -40,6 +40,8 @@ const BookingSchema = new Schema(
       type: String,
       // required: true,
     },
+    exact_error: String,
+    image_desc_error: String,
     total_price: {
       type: String,
       default: "",

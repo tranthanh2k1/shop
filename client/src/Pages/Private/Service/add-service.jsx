@@ -15,7 +15,7 @@ const AddServicePage = () => {
     const history = useHistory()
 
     const onSubmit = (dataForm) => {
-        const serviceImage = dataForm.image[0];
+        const serviceImage = dataForm.image;
         let storageRef = firebase.storage().ref(`images/${serviceImage && serviceImage.name}`);
         storageRef.put(serviceImage).then(() => {
             storageRef.getDownloadURL().then(async (url) => {

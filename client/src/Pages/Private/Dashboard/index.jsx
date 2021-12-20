@@ -126,7 +126,7 @@ const Dashboard = () => {
   }
 
   const revenueMonth = async () => {
-    console.log(month)
+    // console.log(month)
   }
 
   const totalMoney = businessResultDay.totalBookingDay && businessResultDay.totalBookingDay.reduce((acc, item) => {

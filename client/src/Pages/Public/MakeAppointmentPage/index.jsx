@@ -225,7 +225,6 @@ const MakeAppointment = () => {
                 ĐĂT LỊCH
               </button>
             </div>
-
           </form>
         </div>
         <div

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
 import { convertNumber } from "../../../constant";
 import { detaiBookingAction, updateStatusBookingAdminAction } from "../../../redux/actions/booking-admin";
+import firebase from '../../../firebase'
 
 const Bookingdetail = () => {
   const [isDisableWaitConfirmation, setIsDisableWaitConfirmation] = useState('true')
@@ -15,7 +16,11 @@ const Bookingdetail = () => {
   const [errorPrice, setErrorPrice] = useState('')
   const [status, setStatus] = useState('')
   const [showModal, setShowModal] = useState(false)
-  console.log(status)
+
+  const [imageError, setImageError] = useState('')
+  const [exactError, setExactError] = useState('')
+  console.log(imageError)
+  console.log(exactError)
 
   const { pathname } = useLocation()
   const arrayPathname = pathname.split("/")
@@ -62,6 +67,14 @@ const Bookingdetail = () => {
       status
     }
 
+    if (status === 'Fixing') {
+      dataReq = {
+        status,
+        image_desc_error: imageError,
+        exact_error: exactError
+      }
+    }
+
     if (status === 'Successful fix') {
       if (detailBooking && detailBooking.total_price === '') {
         if (valueInputRef.current.value === '') {
@@ -96,6 +109,20 @@ const Bookingdetail = () => {
     setTotalPrice(e.target.value)
   }
 
+  const handleImageError = e => {
+    const serviceImage = e.target.value[0];
+    let storageRef = firebase.storage().ref(`images/${serviceImage && serviceImage.name}`);
+    storageRef.put(serviceImage).then(() => {
+      storageRef.getDownloadURL().then(async (url) => {
+        setImageError(url)
+      })
+    })
+  }
+
+  const handleExactError = e => {
+    setExactError(e.target.value)
+  }
+
   return (
     <>
       {error && alert(error)}
@@ -124,7 +151,7 @@ const Bookingdetail = () => {
               </p>
               <p className="text-gray-600 py-[5px]">Ca sửa: {detailBooking.correction_time}</p>
               <p className="text-gray-600 py-[5px]">
-                Lỗi máy: {detailBooking.description_error}
+                Khách hàng mô tả lỗi: {detailBooking.description_error}
               </p>
               <p className="text-gray-600 py-[5px]">
                 Dịch vụ: {detailBooking?.service_id?.name || 'Dịch vụ ảo'}
@@ -151,10 +178,54 @@ const Bookingdetail = () => {
                   <span className="text-red-600">{errorPrice}</span>
                 </div>
               )}
+              {detailBooking.status === 'Confirm' && (
+                <>
+                  <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                      Admin kiểm tra và chụp lại lỗi của máy(nếu có)
+                    </label>
+                    <input
+                      type="file"
+                      name="image_desc_error"
+                      // ref={valueInputRef}
+                      // value={totalPrice}
+                      onChange={handleImageError}
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Nhập giá" />
+                  </div>
+                  <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                      Admin kiểm tra và ghi lại lỗi của máy(bắt buộc)
+                    </label>
+                    <div className="mt-[10px]">
+                      <textarea
+                        name="exact_error"
+                        type="text"
+                        className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px]  bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+                        placeholder="Mô tả lỗi chính xác"
+                        value={exactError}
+                        onChange={handleExactError}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
               {detailBooking.status === 'Successful fix' && (
-                <p className="text-gray-600 pt-[5px]">
-                  Thành tiền: {convertNumber(detailBooking.total_price)}đ
-                </p>
+                <>
+                  {detailBooking.image_desc_error && (
+                    <>
+                      <p className="text-gray-600 pt-[5px]">
+                        Ảnh lỗi của máy:
+                      </p>
+                      <img src={detailBooking.image_desc_error} alt="" className='w-[150px] h-[auto]' />
+                    </>
+                  )}
+                  <p className="text-gray-600 pt-[5px]">
+                    Mô tả chính xác lỗi của máy: {detailBooking.exact_error}
+                  </p>
+                  <p className="text-gray-600 pt-[5px]">
+                    Thành tiền: {convertNumber(detailBooking.total_price)}đ
+                  </p>
+                </>
               )}
             </div>
             <div className="mt-[20px]">

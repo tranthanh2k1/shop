@@ -124,7 +124,7 @@ exports.create = async (req, res) => {
 exports.updateBookingStatusAdmin = async (req, res) => {
   const bookingId = req.params.bookingId;
 
-  const { status, total_price } = req.body;
+  const { status, total_price, exact_error, image_desc_error } = req.body;
 
   const getBookingDB = await Booking.findOne({ _id: bookingId });
 
@@ -171,6 +171,8 @@ exports.updateBookingStatusAdmin = async (req, res) => {
       if (getBookingDB.status === "Confirm") {
         updatedStatusBookingAdmin = {
           status,
+          exact_error,
+          image_desc_error,
           updated_fixing: Date.now(),
         };
 
