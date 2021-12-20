@@ -138,9 +138,26 @@ const Dashboard = () => {
   }, 0)
 
   // chart
+  function filterDate() {
+    let arrayDate = []
+    console.log("arrayDatefilterDate", arrayDate)
+
+    for (let i = 0; i < totalBooking.length; i++) {
+      const result = moment(new Date(totalBooking[i].updated_success)).format("DD/MM");
+
+      if (!arrayDate.includes(result)) {
+        arrayDate.push(result)
+      }
+    }
+
+    return arrayDate.sort()
+  }
+
   function filterMoney() {
     let arrayDate = filterDate()
     let arrayMoney = []
+
+    console.log("arrayDay, arrayMoney", arrayDate, arrayMoney)
 
     const arrayMoneyDate = arrayDate.map(item => {
       return totalBooking.filter(it => moment(new Date(it.updated_success)).format("DD/MM") === item)
@@ -153,20 +170,6 @@ const Dashboard = () => {
     })
 
     return arrayMoney
-  }
-
-  function filterDate() {
-    let arrayDate = []
-
-    for (let i = 0; i < totalBooking.length; i++) {
-      const result = moment(new Date(totalBooking[i].updated_success)).format("DD/MM");
-
-      if (!arrayDate.includes(result)) {
-        arrayDate.push(result)
-      }
-    }
-
-    return arrayDate.sort()
   }
 
   const options = {
