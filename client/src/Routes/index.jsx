@@ -30,6 +30,8 @@ import Users from "../Pages/Private/User";
 import NotfoundPage from "../Pages/Private/Notfound";
 import AboutPage from "../Pages/Public/About";
 import BlogPage from "../Pages/Public/Blog";
+import BlogAdminPage from "../Pages/Private/Blog";
+import AddBlogPage from "../Pages/Private/Blog/add-blog";
 
 const RootRoute = () => {
   return (
@@ -71,6 +73,12 @@ const RootRoute = () => {
               </PrivateRouter>
               <PrivateRouter exact path="/admin/user/list">
                 <Users />
+              </PrivateRouter>
+              <PrivateRouter exact path="/admin/blog/list">
+                <BlogAdminPage />
+              </PrivateRouter>
+              <PrivateRouter exact path="/admin/blog/add">
+                <AddBlogPage />
               </PrivateRouter>
               <PrivateRouter exact path="/admin/**">
                 <NotfoundPage />

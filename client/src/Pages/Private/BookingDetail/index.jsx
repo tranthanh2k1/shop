@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import { convertNumber } from "../../../constant";
+import { convertNumber, convertStatusString } from "../../../constant";
 import { detaiBookingAction, updateStatusBookingAdminAction } from "../../../redux/actions/booking-admin";
 import firebase from '../../../firebase'
 
@@ -156,7 +156,8 @@ const Bookingdetail = () => {
                 Dịch vụ: {detailBooking?.service_id?.name || 'Dịch vụ ảo'}
               </p>
               <p className="text-gray-600 pt-[5px]">
-                Trạng thái đơn hàng: {detailBooking.status}
+                Trạng thái đơn hàng:
+                <span className="px-2 py-2 mx-3 rounded-xl text-white" style={{ backgroundColor: `${convertStatusString(detailBooking.status).bgr}` }}>{convertStatusString(detailBooking.status).content}</span>
               </p>
               <p className="text-gray-600 pt-[5px]">
                 Trạng thái thanh toán: {detailBooking.payment_method === 'unpaid' ? 'Chưa thanh toán' : ''}

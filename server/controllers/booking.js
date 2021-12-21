@@ -288,7 +288,7 @@ exports.updateBookingStatusAdmin = async (req, res) => {
 exports.listBooking = (req, res) => {
   let page = req.query.page;
 
-  const page_size = 5;
+  const page_size = 10;
 
   if (page) {
     page = parseInt(page);

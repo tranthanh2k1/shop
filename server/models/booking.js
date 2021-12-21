@@ -56,6 +56,7 @@ const BookingSchema = new Schema(
       enum: [
         "Wait for confirmation",
         "Confirm",
+        "Get laptop",
         "Fixing",
         "Successful fix",
         "Cancellation of booking",

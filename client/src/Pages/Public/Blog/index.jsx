@@ -1,134 +1,88 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import post_06 from "../../../Images/post-06.jpg";
+import { API } from "../../../constant";
+
 const BlogPage = () => {
+    const [blog, setBlog] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data } = await axios.get(`${API}/blog/list`)
+
+                setBlog(data.slice(0, 3))
+            } catch (error) {
+                console.log("error", error.response)
+            }
+        }
+
+        fetchData()
+    }, [])
+
     return (
         <>
             <div className="mt-[80px]">
                 <div className="container mx-auto grid grid-cols-[2fr,1fr] gap-[30px] pb-[50px]">
                     <div className="w-full">
-                        <div className="mb-[50px] w-full">
-                            <div className="w-full ">
-                                <img src={post_06} alt="" className="max-w-full" />
-                            </div>
-                            <div className="py-[30px] w-full border-t-[8px] border-[#039ee3] ">
-                                <p className="leading-[24px] text-[18px] text-[#000] font-medium">
-                                    Blogpost With Image
-                                </p>
-                                <div className="text-[#000] text-[13px] mb-[5px] w-full">
-                                    <ul className="list-none flex items-center mt-[10px]">
-                                        <li className=" text-[14px] text-[#039ee3] mr-[15px]">
-                                            <i className="fas fa-user mr-[5px]"></i>
-                                            Marketing
-                                        </li>
-                                        <li className=" text-[14px] text-[#039ee3] mr-[15px]">
-                                            <i className="fas fa-comment mr-[5px]"></i>5
-                                        </li>
-                                        <li className="text-[14px] text-[#039ee3] mr-[15px]">
-                                            <i className="fas fa-calendar mr-[5px]"></i>
-                                            12 Aug 2017
-                                        </li>
-                                    </ul>
+                        {blog && blog.map(item => (
+                            <div className="mb-[50px] w-full">
+                                <div className="w-full">
+                                    <img src={item.image_blog} alt="" className="max-w-full" />
                                 </div>
-                                <p className="mt-[15px] text-[15px] text-[#707070]">
-                                    Consectetur, assumenda provident lorem ipsum dolor sit amet,
-                                    consectetur adipisicing elit. Quae laboriosam sunt hic
-                                    perspiciatis, asperiores mollitia excepturi voluptatibus sequi
-                                    nostrum ipsam veniam omnis nihil! A ea maiores corporis. Lorem
-                                    ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </p>
-                                <div className="flex justify-between mt-[30px]">
-                                    <div className="">
-                                        <Link
-                                            to=""
-                                            className="cursor-pointer text-white bg-[#039ee3] hover:text-white hover:bg-[#000] text-[14px] font-medium px-[30px] py-[13px] uppercase"
-                                        >
-                                            Read More
-                                            <i className="fas fa-angle-right ml-[5px]"></i>
-                                        </Link>
+                                <div className="py-[30px] w-full border-t-[8px] border-[#039ee3] ">
+                                    <p className="leading-[24px] text-[18px] text-[#000] font-medium">
+                                        {item.title}
+                                    </p>
+                                    <div className="text-[#000] text-[13px] mb-[5px] w-full">
+                                        <ul className="list-none flex items-center mt-[10px]">
+                                            <li className=" text-[14px] text-[#039ee3] mr-[15px]">
+                                                <i className="fas fa-user mr-[5px]"></i>
+                                                Marketing
+                                            </li>
+                                            <li className=" text-[14px] text-[#039ee3] mr-[15px]">
+                                                <i className="fas fa-comment mr-[5px]"></i>5
+                                            </li>
+                                            <li className="text-[14px] text-[#039ee3] mr-[15px]">
+                                                <i className="fas fa-calendar mr-[5px]"></i>
+                                                12 Aug 2017
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <div className="flex items-center">
-                                        <p className="font-medium text-gray-500 mr-[15px]">
-                                            {" "}
-                                            Share:
-                                        </p>
+                                    <p className="mt-[15px] text-[15px] text-[#707070]">
+                                        {item.desc_blog}
+                                    </p>
+                                    <div className="flex justify-between mt-[30px]">
+                                        <div className="">
+                                            <Link
+                                                to=""
+                                                className="cursor-pointer text-white bg-[#039ee3] hover:text-white hover:bg-[#000] text-[14px] font-medium px-[30px] py-[13px] uppercase"
+                                            >
+                                                Read More
+                                                <i className="fas fa-angle-right ml-[5px]"></i>
+                                            </Link>
+                                        </div>
                                         <div className="flex items-center">
-                                            <span className="hover:text-[#039ee3] text-[12px] cursor-pointer text-[#000] mr-[10px]">
-                                                <i className="fab fa-facebook-f"></i>
-                                            </span>
-                                            <span className="hover:text-[#039ee3] text-[14px] cursor-pointer text-[#000] mr-[10px]">
-                                                <i class="fab fa-twitter"></i>
-                                            </span>
-                                            <span className="hover:text-[#039ee3] text-[14px] cursor-pointer text-[#000] ">
-                                                <i class="fab fa-google-plus-g"></i>
-                                            </span>
+                                            <p className="font-medium text-gray-500 mr-[15px]">
+                                                {" "}
+                                                Share:
+                                            </p>
+                                            <div className="flex items-center">
+                                                <span className="hover:text-[#039ee3] text-[12px] cursor-pointer text-[#000] mr-[10px]">
+                                                    <i className="fab fa-facebook-f"></i>
+                                                </span>
+                                                <span className="hover:text-[#039ee3] text-[14px] cursor-pointer text-[#000] mr-[10px]">
+                                                    <i class="fab fa-twitter"></i>
+                                                </span>
+                                                <span className="hover:text-[#039ee3] text-[14px] cursor-pointer text-[#000] ">
+                                                    <i class="fab fa-google-plus-g"></i>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="mb-[50px] w-full">
-                            <div className="w-full ">
-                                <img src={post_06} alt="" className="max-w-full" />
-                            </div>
-                            <div className="py-[30px] w-full border-t-[8px] border-[#039ee3] ">
-                                <p className="leading-[24px] text-[18px] text-[#000] font-medium">
-                                    Blogpost With Image
-                                </p>
-                                <div className="text-[#000] text-[13px] mb-[5px] w-full">
-                                    <ul className="list-none flex items-center mt-[10px]">
-                                        <li className=" text-[14px] text-[#039ee3] mr-[15px]">
-                                            <i className="fas fa-user mr-[5px]"></i>
-                                            Marketing
-                                        </li>
-                                        <li className=" text-[14px] text-[#039ee3] mr-[15px]">
-                                            <i className="fas fa-comment mr-[5px]"></i>5
-                                        </li>
-                                        <li className="text-[14px] text-[#039ee3] mr-[15px]">
-                                            <i className="fas fa-calendar mr-[5px]"></i>
-                                            12 Aug 2017
-                                        </li>
-                                    </ul>
-                                </div>
-                                <p className="mt-[15px] text-[15px] text-[#707070]">
-                                    Consectetur, assumenda provident lorem ipsum dolor sit amet,
-                                    consectetur adipisicing elit. Quae laboriosam sunt hic
-                                    perspiciatis, asperiores mollitia excepturi voluptatibus sequi
-                                    nostrum ipsam veniam omnis nihil! A ea maiores corporis. Lorem
-                                    ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </p>
-                                <div className="flex justify-between mt-[30px]">
-                                    <div className="">
-                                        <Link
-                                            to=""
-                                            className="cursor-pointer text-white bg-[#039ee3] hover:text-white hover:bg-[#000] text-[14px] font-medium px-[30px] py-[13px] uppercase"
-                                        >
-                                            Read More
-                                            <i className="fas fa-angle-right ml-[5px]"></i>
-                                        </Link>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <p className="font-medium text-gray-500 mr-[15px]">
-                                            {" "}
-                                            Share:
-                                        </p>
-                                        <div className="flex items-center">
-                                            <span className="hover:text-[#039ee3] text-[12px] cursor-pointer text-[#000] mr-[10px]">
-                                                <i className="fab fa-facebook-f"></i>
-                                            </span>
-                                            <span className="hover:text-[#039ee3] text-[14px] cursor-pointer text-[#000] mr-[10px]">
-                                                <i class="fab fa-twitter"></i>
-                                            </span>
-                                            <span className="hover:text-[#039ee3] text-[14px] cursor-pointer text-[#000] ">
-                                                <i class="fab fa-google-plus-g"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        ))}
                         <div className="w-full flex justify-center">
                             <ul className="flex pl-0 list-none">
                                 <li className="inline mx-[4px]">
