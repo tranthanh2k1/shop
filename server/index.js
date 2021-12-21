@@ -10,6 +10,7 @@ const bookingRouters = require("./routers/booking.js");
 const contactRouters = require("./routers/contact.js");
 const quoteRouters = require("./routers/quote.js");
 const userRouters = require("./routers/user.js");
+const blogRouters = require("./routers/blog.js");
 
 dotenv.config();
 const app = express();
@@ -42,6 +43,7 @@ app.use("/api", bookingRouters);
 app.use("/api", contactRouters);
 app.use("/api", quoteRouters);
 app.use("/api", userRouters);
+app.use("/api", blogRouters);
 
 const PORT = process.env.PORT || 5500;
 
