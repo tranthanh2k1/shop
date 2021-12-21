@@ -18,7 +18,6 @@ const Bookingdetail = () => {
   const [showModal, setShowModal] = useState(false)
 
   const [imageError, setImageError] = useState('')
-  console.log("clg", imageError)
   const [exactError, setExactError] = useState('')
 
   const { pathname } = useLocation()

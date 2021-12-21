@@ -714,3 +714,22 @@ exports.searchBookingUser = async (req, res) => {
     });
   }
 };
+
+exports.notificationRepair = (req, res) => {
+  Booking.find({
+    status: "Confirm",
+    repair_time: {
+      $gte: new Date(moment()).setHours(00, 00, 00),
+      $lt: new Date(moment()).setHours(23, 59, 59),
+    },
+  }).exec((err, booking) => {
+    if (err) {
+      return res.status(401).json({
+        success: false,
+        message: "Không tìm thấy đơn nào sửa trong ngày",
+      });
+    }
+
+    res.status(200).json(booking);
+  });
+};

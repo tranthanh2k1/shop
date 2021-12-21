@@ -174,6 +174,7 @@ const MakeAppointment = () => {
                     <option key={item._id} value={item._id}>{item.name}</option>
                   </>
                 ))}
+                <option value="">Dịch vụ khác</option>
               </select>
               {errors?.service_id?.type === "required" && <p className="text-red-600">Bạn chưa chọn dịch vụ</p>}
             </div>
