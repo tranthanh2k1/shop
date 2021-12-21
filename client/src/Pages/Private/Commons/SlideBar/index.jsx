@@ -65,6 +65,18 @@ const SlideBar = () => {
             </span>
             <span className="mx-4 text-sm font-normal">Quản lý người dùng</span>
           </Link>
+          <Link
+            activeClassName="text-blue-500 bg-gradient-to-r from-white to-blue-100 border-r-4 border-blue-500 dark:from-gray-700 dark:to-gray-800"
+            className="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500"
+            to="/admin/user/list"
+          >
+            <span className="text-left">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </span>
+            <span className="mx-4 text-sm font-normal">Quản lý vài viết</span>
+          </Link>
         </nav>
       </div>
     </div>
