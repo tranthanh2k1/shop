@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import './header.css'
 // import { path } from "src/Constants/";
 // import { ActionLogout } from "src/Redux/Actions/Auth.action";
 
 const Header = () => {
   const [boxUser, setBoxUser] = useState(false);
+  const [notitify, setNotitify] = useState(false);
 
   return (
     <header className="w-full bg-white dark:bg-gray-700 items-center h-16 rounded-xl z-40">
@@ -17,7 +19,9 @@ const Header = () => {
           <div className="relative p-1 flex items-center justify-end w-1/4 ml-5 mr-4 sm:mr-0 sm:right-auto">
             <div className="relative flex items-center">
               <span className="mr-[20px] text-[18px]">
+                <span className="noti-box">
                 <i class="far fa-bell"></i>
+                </span>
               </span>
               <div className="w-[35px] h-[35px] cursor-pointer flex bg-gray-300 rounded-full mr-[20px]">
                 {" "}
