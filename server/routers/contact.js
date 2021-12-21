@@ -16,3 +16,5 @@ router.put("/contact/updateStatus/:contactId", verifyToken, isAdmin, updateConta
 router.post("/contact/status", listAllContactStatus);
 //customer
 router.post('/contact', createContact);
+
+module.exports = router;

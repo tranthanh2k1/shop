@@ -8,12 +8,14 @@ const ServiceSchema = new Schema(
       type: String,
       required: true,
     },
+    description: String,
+    image: String,
     parent_id: {
       type: mongoose.Types.ObjectId,
       ref: "Service",
     },
   },
-  { timestamps: true } 
+  { timestamps: true }
 );
 
 module.exports = mongoose.model("Service", ServiceSchema);

@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import inner_page_banner from "../../../Images/inner_page_banner.jpg";
 import post_1 from "../../../Images/post-01.jpg";
 import team_member_1 from "../../../Images/team-member-1.jpg";
 import test_bg from "../../../Images/test_bg.png";
 import phone_icon from "../../../Images/phone_icon.png";
+import { useDispatch, useSelector } from "react-redux";
+import { listServiceAction } from "../../../redux/actions/services";
+
 const ServicesList = () => {
+  const { listService } = useSelector(state => state.service)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(listServiceAction())
+  }, [])
+
   return (
     <>
       <div
@@ -17,225 +28,42 @@ const ServicesList = () => {
       >
         <div className="container mx-auto">
           <p className="hidden md:block text-white text-[40px] mb-[15px] leading-[45px] font-bold">
-            Services List
+            Danh sách dịch vụ
           </p>
           <div className="flex">
             <Link to="/" className="text-[#039ee3]">
-              Home
+              Trang chủ
             </Link>
-            <span className="text-white ml-[5px]"> / Services List</span>
+            <span className="text-white ml-[5px]"> / Danh sách dịch vụ</span>
           </div>
         </div>
       </div>
       <div className="mt-[80px]">
         <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-[40px] gap-y-[70px]">
-          <div className="m-0">
-            <div className="w-full">
-              <img src={post_1} alt="" className="w-full" />
-            </div>
-            <div className="mt-[30px]">
-              <p className="text-[24px] tetx-[#000] font-medium mb-[15px]">
-                Data recovery
-              </p>
-              <p className="text-[#707070] text-[15px] leading-[21px]">
-                Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-                ea commodo consequat.
-              </p>
-              <div className="mt-[30px]">
-                <Link
-                  to=""
-                  className=" bg-[#039ee3] hover:bg-[#252525] text-white px-[30px] py-[15px] uppercase text-[14px] font-medium  text-white "
-                >
-                  {" "}
-                  View Service
-                </Link>
+          {listService.map(item => (
+            <div key={item._id} className="m-0 pb-[60px] relative">
+              <div className="w-full ">
+                <img src={item.image} alt="" className=" w-full h-[250px] " />
+              </div>
+              <div className="mt-[20px]">
+                <p className="text-[24px] leading-[24px]  text-[#000] font-medium mb-[15px]">
+                  {item.name}
+                </p>
+                <p className="text-[#707070] text-justify text-[15px] leading-[21px]">
+                  {item.description || 'Mô tả lỗi'}
+                </p>
+                <div className="absolute bottom-0 left-0">
+                  <Link
+                    to=""
+                    className=" bg-[#039ee3] hover:bg-[#252525] text-white px-[30px] py-[15px] uppercase text-[14px] font-medium  text-white "
+                  >
+                    {" "}
+                    Chi tiết dịch vụ
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="m-0">
-            <div className="w-full">
-              <img src={post_1} alt="" className="w-full" />
-            </div>
-            <div className="mt-[30px]">
-              <p className="text-[24px] tetx-[#000] font-medium mb-[15px]">
-                Data recovery
-              </p>
-              <p className="text-[#707070] text-[15px] leading-[21px]">
-                Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-                ea commodo consequat.
-              </p>
-              <div className="mt-[30px]">
-                <Link
-                  to=""
-                  className=" bg-[#039ee3] hover:bg-[#252525]  px-[30px] py-[15px] uppercase text-[14px] font-medium  text-white "
-                >
-                  {" "}
-                  View Service
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="m-0">
-            <div className="w-full">
-              <img src={post_1} alt="" className="w-full" />
-            </div>
-            <div className="mt-[30px]">
-              <p className="text-[24px] tetx-[#000] font-medium mb-[15px]">
-                Data recovery
-              </p>
-              <p className="text-[#707070] text-[15px] leading-[21px]">
-                Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-                ea commodo consequat.
-              </p>
-              <div className="mt-[30px]">
-                <Link
-                  to=""
-                  className=" bg-[#039ee3] hover:bg-[#252525]  px-[30px] py-[15px] uppercase text-[14px] font-medium  text-white "
-                >
-                  {" "}
-                  View Service
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="m-0">
-            <div className="w-full">
-              <img src={post_1} alt="" className="w-full" />
-            </div>
-            <div className="mt-[30px]">
-              <p className="text-[24px] tetx-[#000] font-medium mb-[15px]">
-                Data recovery
-              </p>
-              <p className="text-[#707070] text-[15px] leading-[21px]">
-                Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-                ea commodo consequat.
-              </p>
-              <div className="mt-[30px]">
-                <Link
-                  to=""
-                  className=" bg-[#039ee3] hover:bg-[#252525]  px-[30px] py-[15px] uppercase text-[14px] font-medium  text-white "
-                >
-                  {" "}
-                  View Service
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="m-0">
-            <div className="w-full">
-              <img src={post_1} alt="" className="w-full" />
-            </div>
-            <div className="mt-[30px]">
-              <p className="text-[24px] tetx-[#000] font-medium mb-[15px]">
-                Data recovery
-              </p>
-              <p className="text-[#707070] text-[15px] leading-[21px]">
-                Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-                ea commodo consequat.
-              </p>
-              <div className="mt-[30px]">
-                <Link
-                  to=""
-                  className=" bg-[#039ee3] hover:bg-[#252525]  px-[30px] py-[15px] uppercase text-[14px] font-medium  text-white "
-                >
-                  {" "}
-                  View Service
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="m-0">
-            <div className="w-full">
-              <img src={post_1} alt="" className="w-full" />
-            </div>
-            <div className="mt-[30px]">
-              <p className="text-[24px] tetx-[#000] font-medium mb-[15px]">
-                Data recovery
-              </p>
-              <p className="text-[#707070] text-[15px] leading-[21px]">
-                Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-                ea commodo consequat.
-              </p>
-              <div className="mt-[30px]">
-                <Link
-                  to=""
-                  className=" bg-[#039ee3] hover:bg-[#252525]  px-[30px] py-[15px] uppercase text-[14px] font-medium  text-white "
-                >
-                  {" "}
-                  View Service
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="m-0">
-            <div className="w-full">
-              <img src={post_1} alt="" className="w-full" />
-            </div>
-            <div className="mt-[30px]">
-              <p className="text-[24px] tetx-[#000] font-medium mb-[15px]">
-                Data recovery
-              </p>
-              <p className="text-[#707070] text-[15px] leading-[21px]">
-                Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-                ea commodo consequat.
-              </p>
-              <div className="mt-[30px]">
-                <Link
-                  to=""
-                  className=" bg-[#039ee3] hover:bg-[#252525] px-[30px] py-[15px] uppercase text-[14px] font-medium  text-white "
-                >
-                  {" "}
-                  View Service
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="m-0">
-            <div className="w-full">
-              <img src={post_1} alt="" className="w-full" />
-            </div>
-            <div className="mt-[30px]">
-              <p className="text-[24px] tetx-[#000] font-medium mb-[15px]">
-                Data recovery
-              </p>
-              <p className="text-[#707070] text-[15px] leading-[21px]">
-                Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-                ea commodo consequat.
-              </p>
-              <div className="mt-[30px]">
-                <Link
-                  to=""
-                  className=" bg-[#039ee3] hover:bg-[#252525]  px-[30px] py-[15px] uppercase text-[14px] font-medium  text-white "
-                >
-                  {" "}
-                  View Service
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="m-0">
-            <div className="w-full">
-              <img src={post_1} alt="" className="w-full" />
-            </div>
-            <div className="mt-[30px]">
-              <p className="text-[24px] tetx-[#000] font-medium mb-[15px]">
-                Data recovery
-              </p>
-              <p className="text-[#707070] text-[15px] leading-[21px]">
-                Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-                ea commodo consequat.
-              </p>
-              <div className="mt-[30px]">
-                <Link
-                  to=""
-                  className=" bg-[#039ee3] hover:bg-[#252525]  px-[30px] py-[15px] uppercase text-[14px] font-medium  text-white "
-                >
-                  {" "}
-                  View Service
-                </Link>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       <div className="bg-[#f8f8f8] mt-[170px] py-[100px]">

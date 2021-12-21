@@ -17,16 +17,20 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    resetLink: {
+      type: String,
+      required: false,
+    },
     status: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     role: {
       type: Number,
       default: 0,
     },
     phone: {
-      type: Number,
+      type: String,
     },
     address: {
       type: String,

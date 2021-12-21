@@ -1,65 +1,6 @@
 const Booking = require("../models/booking.js");
 const nodemailer = require("nodemailer");
-const { check, validationResult } = require('express-validator');
-
-
-//validate form booking
-exports.userValidationResult = (req, res, next) => {
-  const result = validationResult(req)
-  if (!result.isEmpty()) {
-    const error = result.array()[0].msg
-    return res.status(422).json({
-      success: false,
-      error: error
-    })
-  }
-  next();
-}
-
-//validate
-exports.Validate = [
-  check('name').trim().not().isEmpty().withMessage('Name is required').isLength({ min: 3, max: 30 })
-    .withMessage("Tên phải dài từ 3 đến 30 kí tự"),
-
-  check('email').trim().not().isEmpty().withMessage("Email is required")
-    .matches('^[A-Za-z0-9]{6,32}@([a-zA-Z0-9]{2,12})(.[a-zA-Z]{2,12})+$')
-    .withMessage('Email không đúng định dạng . Email chứa kí tự chữ cái và số'),
-
-  check('phone').trim().not().isEmpty().withMessage('Phone is required')
-    .matches('^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$')
-    .withMessage('Số điện thoại không đúng định dạng hoặc không đúng đầu số VN !!'),
-
-  check('adress').trim().not().isEmpty().withMessage('Address is required'),
-  
-  check('password').trim().not().isEmpty().withMessage('Password is required').isLength({ min: 8 })
-    .withMessage('Mật khẩu phải nhập ít nhất 8 kí tự')
-]
-
-exports.checkMail = (req, res, next) => {
-  const mail = req.body;
-  Booking.findOne(mail).exec((err, data) => {
-    if (err || !data) {
-      return res.status(403).json({
-        status: false,
-        error: "Email đã được đăng kí . Vui lòng đăng kí tài khoản khác !!"
-      })
-    }
-    next();
-  })
-}
-
-exports.checkPhone = (req, res, next) => {
-  const phone = req.body;
-  Booking.findOne(phone).exec((err, data) => {
-    if (err || !data) {
-      return res.status(400).json({
-        status: false,
-        error: "Phone đã được đăng kí !!"
-      })
-    }
-    next();
-  })
-}
+const moment = require("moment");
 
 exports.create = async (req, res) => {
   const {
@@ -71,6 +12,7 @@ exports.create = async (req, res) => {
     repair_time,
     correction_time,
     description_error,
+    payment_method,
     service_id,
   } = req.body;
   if (
@@ -88,11 +30,21 @@ exports.create = async (req, res) => {
     });
   }
 
+  if (new Date(repair_time).getDate() < new Date(moment()).getDate()) {
+    return res.status(401).json({
+      success: false,
+      message: "Ngày sửa không phù hợp vui lòng chọn lại",
+    });
+  }
+
   function makeid() {
     var text = "ACE";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var possible =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
     for (var i = 0; i < 5; i++)
       text += possible.charAt(Math.floor(Math.random() * possible.length));
+
     return text;
   }
 
@@ -109,6 +61,7 @@ exports.create = async (req, res) => {
       description_error,
       status: "Wait for confirmation",
       service_id,
+      payment_method: payment_method || "unpaid",
     });
 
     newBooking.save((err, booking) => {
@@ -171,7 +124,8 @@ exports.create = async (req, res) => {
 exports.updateBookingStatusAdmin = async (req, res) => {
   const bookingId = req.params.bookingId;
 
-  const { status } = req.body;
+  const { status, total_price, exact_error, image_desc_error } = req.body;
+  console.log("image", image_desc_error);
 
   const getBookingDB = await Booking.findOne({ _id: bookingId });
 
@@ -181,12 +135,13 @@ exports.updateBookingStatusAdmin = async (req, res) => {
     case "Wait for confirmation":
       return res.status(401).json({
         success: false,
-        message: "Không thể update status đơn đặt lịch này",
+        message: "Không thể thay đổi trang thái đơn đặt lịch này",
       });
     case "Confirm":
       if (getBookingDB.status === "Wait for confirmation") {
         updatedStatusBookingAdmin = {
           status,
+          updated_confirm: Date.now(),
         };
 
         updatedStatusBookingAdmin = await Booking.findOneAndUpdate(
@@ -198,25 +153,28 @@ exports.updateBookingStatusAdmin = async (req, res) => {
         if (!updatedStatusBookingAdmin) {
           return res.status(401).json({
             success: false,
-            message: "Update status booking fail",
+            message: "Thay đổi trạng thái đơn đặt lịch thất bại",
           });
         }
 
-        return res.status(200).json({
+        res.status(200).json({
           success: true,
-          message: "Update status booking success",
+          message: "Thay đổi trạng thái đơn đặt lịch thành công",
           updatedStatusBookingAdmin,
         });
       } else {
         return res.status(401).json({
           success: false,
-          message: "Không thể update status này",
+          message: "Không thể thay đổi trạng thái đơn đặt lịch này",
         });
       }
     case "Fixing":
       if (getBookingDB.status === "Confirm") {
         updatedStatusBookingAdmin = {
           status,
+          exact_error,
+          image_desc_error,
+          updated_fixing: Date.now(),
         };
 
         updatedStatusBookingAdmin = await Booking.findOneAndUpdate(
@@ -228,60 +186,70 @@ exports.updateBookingStatusAdmin = async (req, res) => {
         if (!updatedStatusBookingAdmin) {
           return res.status(401).json({
             success: false,
-            message: "Update status booking fail",
-          });
-        }
-
-        return res.status(200).json({
-          success: true,
-          message: "Update status booking success",
-          updatedStatusBookingAdmin,
-        });
-      } else {
-        return res.status(401).json({
-          success: false,
-          message: "Không thể update status này",
-        });
-      }
-    case "Successful fix":
-      if (getBookingDB.status === "Fixing") {
-        updatedStatusBookingAdmin = {
-          status,
-        };
-
-        updatedStatusBookingAdmin = await Booking.findOneAndUpdate(
-          { _id: bookingId },
-          updatedStatusBookingAdmin,
-          { new: true }
-        );
-
-        if (!updatedStatusBookingAdmin) {
-          return res.status(401).json({
-            success: false,
-            message: "Update status booking fail",
+            message: "Thay đổi trạng thái đơn đặt lịch thất bại",
           });
         }
 
         res.status(200).json({
           success: true,
-          message: "Update status booking success",
+          message: "Thay đổi trạng thái đơn đặt lịch thành công",
           updatedStatusBookingAdmin,
         });
       } else {
         return res.status(401).json({
           success: false,
-          message: "Không thể update status này",
+          message: "Không thể thay đổi trạng thái đơn đặt lịch này",
+        });
+      }
+    case "Successful fix":
+      if (!total_price) {
+        return res.status(401).json({
+          success: false,
+          message: "Bạn cần nhập giá",
+        });
+      }
+
+      if (getBookingDB.status === "Fixing") {
+        updatedStatusBookingAdmin = {
+          status,
+          total_price,
+          updated_success: Date.now(),
+          payment_method: "paid",
+        };
+
+        updatedStatusBookingAdmin = await Booking.findOneAndUpdate(
+          { _id: bookingId },
+          updatedStatusBookingAdmin,
+          { new: true }
+        );
+
+        if (!updatedStatusBookingAdmin) {
+          return res.status(401).json({
+            success: false,
+            message: "Thay đổi trạng thái đơn đặt lịch thất bại",
+          });
+        }
+
+        res.status(200).json({
+          success: true,
+          message: "Thay đổi trạng thái đơn đặt lịch thành công",
+          updatedStatusBookingAdmin,
+        });
+      } else {
+        return res.status(401).json({
+          success: false,
+          message: "Không thể thay đổi trạng thái đơn đặt lịch này",
         });
       }
     case "Cancellation of booking":
       if (
         getBookingDB.status === "Wait for confirmation" ||
         getBookingDB.status === "Confirm" ||
-        getBookingDB.status === "Fixing" ||
-        getBookingDB.status === "Successful fix"
+        getBookingDB.status === "Fixing"
       ) {
         updatedStatusBookingAdmin = {
           status,
+          updated_cancel: Date.now(),
         };
 
         updatedStatusBookingAdmin = await Booking.findOneAndUpdate(
@@ -293,19 +261,19 @@ exports.updateBookingStatusAdmin = async (req, res) => {
         if (!updatedStatusBookingAdmin) {
           return res.status(401).json({
             success: false,
-            message: "Update status booking fail",
+            message: "Thay đổi trạng thái đơn đặt lịch thất bại",
           });
         }
 
-        return res.status(200).json({
+        res.status(200).json({
           success: true,
-          message: "Update status booking success",
+          message: "Thay đổi trạng thái đơn đặt lịch thành công",
           updatedStatusBookingAdmin,
         });
       } else {
         return res.status(401).json({
           success: false,
-          message: "Không thể update status này",
+          message: "Không thể thay đổi trạng thái đơn đặt lịch này",
         });
       }
     default:
@@ -345,7 +313,7 @@ exports.listBooking = (req, res) => {
         Booking.countDocuments({}).then((total) => {
           const totalPage = Math.ceil(total / page_size);
 
-          return res.status(200).json({
+          res.status(200).json({
             success: true,
             message: "Lấy tất cả danh sách đơn đặt lịch thành công",
             booking,
@@ -363,7 +331,7 @@ exports.listBooking = (req, res) => {
             message: "Không tìm thấy đơn đặt lịch nào",
           });
         }
-        return res.status(200).json({
+        res.status(200).json({
           success: true,
           message: "Lấy tất cả danh sách đơn đặt lịch thành công",
           booking,
@@ -383,74 +351,12 @@ exports.detailBooking = (req, res) => {
       });
     }
 
-    return res.status(200).json({
+    res.status(200).json({
       success: true,
       message: "Lấy chi tiết đơn đặt lịch thành công",
       detailBooking,
     });
-  });
-};
-
-/*
- * Module này sẽ trả về danh sách tất cả đơn đặt lịch của user đó
- */
-exports.getListBookingUser = async (req, res) => {
-  const user = req.userId;
-
-  Booking.find({ user_id: user._id }).exec((err, listBooking) => {
-    if (err) {
-      return res.status(400).json({
-        success: false,
-        message: "Không tìm thấy đơn đặt lịch nào",
-      });
-    }
-
-    return res.status(200).json({
-      success: true,
-      message: "Lấy danh sách đơn đặt lịch thành công",
-      listBooking,
-    });
-  });
-};
-
-/*
- * Module này sẽ trả về danh sách tất cả đơn đặt lịch của user đó theo trạng thái
- */
-exports.getBookingStatusUser = (req, res) => {
-  const user = req.userId;
-
-  const { status } = req.body;
-
-  // console.log(status);
-
-  if (
-    status === "Wait for confirmation" ||
-    status === "Confirm" ||
-    status === "Fixing" ||
-    status === "Successful fix" ||
-    status === "Cancellation of booking"
-  ) {
-    Booking.find({ status, user_id: user._id }).exec((err, listBooking) => {
-      if (err) {
-        return res.status(400).json({
-          success: false,
-          message: "Không tìm thấy đơn đặt lịch nào",
-        });
-      }
-
-      return res.status(200).json({
-        success: true,
-        message: "Lấy danh sách đơn đặt lịch thành công",
-        listBooking,
-      });
-    });
-  } else {
-    return res.status(400).json({
-      success: false,
-      message:
-        "Không tìm thấy trạng thái nào trùng với trạng thái đơn đặt lịch",
-    });
-  }
+  }).populate("service_id", "name");
 };
 
 exports.listAllBookingStatus = (req, res) => {
@@ -480,7 +386,7 @@ exports.listAllBookingStatus = (req, res) => {
           });
         }
 
-        return res.status(200).json({
+        res.status(200).json({
           success: true,
           message: "Lấy danh sách đơn hàng theo trạng thái thành công",
           listBookingStatus,
@@ -494,48 +400,273 @@ exports.listAllBookingStatus = (req, res) => {
   }
 };
 
-exports.searchBookingUser = async (req, res) => {
+/*
+ * Module này sẽ trả về danh sách tất cả đơn đặt lịch của user đó
+ */
+exports.getListBookingUser = async (req, res) => {
   const user = req.userId;
 
-  const search = req.query.code;
-
-  if (search) {
-    const bookingSearch = await Booking.findOne({
-      code_bill: search,
-      user_id: user._id,
-    });
-
-    if (!bookingSearch) {
-      return res.status(401).json({
-        success: false,
-        message: "Không tìm thấy đơn đặt lịch nào",
-      });
-    }
-
-    return res.status(200).json({
-      success: true,
-      message: "Tìm kiếm đơn đặt lịch thành công",
-      bookingSearch,
-    });
-  } else {
-    Booking.find({}).exec((err, listBooking) => {
+  Booking.find({ user_id: user._id })
+    .sort({ createdAt: -1 })
+    .populate("service_id", "name")
+    .exec((err, listBooking) => {
       if (err) {
-        return res.status(401).json({
+        return res.status(400).json({
           success: false,
           message: "Không tìm thấy đơn đặt lịch nào",
         });
       }
 
-      return res.status(200).json({
+      res.status(200).json({
         success: true,
-        message: "Tìm kiếm đơn đặt lịch thành công",
+        message: "Lấy danh sách đơn đặt lịch thành công",
         listBooking,
       });
+    });
+};
+
+/*
+ * Module này sẽ trả về danh sách tất cả đơn đặt lịch của user đó theo trạng thái
+ */
+exports.getBookingStatusUser = (req, res) => {
+  const user = req.userId;
+
+  const status = req.query.status;
+
+  if (
+    status === "Wait for confirmation" ||
+    status === "Confirm" ||
+    status === "Fixing" ||
+    status === "Successful fix" ||
+    status === "Cancellation of booking"
+  ) {
+    Booking.find({ status, user_id: user._id })
+      .sort({ createdAt: -1 })
+      .populate("service_id", "name")
+      .exec((err, listBooking) => {
+        if (err) {
+          return res.status(400).json({
+            success: false,
+            message: "Không tìm thấy đơn đặt lịch nào",
+          });
+        }
+
+        res.status(200).json({
+          success: true,
+          message: "Lấy danh sách đơn đặt lịch thành công",
+          listBooking,
+        });
+      });
+  } else {
+    return res.status(400).json({
+      success: false,
+      message:
+        "Không tìm thấy trạng thái nào trùng với trạng thái đơn đặt lịch",
     });
   }
 };
 
-// validate form booking
+// cancelBooking
+exports.cancelBooking = async (req, res) => {
+  const user = req.userId;
 
+  const bookingId = req.params.bookingId;
 
+  const getBookingDB = await Booking.findOne({
+    _id: bookingId,
+    user_id: user._id,
+  });
 
+  if (!getBookingDB)
+    return res.status(404).json({
+      success: false,
+      message: "Không tìm thấy booking",
+    });
+
+  if (
+    getBookingDB.status === "Wait for confirmation" ||
+    getBookingDB.status === "Confirm"
+  ) {
+    let updatedStatusBookingAdmin = {
+      status: "Cancellation of booking",
+      updated_cancel: Date.now(),
+    };
+    updatedStatusBookingAdmin = await Booking.findOneAndUpdate(
+      { _id: bookingId },
+      updatedStatusBookingAdmin,
+      { new: true }
+    );
+
+    if (!updatedStatusBookingAdmin) {
+      return res.status(400).json({
+        success: false,
+        message: "Cancel booking fail",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Cancel booking success",
+      updatedStatusBookingAdmin,
+    });
+  } else {
+    return res.status(500).json({
+      success: false,
+      message: "trạng thái đơn hàng không hợp lệ",
+    });
+  }
+};
+
+exports.searchBookingAdmin = async (req, res) => {
+  const search = req.query.code;
+
+  const searchBooking = await Booking.findOne({ code_bill: search });
+
+  if (!searchBooking) {
+    return res.status(401).json({
+      success: false,
+      message: "Không tìm thấy đơn đặt lịch nào",
+    });
+  }
+
+  res.status(200).json({
+    success: true,
+    message: "Tìm kiếm đơn đặt lịch thành công",
+    searchBooking,
+  });
+};
+
+exports.filterByDate = (req, res) => {
+  const { date } = req.body;
+
+  if (!date) {
+    return res.status(400).json({
+      success: false,
+      message: "Bạn cần nhập đầy đủ thông tin",
+    });
+  }
+
+  Booking.find({
+    createdAt: {
+      $gte: new Date(new Date(date).setHours(00, 00, 00)),
+      $lt: new Date(new Date(date).setHours(23, 59, 59)),
+    },
+  })
+    .then((data) => {
+      res.status(200).json({
+        success: true,
+        message: "Lấy đơn đặt lịch thành công",
+        booking: data,
+      });
+    })
+    .catch((error) => {
+      console.log("error", error);
+      return res.status(401).json({
+        success: false,
+        message: "Lấy đơn đặt lịch thất bại",
+      });
+    });
+};
+
+exports.revenueByDay = async (req, res) => {
+  const { date } = req.body;
+
+  if (!date) {
+    return res.status(401).json({
+      success: false,
+      message: "Bạn cần nhập đầy đủ thông tin",
+    });
+  }
+
+  const booking = await Booking.find({
+    updated_success: {
+      $gte: new Date(date).setHours(00, 00, 00),
+      $lt: new Date(date).setHours(23, 59, 59),
+    },
+    payment_method: "paid",
+  }).sort({ updated_success: 1 });
+
+  if (!booking) {
+    return res.status(401).json({
+      success: false,
+      message: "Lấy đơn đặt lịch thất bại",
+    });
+  }
+
+  res.status(200).json(booking);
+};
+
+exports.revenueByDays = async (req, res) => {
+  const { dateStart, dateEnd } = req.body;
+
+  if (!dateStart || !dateEnd) {
+    return res.status(401).json({
+      success: false,
+      message: "Bạn cần nhập đầy đủ thông tin",
+    });
+  }
+
+  const booking = await Booking.find({
+    updated_success: {
+      $gte: new Date(dateStart).setHours(00, 00, 00),
+      $lt: new Date(dateEnd).setHours(23, 59, 59),
+    },
+    payment_method: "paid",
+  }).sort({ updated_success: 1 });
+
+  if (!booking) {
+    return res.status(401).json({
+      success: false,
+      message: "Lấy đơn đặt lịch thất bại",
+    });
+  }
+
+  res.status(200).json(booking);
+};
+
+exports.businessResultDay = async (req, res) => {
+  const waitBooking = await Booking.find({
+    createdAt: {
+      $gte: new Date(moment()).setHours(00, 00, 00),
+      $lt: new Date(moment()).setHours(23, 59, 59),
+    },
+  });
+
+  const cancelBooking = await Booking.find({
+    status: "Cancellation of booking",
+    updated_cancel: {
+      $gte: new Date(moment()).setHours(00, 00, 00),
+      $lt: new Date(moment()).setHours(23, 59, 59),
+    },
+  });
+
+  Booking.find({
+    status: "Successful fix",
+    updated_success: {
+      $gte: new Date(moment()).setHours(00, 00, 00),
+      $lt: new Date(moment()).setHours(23, 59, 59),
+    },
+    payment_method: "paid",
+  })
+    .then((data) => {
+      res.status(200).json({
+        waitBooking: waitBooking.length,
+        cancelBooking: cancelBooking.length,
+        totalBookingDay: data,
+      });
+    })
+    .catch((error) => {
+      console.log("error", error);
+    });
+};
+
+exports.revenueByMonth = async (req, res) => {
+  const { month } = req.body;
+
+  // const booking = await Booking.find({
+  //   updated_success: { $month: month },
+  //   payment_method: "paid",
+  // });
+
+  // res.status(200).json({ booking, totalMonth: booking.length });
+};

@@ -4,14 +4,19 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+
 const authRoutes = require("./routers/auth.js");
 const serviceRoutes = require("./routers/service.js");
 const bookingRouters = require("./routers/booking.js");
 const quoteRouters = require("./routers/quote.js");
-const userRouters = require("./routers/userRouter.js")
-const contactRouters = require("./routers/contact");
+const userRouters = require("./routers/user.js");
+const contactRouters = require("./routers/contact.js");
+const commentRouters = require("./routers/comment.js")
+
 dotenv.config();
 const app = express();
+
+//pass heroku: Mke.UQU\Es^3pF(
 
 // Connection to DB
 mongoose
@@ -33,12 +38,14 @@ app.use(express.json());
 app.use(cors());
 
 // Routes Middlewares
+app.use("/api", contactRouters);
 app.use("/api", authRoutes);
 app.use("/api", serviceRoutes);
 app.use("/api", bookingRouters);
-app.use('/api', quoteRouters);
-app.use('/api', userRouters);
-// app.use("/api", contactRouters);
+app.use("/api", quoteRouters);
+app.use("/api", userRouters);
+app.use("/api", commentRouters);
+
 const PORT = process.env.PORT || 5500;
 
 app.listen(PORT, () => {

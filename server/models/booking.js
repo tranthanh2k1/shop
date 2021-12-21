@@ -25,6 +25,7 @@ const BookingSchema = new Schema(
     },
     repair_time: {
       type: Date,
+      // min: "1987-09-28",
       // required: true,
     },
     user_id: {
@@ -39,6 +40,17 @@ const BookingSchema = new Schema(
       type: String,
       // required: true,
     },
+    exact_error: String,
+    image_desc_error: String,
+    total_price: {
+      type: String,
+      default: "",
+    },
+    payment_method: {
+      type: String,
+      enum: ["unpaid", "paid"],
+      default: "unpaid",
+    },
     status: {
       type: String,
       enum: [
@@ -52,6 +64,22 @@ const BookingSchema = new Schema(
     service_id: {
       type: mongoose.Types.ObjectId,
       ref: "Service",
+    },
+    updated_confirm: {
+      type: Date,
+      default: null,
+    },
+    updated_fixing: {
+      type: Date,
+      default: null,
+    },
+    updated_success: {
+      type: Date,
+      default: null,
+    },
+    updated_cancel: {
+      type: Date,
+      default: null,
     },
   },
   { timestamps: true }

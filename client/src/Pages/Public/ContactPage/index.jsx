@@ -3,7 +3,13 @@ import { Link } from "react-router-dom";
 import inner_page_banner from "../../../Images/inner_page_banner.jpg";
 import test_bg from "../../../Images/test_bg.png";
 import phone_icon from "../../../Images/phone_icon.png";
+import { useForm } from "react-hook-form";
+
 const ContactPage = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm()
+
+  const onSubmit = () => { }
+
   return (
     <>
       <div
@@ -65,46 +71,50 @@ const ContactPage = () => {
       </div>
       <div className="mx-[15px] md:mx-[30px] lg:max-w-[55%] lg:mx-auto mt-[90px] ">
         <p className="text-center text-[30px] md:text-[35px] leading-[36px] font-medium ">
-          
-GỬI TIN NHẮN
+          Gửi liên hệ
         </p>
-        <div className="grid grid-cols-2 gap-[10px] mt-[30px]">
-          <input
-            type="text"
-            className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-            placeholder=" Họ và tên"
-          />
-          <input
-            type="text"
-            className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-            placeholder="Phone number"
-          />
-        </div>
-        <div className="mt-[10px] grid grid-cols-2 gap-[10px]">
-          <input
-            type="text"
-            className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-            placeholder=" Email"
-          />
-          <input
-            type="text"
-            className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-            placeholder="Địa chỉ"
-          />
-        </div>
-        <div className="mt-[10px] ">
-          <textarea
-            rows="5"
-            type="text"
-            className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px]  bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-            placeholder="Mô tả lỗi"
-          />
-        </div>
-        <div className="text-center mt-[25px]">
-          <button className="bg-[#17a5e9] text-white border-none height-[50px] min-w-[170px] text-[14px] hover:bg-[#25d8ed] rounded-[100px] py-[15px] text-center font-bold">
-            SUBMIT NOW
-          </button>
-        </div>
+        <form action="" onSubmit={handleSubmit(onSubmit)}>
+          <div className="grid grid-cols-2 gap-[10px] mt-[30px]">
+            <input
+              type="text"
+              className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+              placeholder=" Họ và tên"
+            // {...register('')}
+            />
+            <input
+              type="text"
+              className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+              placeholder="Phone number"
+            />
+          </div>
+          <div className="mt-[10px] grid grid-cols-2 gap-[10px]">
+            <input
+              type="text"
+              className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+              placeholder=" Email"
+            />
+            <input
+              type="text"
+              className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+              placeholder="Địa chỉ"
+            />
+          </div>
+          <div className="mt-[10px] ">
+            <textarea
+              rows="5"
+              type="text"
+              className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px]  bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
+              placeholder="Mô tả lỗi"
+            />
+          </div>
+          <div className="text-center mt-[25px]">
+            <button
+              type="submit"
+              className="bg-[#17a5e9] text-white border-none height-[50px] min-w-[170px] text-[14px] hover:bg-[#25d8ed] rounded-[100px] py-[15px] text-center font-bold">
+              Gửi
+            </button>
+          </div>
+        </form>
       </div>
       <div
         className="mt-[100px] py-[130px] bg-cover bg-center bg-no-repeat relative mb-[130px]"

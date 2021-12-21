@@ -1,11 +1,10 @@
 const User = require("../models/user.js");
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
+const { sendMail } = require("../helps/mail-config");
 
 exports.register = async (req, res) => {
-  const { username, email, password } = req.body;
-  console.log(req.body);
-
+  const { username, email, password, phone } = req.body;
   // Validation
   if (!username || !email || !password) {
     return res.status(400).json({
@@ -23,7 +22,12 @@ exports.register = async (req, res) => {
     }
     // Mã hóa password
     const hassed_password = await argon2.hash(password);
-    const newUser = new User({ username, email, password: hassed_password });
+    const newUser = new User({
+      username,
+      email,
+      password: hassed_password,
+      phone,
+    });
 
     newUser.save((err, user) => {
       if (err) {
@@ -45,8 +49,6 @@ exports.register = async (req, res) => {
     });
   }
 };
-
-
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -98,6 +100,7 @@ exports.login = async (req, res) => {
         username: user.username,
         email: user.email,
         role: user.role,
+        phone: user.phone,
       },
       token,
     });
@@ -108,4 +111,53 @@ exports.login = async (req, res) => {
       message: "Lỗi server",
     });
   }
+};
+
+const generatePassword = (length) => {
+  const characterss =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
+  let password = "";
+  for (let i = 0; i < length; i++) {
+    password += characterss.charAt(
+      Math.floor(Math.random() * characterss.length)
+    );
+  }
+  return password;
+};
+
+exports.forgotPassword = (req, res) => {
+  const { email } = req.body;
+  User.findOne({ email }, async (err, user) => {
+    if (err || !user) {
+      return res
+        .status(400)
+        .json({ error: "User with this email does not exists" });
+    }
+
+    const token = jwt.sign({ _id: user._id }, process.env.RESET_PASSWORD_KEY);
+
+    try {
+      //update new password for user
+      const newPassword = generatePassword(8);
+      const hassed_new_password = await argon2.hash(newPassword);
+      user.password = hassed_new_password;
+      user.resetLink = token;
+      await User.updateOne({ _id: user._id }, user);
+      const template = `
+        <h2>Please click on given link to reset you password </h2>
+        <p>Email: ${user.email}</p>
+        <p>New password: ${newPassword}</p>
+        <a href="http://localhost:3000/auth/login">LOGIN</a>
+        `;
+      const result = await sendMail(email, template);
+      if (result)
+        res.status(200).json({
+          type: "success",
+          message: "Please check your email to get new password !",
+        });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ error });
+    }
+  });
 };
