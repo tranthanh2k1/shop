@@ -27,7 +27,6 @@ ChartJS.register(
 
 const Dashboard = () => {
   const [totalBooking, setTotalBooking] = useState([])
-  console.log("qsdqwd", totalBooking)
   const [date, setDate] = useState('')
   const [dateStart, setDateStart] = useState('')
   const [dateEnd, setDateEnd] = useState('')
@@ -127,7 +126,13 @@ const Dashboard = () => {
   }
 
   const revenueMonth = async () => {
-    // console.log(month)
+    try {
+      const { data } = await axios.post(`${API}/booking/admin/revenueByMonth`, { month })
+
+      setTotalBooking(data)
+    } catch (error) {
+      console.log("error", error.response)
+    }
   }
 
   const totalMoney = businessResultDay.totalBookingDay && businessResultDay.totalBookingDay.reduce((acc, item) => {
@@ -141,7 +146,6 @@ const Dashboard = () => {
   // chart
   function filterDate() {
     let arrayDate = []
-    console.log("arrayDatefilterDate", arrayDate)
 
     for (let i = 0; i < totalBooking.length; i++) {
       const result = moment(new Date(totalBooking[i].updated_success)).format("DD/MM");
@@ -157,8 +161,6 @@ const Dashboard = () => {
   function filterMoney() {
     let arrayDate = filterDate()
     let arrayMoney = []
-
-    console.log("arrayDay, arrayMoney", arrayDate, arrayMoney)
 
     const arrayMoneyDate = arrayDate.map(item => {
       return totalBooking.filter(it => moment(new Date(it.updated_success)).format("DD/MM") === item)

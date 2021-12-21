@@ -1,10 +1,35 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
+import React, { useEffect, useState } from "react";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import { isAuthenticated } from '../../../../constant'
 // import { path } from "src/Constants/";
 // import { ActionLogout } from "src/Redux/Actions/Auth.action";
 
 const Header = () => {
   const [boxUser, setBoxUser] = useState(false);
+  const [isLogged, setIsLogged] = useState(false)
+
+  const { user } = isAuthenticated()
+
+  const pathname = useLocation()
+  const history = useHistory()
+
+  useEffect(() => {
+    isAuthenticated() && setIsLogged(true)
+  }, [pathname, isLogged])
+
+  const signout = (next) => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('user');
+    }
+    next()
+  }
+
+  function splitName() {
+    const lastName = user.username.split(' ')
+
+    return lastName[lastName.length - 1]
+  }
 
   return (
     <header className="w-full bg-white dark:bg-gray-700 items-center h-16 rounded-xl z-40">
@@ -19,40 +44,67 @@ const Header = () => {
               <span className="mr-[20px] text-[18px]">
                 <i class="far fa-bell"></i>
               </span>
-              <div className="w-[35px] h-[35px] cursor-pointer flex bg-gray-300 rounded-full mr-[20px]">
-                {" "}
-                <span className="text-[16px] font-bold m-auto">T</span>
-              </div>
-              <span
+              {user && (
+                <div className="py-[20px] ml-[15px] mt-[6px] text-sm">
+                  <Link to="" className="hover:text-[#039ee3]">
+                    Xin chào,{splitName()}
+                  </Link>
+                </div>
+              )}
+              <div
                 onClick={() => setBoxUser(!boxUser)}
-                className="relative text-[18px] cursor-pointer"
+                className="py-[20px] ml-[5px] text-[18px] relative cursor-pointer"
               >
-                <i class="far fa-ellipsis-h"></i>
-                <ul
-                  className={
-                    boxUser
-                      ? "absolute w-[150px] right-[50%] translate-x-[20%] top-[120%]  z-20  bg-gray-100 rounded-[3px]  block-ul"
-                      : "hidden"
-                  }
-                >
-                  <li className=" text-[14px] text-blue-600 hover:bg-blue-200 ">
-                    {" "}
-                    <Link
-                      to="/auth/lognin"
-                      className="py-[5px] px-[15px] inline-block "
-                    >
-                      Đăng nhập
-                    </Link>
-                  </li>
+                <i className="fas fa-user"></i>
+                {pathname !== 'auth/login' && isLogged ? (
+                  <ul
+                    className={
+                      boxUser
+                        ? "absolute w-[150px] right-[50%] translate-x-[20%] top-[80%] z-20 bg-gray-100 rounded-[3px]  block-ul"
+                        : "hidden"
+                    }
+                  >
+                    <li className=" text-[14px] text-blue-600 hover:bg-blue-200">
+                      {" "}
+                      <Link
+                        to="/"
+                        className="py-[5px] px-[15px] inline-block"
+                        onClick={() => signout(() => {
+                          setIsLogged(false)
+                          history.push('/')
+                        })}
+                      >
+                        Đăng xuất
+                      </Link>
+                    </li>
+                  </ul>
+                ) : (
+                  <ul
+                    className={
+                      boxUser
+                        ? "absolute w-[150px] right-[50%] translate-x-[20%] top-[80%] z-20  bg-gray-100 rounded-[3px]  block-ul"
+                        : "hidden"
+                    }
+                  >
+                    <li className=" text-[14px] text-blue-600 hover:bg-blue-200 ">
+                      {" "}
+                      <Link
+                        to="/auth/register"
+                        className="py-[5px] px-[15px] inline-block "
+                      >
+                        Đăng ký
+                      </Link>
+                    </li>
+                    <li className=" text-[14px] text-blue-600 hover:bg-blue-200">
+                      {" "}
+                      <Link to="/auth/login" className="py-[5px] px-[15px] inline-block">
+                        Đăng nhập
+                      </Link>
+                    </li>
+                  </ul>
+                )}
+              </div>
 
-                  <li className=" text-[14px] text-blue-600 hover:bg-blue-200">
-                    {" "}
-                    <Link to="" className="py-[5px] px-[15px] inline-block">
-                      Admin
-                    </Link>
-                  </li>
-                </ul>
-              </span>
             </div>
           </div>
         </div>
