@@ -663,10 +663,54 @@ exports.businessResultDay = async (req, res) => {
 exports.revenueByMonth = async (req, res) => {
   const { month } = req.body;
 
-  // const booking = await Booking.find({
-  //   updated_success: { $month: month },
-  //   payment_method: "paid",
-  // });
+  const booking = await Booking.find({
+    updated_success: {
+      $gte: new Date(month + "-01").setHours(00, 00, 00),
+      $lt: new Date(month + "-31").setHours(23, 59, 59),
+    },
+    payment_method: "paid",
+  });
 
-  // res.status(200).json({ booking, totalMonth: booking.length });
+  res.status(200).json(booking);
+};
+
+exports.searchBookingUser = async (req, res) => {
+  const user = req.userId;
+
+  const search = req.query.code;
+
+  if (search) {
+    const bookingSearch = await Booking.findOne({
+      code_bill: search,
+      user_id: user._id,
+    });
+
+    if (!bookingSearch) {
+      return res.status(401).json({
+        success: false,
+        message: "Không tìm thấy đơn đặt lịch nào",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Tìm kiếm đơn đặt lịch thành công",
+      bookingSearch,
+    });
+  } else {
+    Booking.find({}).exec((err, listBooking) => {
+      if (err) {
+        return res.status(401).json({
+          success: false,
+          message: "Không tìm thấy đơn đặt lịch nào",
+        });
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "Tìm kiếm đơn đặt lịch thành công",
+        listBooking,
+      });
+    });
+  }
 };

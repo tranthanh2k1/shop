@@ -20,8 +20,6 @@ const Bookingdetail = () => {
   const [imageError, setImageError] = useState('')
   console.log("clg", imageError)
   const [exactError, setExactError] = useState('')
-  const imageRef = useRef(null)
-  console.log("ref", imageRef)
 
   const { pathname } = useLocation()
   const arrayPathname = pathname.split("/")
@@ -63,6 +61,16 @@ const Bookingdetail = () => {
 
   const valueInputRef = useRef(null)
 
+  const handleImageError = e => {
+    const serviceImage = e.target.files[0];
+    let storageRef = firebase.storage().ref(`images/${serviceImage && serviceImage.name}`);
+    storageRef.put(serviceImage).then(() => {
+      storageRef.getDownloadURL().then(async (url) => {
+        localStorage.setItem("image_error", JSON.stringify(url));
+      })
+    })
+  }
+
   const handleUpdateStatus = (status) => {
     let dataReq = {
       status
@@ -71,11 +79,10 @@ const Bookingdetail = () => {
     if (status === 'Fixing') {
       dataReq = {
         status,
-        image_desc_error: imageError,
+        image_desc_error: JSON.parse(localStorage.getItem("image_error")) || '',
         exact_error: exactError
       }
     }
-    console.log("data", dataReq)
 
     if (status === 'Successful fix') {
       if (detailBooking && detailBooking.total_price === '') {
@@ -92,10 +99,10 @@ const Bookingdetail = () => {
       }
     }
 
-    // if (!errorPrice) {
-    //   dispatch(updateStatusBookingAdminAction(dataReq, id))
-    //   setShowModal(false)
-    // }
+    if (!errorPrice) {
+      dispatch(updateStatusBookingAdminAction(dataReq, id))
+      setShowModal(false)
+    }
   }
 
   const history = useHistory()
@@ -109,17 +116,6 @@ const Bookingdetail = () => {
   const handleTotalPrice = (e) => {
     setErrorPrice('')
     setTotalPrice(e.target.value)
-  }
-
-  const handleImageError = e => {
-    const serviceImage = e.target.files[0];
-    let storageRef = firebase.storage().ref(`images/${serviceImage && serviceImage.name}`);
-    storageRef.put(serviceImage).then(() => {
-      storageRef.getDownloadURL().then(async (url) => {
-        imageRef.current = url
-        // setImageError(url)
-      })
-    })
   }
 
   const handleExactError = e => {

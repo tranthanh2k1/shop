@@ -52,11 +52,15 @@ const ListAllBookedUserPage = () => {
     return (
         <div>
             <form className="py-[12px] my-[12px] flex items-center shadow-sm text-[#212121] bg-[#eaeaea] rounded-[2px]">
-                <span className="text-[20px] mx-[15px]">
-                    <i className="far fa-search"></i>
-                </span>
+
+                <button>
+                    <span className="text-[20px] mx-[15px]">
+                        <i className="far fa-search"></i>
+                    </span>
+                </button>
                 <input
                     type="text"
+                    name="code"
                     placeholder="Tìm kiếm theo Mã hóa đơn"
                     className="flex-1 text-[14px] leading-[16px] bg-[#eaeaea] focus:outline-none"
                 />

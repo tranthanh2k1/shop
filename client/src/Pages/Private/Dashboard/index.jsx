@@ -27,6 +27,7 @@ ChartJS.register(
 
 const Dashboard = () => {
   const [totalBooking, setTotalBooking] = useState([])
+  console.log("qsdqwd", totalBooking)
   const [date, setDate] = useState('')
   const [dateStart, setDateStart] = useState('')
   const [dateEnd, setDateEnd] = useState('')
@@ -144,7 +145,7 @@ const Dashboard = () => {
 
     for (let i = 0; i < totalBooking.length; i++) {
       const result = moment(new Date(totalBooking[i].updated_success)).format("DD/MM");
-
+      console.log("result", result)
       if (!arrayDate.includes(result)) {
         arrayDate.push(result)
       }
