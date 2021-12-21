@@ -38,7 +38,7 @@ app.use("/api", serviceRoutes);
 app.use("/api", bookingRouters);
 app.use('/api', quoteRouters);
 app.use('/api', userRouters);
-app.use("/api", contactRouters);
+// app.use("/api", contactRouters);
 const PORT = process.env.PORT || 5500;
 
 app.listen(PORT, () => {
