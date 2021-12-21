@@ -17,8 +17,6 @@ const MakeAppointment = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { listService } = useSelector(state => state.service)
 
-  console.log(new Date().getDate())
-
   const { user } = isAuthenticated()
 
   const dispatch = useDispatch()
@@ -148,12 +146,9 @@ const MakeAppointment = () => {
                 <input
                   type="text"
                   name="address"
-                  defaultValue={user && user.address}
+                  value="Cơ sở: Nam Từ Liêm - Hà Nội"
+                  disabled
                   className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
-                  placeholder="Địa chỉ"
-                  {...register("address", {
-                    required: true
-                  })}
                 />
                 {errors?.address?.type === "required" && <p className="text-red-600">Địa chỉ không được để trống</p>}
               </div>

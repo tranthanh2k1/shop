@@ -66,7 +66,6 @@ export const listAllBookingStatusAction = (status) => async (dispatch) => {
 export const adminFilterByDateBookingAction = (date) => async (dispatch) => {
   try {
     const { data } = await axios.post(`${API}/booking/filterByDate`, { date });
-    console.log(data);
 
     dispatch({
       type: "FILTER_DATE_BOOKING",
@@ -78,5 +77,18 @@ export const adminFilterByDateBookingAction = (date) => async (dispatch) => {
       type: "UDATED_STATUS_BOOKING_API_FAIL",
       payload: error.response.data.message,
     });
+  }
+};
+
+export const todayBookingRepair = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`${API}/booking/admin/notificationRepair`);
+
+    dispatch({
+      type: "TODAY_BOOKING_REPAIR",
+      payload: data,
+    });
+  } catch (error) {
+    console.log("error", error.response);
   }
 };

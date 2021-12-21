@@ -3,7 +3,7 @@ import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Link, NavLink } from "react-router-dom";
-import { adminFilterByDateBookingAction, getListBookingAll, listAllBookingStatusAction } from "../../../redux/actions/booking-admin";
+import { adminFilterByDateBookingAction, getListBookingAll, listAllBookingStatusAction, todayBookingRepair } from "../../../redux/actions/booking-admin";
 
 const Booking = () => {
   const [date, setDate] = useState('')
@@ -80,13 +80,15 @@ const Booking = () => {
 
   const paginationRef = useRef(null)
   const inputDateRef = useRef(date)
-  const colorRef = useRef(null)
-  const navLinkRef = useRef(null)
 
   const handleSelectStatus = (e) => {
     if (e.target.value === 'all') {
       // paginationRef.current.style.display = 'block'
       return dispatch(getListBookingAll(1))
+    }
+
+    if (e.target.value === 'today') {
+      return dispatch(todayBookingRepair())
     }
 
     const dataReq = {
@@ -109,13 +111,6 @@ const Booking = () => {
     dispatch(adminFilterByDateBookingAction(date))
   }
 
-  // const handleColor = () => {
-  //   colorRef.current.style.backgroundColor = 'red'
-  // }
-
-  // const handleColorBG = () => {
-  //   navLinkRef.current.style.color = 'red'
-  // }
 
   return (
     <>
@@ -170,6 +165,7 @@ const Booking = () => {
                       <option key={item.value} value={item.value}>{item.content}</option>
                     </>
                   ))}
+                  <option value="today">Đơn sửa trong ngày hôm nay</option>
                 </select>
               </form>
             </div>

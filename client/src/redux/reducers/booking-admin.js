@@ -57,6 +57,16 @@ const bookingAdminReducer = (state = initialState, action) => {
         message: "",
         error: "",
       };
+    case "TODAY_BOOKING_REPAIR": {
+      return {
+        ...state,
+        listBooking: payload,
+        detailBooking: null,
+        totalPage: null,
+        message: "",
+        error: "",
+      };
+    }
     default:
       return state;
   }

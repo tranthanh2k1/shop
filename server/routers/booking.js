@@ -29,7 +29,6 @@ router.put(
   isAdmin,
   updateBookingStatusAdmin
 );
-// router.post("/booking/status", listAllBookingStatus);
 router.post("/booking/status", listAllBookingStatus);
 router.get("/booking/admin/search", verifyToken, isAdmin, searchBookingAdmin);
 router.post("/booking/filterByDate", filterByDate);

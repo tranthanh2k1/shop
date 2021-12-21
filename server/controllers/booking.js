@@ -91,10 +91,20 @@ exports.create = async (req, res) => {
       let content = "";
       content += `
         <div style="padding: 10px; background-color: #003375">
-            <div style="padding: 10px; background-color: white;">
-                <h4 style="color: #0085ff">Gửi mail với nodemailer và express</h4>
-                <span style="color: black">${name}Đây là mail test</span>
-            </div>
+          <div style="padding: 10px; background-color: white;">
+            <h4 style="color: #0085ff">Kính gửi ${name}</h4> <br>
+            <span style="color: black">Cảm ơn bạn đã tin tưởng dịch vụ sửa chữa và đặt lịch của cửa hàng sửa chữa laptop ACE</span><br>
+            <h4 style="color: #0085ff">Dưới đây là thông tin đơn đặt lịch của bạn</h4><br> 
+            <span style="color: black">Mã hóa đơn:${name} </span><br>
+            <span style="color: black">Email của bạn:${email} </span><br>
+            <span style="color: black">Số điện thoại:${phone} </span><br>
+            <span style="color: black">Địa chỉ:${address} </span><br>
+            <span style="color: black">Ngày đến sửa:${repair_time} </span><br>
+            <span style="color: black">Thời gian đến sửa:${correction_time} </span><br>
+            <span style="color: black">Dịch vụ sửa chữa:${service_id.name}</span><br>
+            <span style="color: black">Mô tả lỗi của khách hàng:${description_error}</span><br>
+            <span style="color: black">Mọi thắc mắc vui lòng liên hệ : 0867682000 hoặc email: nhuhieu21102000@gmail.com</span><br>
+          </div>
         </div>
     `;
 
