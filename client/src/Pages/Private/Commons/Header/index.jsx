@@ -7,21 +7,51 @@ import './header.css'
 const Header = () => {
   const [boxUser, setBoxUser] = useState(false);
   const [notitify, setNotitify] = useState(false);
+  function handlernoty() {
+    setNotitify(!notitify);
+  }
+  const popupNoti =
+    <div class="dropdown-list drop-style flex-1 w-32 " aria-labelledby="alertsDropdown">
+      <h6 class="dropdown-header">
+        Thông báo
+      </h6>
+      <a className="dropdown-item  ">
+        <div className='content' >
+          <div className="small text-gray-500">December 12, 2019</div>
+          <span className="font-weight-bold">A new monthly report is ready to download!</span>
+        </div>
+      </a>
+      <a className="dropdown-item  ">
+        <div className='content' >
+          <div className="small text-gray-500">December 12, 2019</div>
+          <span className="font-weight-bold">A new monthly report is ready to download!</span>
+        </div>
+      </a>
+      <a className="dropdown-item  ">
+        <div className='content' >
+          <div className="small text-gray-500">December 12, 2019</div>
+          <span className="font-weight-bold">A new monthly report is ready to download!</span>
+        </div>
+      </a>
+    </div>
 
   return (
     <header className="w-full bg-white dark:bg-gray-700 items-center h-16 rounded-xl z-40">
       <div className="relative z-20 flex flex-col justify-center h-full px-3 mx-auto flex-center">
         <div className="relative items-center pl-[20px] flex w-full lg:max-w-68 sm:pr-[30px] sm:ml-0">
           <div className="container relative left-0 z-50 flex w-3/4 h-full">
-            <div className="relative flex items-center w-full lg:w-64 h-full group">
+            <div className="relative flex items-center w-full lg:w-64 h-full group ">
+              { notitify? popupNoti : null }
             </div>
           </div>
           <div className="relative p-1 flex items-center justify-end w-1/4 ml-5 mr-4 sm:mr-0 sm:right-auto">
+            <span className="noti-box" onClick={handlernoty}>
+              <i class="far fa-bell"></i>
+            </span>
+
             <div className="relative flex items-center">
+
               <span className="mr-[20px] text-[18px]">
-                <span className="noti-box">
-                <i class="far fa-bell"></i>
-                </span>
               </span>
               <div className="w-[35px] h-[35px] cursor-pointer flex bg-gray-300 rounded-full mr-[20px]">
                 {" "}
