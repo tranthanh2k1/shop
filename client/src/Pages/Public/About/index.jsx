@@ -110,13 +110,7 @@ const AboutPage = () => {
                         </div>
                         <div className={box1 ? "px-[25px] mt-[15px]" : "hidden"}>
                             <p className=" text-box  text-[14px] leading-[24px] text-[#707070]">
-                                Contrary to popular belief, Lorem Ipsum is not simply random
-                                text. It has roots in a piece of classical Latin literature from
-                                45 BC, making it over 2000 years old. Richard McClintock, a
-                                Latin professor at Hampden-Sydney College in Virginia, looked up
-                                one of the more obscure Latin words, consectetur, from a Lorem
-                                Ipsum passage, and going through the cites of the word in
-                                classical literature, discovered the undoubtable source.{" "}
+                               Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
                             </p>
                         </div>
                     </div>
@@ -153,13 +147,7 @@ const AboutPage = () => {
                         </div>
                         <div className={box2 ? "px-[25px] mt-[15px]" : "hidden"}>
                             <p className="text-[14px] leading-[24px] text-[#707070]">
-                                Contrary to popular belief, Lorem Ipsum is not simply random
-                                text. It has roots in a piece of classical Latin literature from
-                                45 BC, making it over 2000 years old. Richard McClintock, a
-                                Latin professor at Hampden-Sydney College in Virginia, looked up
-                                one of the more obscure Latin words, consectetur, from a Lorem
-                                Ipsum passage, and going through the cites of the word in
-                                classical literature, discovered the undoubtable source.{" "}
+                               Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
                             </p>
                         </div>
                     </div>
@@ -196,13 +184,7 @@ const AboutPage = () => {
                         </div>
                         <div className={box3 ? "px-[25px] mt-[15px]" : "hidden"}>
                             <p className="text-[14px] leading-[24px] text-[#707070]">
-                                Contrary to popular belief, Lorem Ipsum is not simply random
-                                text. It has roots in a piece of classical Latin literature from
-                                45 BC, making it over 2000 years old. Richard McClintock, a
-                                Latin professor at Hampden-Sydney College in Virginia, looked up
-                                one of the more obscure Latin words, consectetur, from a Lorem
-                                Ipsum passage, and going through the cites of the word in
-                                classical literature, discovered the undoubtable source.{" "}
+                               Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
                             </p>
                         </div>
                     </div>
@@ -239,13 +221,7 @@ const AboutPage = () => {
                         </div>
                         <div className={box4 ? "px-[25px] mt-[15px]" : "hidden"}>
                             <p className="text-[14px] leading-[24px] text-[#707070]">
-                                Contrary to popular belief, Lorem Ipsum is not simply random
-                                text. It has roots in a piece of classical Latin literature from
-                                45 BC, making it over 2000 years old. Richard McClintock, a
-                                Latin professor at Hampden-Sydney College in Virginia, looked up
-                                one of the more obscure Latin words, consectetur, from a Lorem
-                                Ipsum passage, and going through the cites of the word in
-                                classical literature, discovered the undoubtable source.{" "}
+                               Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
                             </p>
                         </div>
                     </div>
@@ -255,10 +231,7 @@ const AboutPage = () => {
                         Cần khôi phục tệp?
                     </p>
                     <p className="text-[15px] text-[#707070] leading-[21px]">
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                        quae ab illo inventore veritatis et quasi architecto beatae vitae
-                        dicta sunt explicabo..
+                    Nhưng để bạn có thể hiểu rằng mọi lỗi lầm khi sinh ra đều là niềm vui của việc buộc tội và ca ngợi nỗi đau, tôi sẽ mở ra toàn bộ sự việc;
                     </p>
                     <button className="uppercase mt-[30px] text-[14px] text-white font-bold rounded-[100px] px-[40px] py-[15px] bg-[#17a5e9]">
                         Đọc thêm

@@ -36,7 +36,7 @@ const ServiceDetail = () => {
             </div>
             <div className="mt-[40px] md:mt-0 text-left">
               <p className="mt-[8px] mb-[5px] text-[24px] font-medium uppercase relative before:content-[''] before:absolute before:w-[80px] before:h-[4px] before:bg-blue-400 before:top-[45px] before:left-0">
-                Data recovery
+              Phục hồi dữ liệu
               </p>
               <div className="mt-[50px] ">
                 <p className="text-[22px] font-medium text-red-500">
@@ -67,10 +67,10 @@ const ServiceDetail = () => {
           </div>
           <div className=" mt-[50px]">
             <p className="mb-[5px] text-[24px] font-medium uppercase relative before:content-[''] before:absolute before:w-[80px] before:h-[4px] before:bg-blue-400 before:top-[45px] before:left-0">
-              Data recovery
+              Phục hồi dữ liệu
             </p>
             <p className=" mt-[30px] text-[15px] text-[#707070] leading-[23px]">
-              Data recovery Lorem Ipsum is simply dummy text of the printing and
+              Phục hồi dữ liệu Lorem Ipsum is simply dummy text of the printing and
               typesetting industry. Lorem Ipsum has been the industry's standard
               dummy text ever since the 1500s, when an unknown printer took a
               galley of type and scrambled it to make a type specimen book. It
@@ -102,7 +102,7 @@ const ServiceDetail = () => {
                 </div>
                 <div className="mt-[30px]">
                   <p className="text-[24px] text-[#000] font-medium mb-[15px]">
-                    Data recovery
+                    Phục hồi dữ liệu
                   </p>
                   <p className="text-[#707070] text-[15px] leading-[21px]">
                     Exerci tation ullamcorper suscipit lobortis nisl ut aliquip
@@ -125,7 +125,7 @@ const ServiceDetail = () => {
                 </div>
                 <div className="mt-[30px]">
                   <p className="text-[24px] tetx-[#000] font-medium mb-[15px]">
-                    Data recovery
+                    Phục hồi dữ liệu
                   </p>
                   <p className="text-[#707070] text-[15px] leading-[21px]">
                     Exerci tation ullamcorper suscipit lobortis nisl ut aliquip
@@ -148,7 +148,7 @@ const ServiceDetail = () => {
                 </div>
                 <div className="mt-[30px]">
                   <p className="text-[24px] tetx-[#000] font-medium mb-[15px]">
-                    Data recovery
+                    Phục hồi dữ liệu
                   </p>
                   <p className="text-[#707070] text-[15px] leading-[21px]">
                     Exerci tation ullamcorper suscipit lobortis nisl ut aliquip

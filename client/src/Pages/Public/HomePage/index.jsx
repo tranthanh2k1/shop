@@ -34,10 +34,10 @@ const HomePage = () => {
       <div className="container mx-auto mt-[100px]">
         <div className=" text-center ">
           <p className=" text-[30px] md:text-[35px] text-[#000] font-medium mt-[15px] uppercase">
-            Why Choose Us
+          TẠI SAO CHỌN CHÚNG TÔI
           </p>
           <p className="text-[18px] md:text-[20px] text-[#898989] relative before:content-[''] before:absolute before:w-[80px] before:h-[5px] before:bg-blue-400 before:top-[50px] before:left-[50%] before:translate-x-[-50%]">
-            Fastest repair service with best price!
+          Dịch vụ sửa chữa nhanh nhất với giá tốt nhất!
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-[30px] md:gap-[80px] mt-[100px]">
@@ -46,10 +46,10 @@ const HomePage = () => {
               <img src={i1} alt="" />
             </div>
             <p className="text-[18px] text-[#000] font-medium mt-[20px] mb-[10px]">
-              Data recovery
+            Phục hồi dữ liệu
             </p>
             <p className="text-[#707070]  text-[15px]">
-              Perspiciatis eos quos totam cum minima aut!
+              Gặp gỡ những người hoàn toàn hoặc ít nhất!
             </p>
           </div>
           <div className="text-center">
@@ -57,10 +57,10 @@ const HomePage = () => {
               <img src={i2} alt="" />
             </div>
             <p className="text-[18px] text-[#000] font-medium mt-[20px] mb-[10px]">
-              Computer repair
+              Sửa máy tính
             </p>
             <p className="text-[#707070]  text-[15px]">
-              Perspiciatis eos quos totam cum minima aut!
+              Gặp gỡ những người hoàn toàn hoặc ít nhất!
             </p>
           </div>
           <div className="text-center">
@@ -68,10 +68,10 @@ const HomePage = () => {
               <img src={i3} alt="" />
             </div>
             <p className="text-[18px] text-[#000] font-medium mt-[20px] mb-[10px]">
-              Mobile service
+            Dịch vụ di động
             </p>
             <p className="text-[#707070]  text-[15px]">
-              Perspiciatis eos quos totam cum minima aut!
+              Gặp gỡ những người hoàn toàn hoặc ít nhất!
             </p>
           </div>
           <div className="text-center">
@@ -79,10 +79,10 @@ const HomePage = () => {
               <img src={i4} alt="" />
             </div>
             <p className="text-[18px] text-[#000] font-medium mt-[20px] mb-[10px]">
-              Network solutions
+            Giải pháp mạng
             </p>
             <p className="text-[#707070]  text-[15px]">
-              Perspiciatis eos quos totam cum minima aut!
+              Gặp gỡ những người hoàn toàn hoặc ít nhất!
             </p>
           </div>
         </div>
@@ -108,7 +108,7 @@ const HomePage = () => {
                     }
                   ></i>
                 </span>
-                Complete Recovery from Local & External Drive
+                Khôi phục hoàn toàn từ ổ đĩa cục bộ và bên ngoài
               </div>
               <span className=" text-[#000]">
                 <i
@@ -122,13 +122,7 @@ const HomePage = () => {
             </div>
             <div className={box1 ? "px-[25px] mt-[15px]" : "hidden"}>
               <p className=" text-box  text-[14px] leading-[24px] text-[#707070]">
-                Contrary to popular belief, Lorem Ipsum is not simply random
-                text. It has roots in a piece of classical Latin literature from
-                45 BC, making it over 2000 years old. Richard McClintock, a
-                Latin professor at Hampden-Sydney College in Virginia, looked up
-                one of the more obscure Latin words, consectetur, from a Lorem
-                Ipsum passage, and going through the cites of the word in
-                classical literature, discovered the undoubtable source.{" "}
+                Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
               </p>
             </div>
           </div>
@@ -151,7 +145,7 @@ const HomePage = () => {
                     }
                   ></i>
                 </span>
-                Recovery Photo, Image, Video and Audio
+                Khôi phục ảnh, hình ảnh, video và âm thanh
               </div>
               <span className=" text-[#000]">
                 <i
@@ -165,13 +159,7 @@ const HomePage = () => {
             </div>
             <div className={box2 ? "px-[25px] mt-[15px]" : "hidden"}>
               <p className="text-[14px] leading-[24px] text-[#707070]">
-                Contrary to popular belief, Lorem Ipsum is not simply random
-                text. It has roots in a piece of classical Latin literature from
-                45 BC, making it over 2000 years old. Richard McClintock, a
-                Latin professor at Hampden-Sydney College in Virginia, looked up
-                one of the more obscure Latin words, consectetur, from a Lorem
-                Ipsum passage, and going through the cites of the word in
-                classical literature, discovered the undoubtable source.{" "}
+                Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
               </p>
             </div>
           </div>
@@ -194,7 +182,7 @@ const HomePage = () => {
                     }
                   ></i>
                 </span>
-                Mobile Phone Recovery
+                Khôi phục điện thoại di động
               </div>
               <span className=" text-[#000]">
                 <i
@@ -208,13 +196,7 @@ const HomePage = () => {
             </div>
             <div className={box3 ? "px-[25px] mt-[15px]" : "hidden"}>
               <p className="text-[14px] leading-[24px] text-[#707070]">
-                Contrary to popular belief, Lorem Ipsum is not simply random
-                text. It has roots in a piece of classical Latin literature from
-                45 BC, making it over 2000 years old. Richard McClintock, a
-                Latin professor at Hampden-Sydney College in Virginia, looked up
-                one of the more obscure Latin words, consectetur, from a Lorem
-                Ipsum passage, and going through the cites of the word in
-                classical literature, discovered the undoubtable source.{" "}
+                Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
               </p>
             </div>
           </div>
@@ -237,7 +219,7 @@ const HomePage = () => {
                     }
                   ></i>
                 </span>
-                Complete Recovery from Local & External Drive
+                Khôi phục hoàn toàn từ ổ đĩa cục bộ và bên ngoài
               </div>
               <span className=" text-[#000]">
                 <i
@@ -251,26 +233,17 @@ const HomePage = () => {
             </div>
             <div className={box4 ? "px-[25px] mt-[15px]" : "hidden"}>
               <p className="text-[14px] leading-[24px] text-[#707070]">
-                Contrary to popular belief, Lorem Ipsum is not simply random
-                text. It has roots in a piece of classical Latin literature from
-                45 BC, making it over 2000 years old. Richard McClintock, a
-                Latin professor at Hampden-Sydney College in Virginia, looked up
-                one of the more obscure Latin words, consectetur, from a Lorem
-                Ipsum passage, and going through the cites of the word in
-                classical literature, discovered the undoubtable source.{" "}
+                Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
               </p>
             </div>
           </div>
         </div>
         <div className=" pl-[15px] mt-[30px] md:mt-[20px]">
           <p className="text-[24px] font-medium mb-[20px]">
-            Need file recovery?
+          Cần khôi phục tệp?
           </p>
           <p className="text-[15px] text-[#707070] leading-[21px]">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo..
+          Nhưng để bạn có thể hiểu rằng mọi lỗi lầm khi sinh ra đều là niềm vui của việc buộc tội và ca ngợi nỗi đau, tôi sẽ mở ra toàn bộ sự việc;
           </p>
           <button className="uppercase mt-[30px] text-[14px] text-white font-bold rounded-[100px] px-[40px] py-[15px] bg-[#17a5e9]">
             Read More
