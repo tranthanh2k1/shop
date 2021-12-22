@@ -42,9 +42,9 @@ const ContactPage = () => {
                 <i className="fas fa-road"></i>
               </span>
               <p className="text-[16px] font-medium text-[#000]">
-                Lorem Ipsum is simply dummy text..
+              Bản thân trò chơi chỉ đơn giản là văn bản giả ..
               </p>
-              <p className="text-[#737373] text-[15px]">Melbourne Australia</p>
+              <p className="text-[#737373] text-[15px]">Melbourne Úc</p>
             </div>
             <div className="text-center">
               <span className="text-[#039ee3] text-[30px]">

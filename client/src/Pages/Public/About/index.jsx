@@ -48,23 +48,20 @@ const AboutPage = () => {
                                     Chúng ta làm gì
                                 </p>
                                 <p className="leading-[24px] text-[15px] text-[#707070]">
-                                    Lorem Ipsum is simply dummy text of the printing and
-                                    typesetting industry. Lorem Ipsum has been the industry's
-                                    standard dummy text ever since the 1500s, when an unknown
-                                    printer took a galley..
+                                Lorem Ipsum chỉ đơn giản là văn bản giả của ngành in ấn và sắp chữ. Lorem Ipsum đã trở thành văn bản giả tiêu chuẩn của ngành kể từ những năm 1500, khi một máy in không xác định chiếm được ...
                                 </p>
                                 <ul className="mt-[15px] list-none">
                                     <li className="flex items-center w-full my-[5px] text-[15px] text-[#555454] font-medium">
                                         <i class="fas fa-check-circle mr-[10px]"></i>
-                                        Persius appetere pro mea harum ridens
+                                        Thèm dai dẳng cho một trong những tiếng cười này
                                     </li>
                                     <li className="flex items-center w-full my-[5px] text-[15px] text-[#555454] font-medium">
                                         <i class="fas fa-check-circle mr-[10px]"></i>
-                                        Persius appetere pro mea harum ridens
+                                        Thèm dai dẳng cho một trong những tiếng cười này
                                     </li>
                                     <li className="flex items-center w-full my-[5px] text-[15px] text-[#555454] font-medium">
                                         <i class="fas fa-check-circle mr-[10px]"></i>
-                                        Persius appetere pro mea harum ridens
+                                        Thèm dai dẳng cho một trong những tiếng cười này
                                     </li>
                                 </ul>
                             </div>
@@ -258,8 +255,7 @@ const AboutPage = () => {
                                 Dịch vụ trung thực
                             </p>
                             <p className="text-[#707070]  text-[15px]">
-                                Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-                                ea commodo.
+                                Việc thực hiện các tiêu chuẩn chịu blah để tận dụng nó.
                             </p>
                         </div>
 
@@ -271,8 +267,7 @@ const AboutPage = () => {
                                 Thanh toán an toàn
                             </p>
                             <p className="text-[#707070]  text-[15px]">
-                                Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-                                ea commodo.
+                                Việc thực hiện các tiêu chuẩn chịu blah để tận dụng nó.
                             </p>
                         </div>
                         <div className="text-left">
@@ -284,8 +279,7 @@ const AboutPage = () => {
                                 Đội ngũ chuyên gia
                             </p>
                             <p className="text-[#707070]  text-[15px]">
-                                Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-                                ea commodo.
+                                Việc thực hiện các tiêu chuẩn chịu blah để tận dụng nó.
                             </p>
                         </div>
                         <div className="text-left">
@@ -296,8 +290,7 @@ const AboutPage = () => {
                                 Dịch vụ giá cả phải chăng
                             </p>
                             <p className="text-[#707070]  text-[15px]">
-                                Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
-                                ea commodo.
+                                Việc thực hiện các tiêu chuẩn chịu blah để tận dụng nó.
                             </p>
                         </div>
                     </div>

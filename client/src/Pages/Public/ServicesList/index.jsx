@@ -70,10 +70,10 @@ const ServicesList = () => {
         <div className="container mx-auto">
           <div className=" text-left ">
             <p className="text-[30px] sm:text-[35px] text-[#000] font-medium mt-[15px] uppercase">
-              EXPERIENCED STAFF
+              NHÂN VIÊN CÓ KINH NGHIỆM
             </p>
             <p className=" text-[18px] sm:text-[20px] text-[#898989] relative before:content-[''] before:absolute before:w-[80px] before:h-[5px] before:bg-blue-400 before:top-[70px] sm:before:top-[50px] before:left-0 ">
-              Our experts have been featured in press numerous times.
+            Các chuyên gia của chúng tôi đã được giới thiệu trên báo chí nhiều lần.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px] lg:gap-[40px] mt-[70px]">

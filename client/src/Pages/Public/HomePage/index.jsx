@@ -246,17 +246,17 @@ const HomePage = () => {
           Nhưng để bạn có thể hiểu rằng mọi lỗi lầm khi sinh ra đều là niềm vui của việc buộc tội và ca ngợi nỗi đau, tôi sẽ mở ra toàn bộ sự việc;
           </p>
           <button className="uppercase mt-[30px] text-[14px] text-white font-bold rounded-[100px] px-[40px] py-[15px] bg-[#17a5e9]">
-            Read More
+          ĐỌC THÊM
           </button>
         </div>
       </div>
       <div className="container mx-auto mt-[170px] mb-[100px]">
         <div className=" text-left ">
           <p className="text-[30px] md:text-[35px] text-[#000] font-medium mt-[15px] uppercase">
-            Latest from Our Blog
+            MỚI NHẤT TỪ BLOG CỦA CHÚNG TÔI
           </p>
           <p className="text-[18px] md:text-[20px] text-[#898989] relative before:content-[''] before:absolute before:w-[80px] before:h-[5px] before:bg-blue-400 before:top-[50px] before:left-0 ">
-            Easy and effective way to get your device repaired.
+          Cách dễ dàng và hiệu quả để sửa chữa thiết bị của bạn.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 mt-[70px] gap-[50px]">
@@ -268,14 +268,13 @@ const HomePage = () => {
               <span className="text-[14px]">
                 <i className="fal fa-clock"></i>
               </span>{" "}
-              April 16, 2018 ( In Maintenance )
+              Ngày 16 tháng 4 năm 2018 (Đang bảo trì)
             </p>
             <p className="text-[18px] font-medium">
-              Why Your Computer Hates You
+              Tại sao máy tính của bạn ghét bạn
             </p>
             <p className="text-[15px] text-[#707070] mt-[10px]">
-              Lorem ipsum dolor sit amet, consectetur quam justo, pretium
-              adipiscing elit. Vestibulum quam justo, pretium eu tempus ut, ...
+             Nỗi đau chính là tình yêu Làm thế nào để chỉ trả tiền cho thời gian bóng đá
             </p>
           </div>
           <div className="m-0">
@@ -286,14 +285,13 @@ const HomePage = () => {
               <span className="text-[14px]">
                 <i className="fal fa-clock"></i>
               </span>{" "}
-              April 16, 2018 ( In Maintenance )
+              Ngày 16 tháng 4 năm 2018 (Đang bảo trì)
             </p>
             <p className="text-[18px] font-medium">
-              Why Your Computer Hates You
+              Tại sao máy tính của bạn ghét bạn
             </p>
             <p className="text-[15px] text-[#707070] mt-[10px]">
-              Lorem ipsum dolor sit amet, consectetur quam justo, pretium
-              adipiscing elit. Vestibulum quam justo, pretium eu tempus ut, ...
+             Nỗi đau chính là tình yêu Làm thế nào để chỉ trả tiền cho thời gian bóng đá
             </p>
           </div>
           <div className="m-0">
@@ -304,14 +302,13 @@ const HomePage = () => {
               <span className="text-[14px]">
                 <i className="fal fa-clock"></i>
               </span>{" "}
-              April 16, 2018 ( In Maintenance )
+              Ngày 16 tháng 4 năm 2018 (Đang bảo trì)
             </p>
             <p className="text-[18px] font-medium">
-              Why Your Computer Hates You
+              Tại sao máy tính của bạn ghét bạn
             </p>
             <p className="text-[15px] text-[#707070] mt-[10px]">
-              Lorem ipsum dolor sit amet, consectetur quam justo, pretium
-              adipiscing elit. Vestibulum quam justo, pretium eu tempus ut, ...
+             Nỗi đau chính là tình yêu Làm thế nào để chỉ trả tiền cho thời gian bóng đá
             </p>
           </div>
         </div>

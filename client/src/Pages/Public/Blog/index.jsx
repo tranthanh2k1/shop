@@ -58,7 +58,7 @@ const BlogPage = () => {
                                                 to=""
                                                 className="cursor-pointer text-white bg-[#039ee3] hover:text-white hover:bg-[#000] text-[14px] font-medium px-[30px] py-[13px] uppercase"
                                             >
-                                                Read More
+                                                ĐỌC THÊM
                                                 <i className="fas fa-angle-right ml-[5px]"></i>
                                             </Link>
                                         </div>
@@ -155,30 +155,28 @@ const BlogPage = () => {
                         </div>
                         <div className="mb-[50px] w-full ">
                             <p className="text-[18px] font-medium text-[#000] leading-[21px]  mb-[20px]">
-                                ABOUT AUTHOR
+                                VỀ TÁC GIẢ
                             </p>
                             <p className="text-[#707070] text-[15px] leading-[21px] mb-[1rem]">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. sed do
-                                eiusmod tempor.
+                            Bản thân nỗi đau là rất nhiều nỗi đau nhưng tôi cho nó mọi lúc.
                             </p>
                             <p className="text-[#707070] text-[15px] leading-[21px] mb-[1rem]">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Bản thân nỗi đau là quan trọng, nhưng nỗi đau được tăng cường bởi quá trình tạo mỡ, nhưng tôi cho nó thời gian để cắt giảm nó để tôi làm một số công việc lớn và đau đớn.
                             </p>
                         </div>
                         <div className="mb-[50px] w-full">
                             <p className="text-[18px] font-medium text-[#000] leading-[21px]  mb-[20px]">
-                                RECENT POST
+                            BÀI ĐĂNG GẦN ĐÂY
                             </p>
                             <div className="p-0">
                                 <ul className="list-none">
                                     <li className="mb-[20px]">
                                         <p className="font-medium text-[15px] leading-[21px] text-[#2c2c2c]">
-                                            How To Look Up
+                                        Cách tra cứu
                                         </p>
                                         <p className="mt-[5px] text-[12px] text-gray-500">
                                             <i className="fas fa-calendar mr-[7px]"></i>
-                                            Aug 20, 2017
+                                            20 thg 8, 2017
                                         </p>
                                     </li>
                                     <li className="mb-[20px]">
@@ -187,7 +185,7 @@ const BlogPage = () => {
                                         </p>
                                         <p className="mt-[5px] text-[12px] text-gray-500">
                                             <i className="fas fa-calendar mr-[7px]"></i>
-                                            Aug 20, 2017
+                                            20 thg 8, 2017
                                         </p>
                                     </li>
                                     <li className="mb-[20px]">
@@ -196,7 +194,7 @@ const BlogPage = () => {
                                         </p>
                                         <p className="mt-[5px] text-[12px] text-gray-500">
                                             <i className="fas fa-calendar mr-[7px]"></i>
-                                            Aug 20, 2017
+                                            20 thg 8, 2017
                                         </p>
                                     </li>
                                 </ul>
@@ -204,7 +202,7 @@ const BlogPage = () => {
                         </div>
                         <div className="mb-[50px] w-full">
                             <p className="text-[18px] font-medium text-[#000] leading-[21px]  mb-[20px]">
-                                CATEGORIES
+                            THỂ LOẠI
                             </p>
                             <div className="text-[15px] ">
                                 <ul className="list-none">
@@ -214,7 +212,7 @@ const BlogPage = () => {
                                     >
                                         <Link to="" className=" text-[14px]">
                                             <i className="mr-[3px] fas fa-caret-right"></i>
-                                            Change Oil and Filter
+                                            Thay dầu và bộ lọc
                                         </Link>
                                     </li>
                                     <li
@@ -223,7 +221,7 @@ const BlogPage = () => {
                                     >
                                         <Link to="" className=" text-[14px]">
                                             <i className="mr-[3px] fas fa-caret-right"></i>
-                                            Change Oil and Filter
+                                            Thay dầu và bộ lọc
                                         </Link>
                                     </li>
                                     <li
@@ -232,7 +230,7 @@ const BlogPage = () => {
                                     >
                                         <Link to="" className=" text-[14px]">
                                             <i className="mr-[3px] fas fa-caret-right"></i>
-                                            Change Oil and Filter
+                                            Thay dầu và bộ lọc
                                         </Link>
                                     </li>
                                     <li
@@ -241,7 +239,7 @@ const BlogPage = () => {
                                     >
                                         <Link to="" className=" text-[14px]">
                                             <i className="mr-[3px] fas fa-caret-right"></i>
-                                            Change Oil and Filter
+                                            Thay dầu và bộ lọc
                                         </Link>
                                     </li>
                                 </ul>

@@ -19,12 +19,10 @@ const Footer = () => {
             <div className="grid grid-cols-2 gap-[30px]">
               <div className="m-auto">
                 <p className="text-[14px] font-bold text-[#eee] relative before:content-[''] before:absolute before:w-[40px] before:h-[4px] before:bg-blue-400 before:top-[30px] before:left-0">
-                  IT NEXT THEME
+                CHỦ ĐỀ TIẾP THEO
                 </p>
                 <p className="text-[#666] text-[14px] font-medium leading-[24px] mt-[40px]">
-                  Tincidunt elit magnis nulla facilisis. Dolor sagittis
-                  maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit
-                  purus aliquet, massa fringilla leo orci.
+                Không có cách nào dễ dàng để bắt đầu trò chơi. Nỗi đau của những mũi tên Sapien bây giờ yêu thích sự báo thù, đau đớn là điều rất muốn chuối tinh khiết, khối lượng của loài Orc sư tử.
                 </p>
                 <div className="flex items-center text-[#666] mt-[20px]">
                   <span className=" text-[20px] hover:text-blue-500 cursor-pointer">
@@ -40,7 +38,7 @@ const Footer = () => {
               </div>
               <div className="m-0">
                 <p className="text-[14px] font-bold text-[#eee] relative before:content-[''] before:absolute before:w-[40px] before:h-[4px] before:bg-blue-400 before:top-[30px] before:left-0">
-                  ADDITIONAL LINKS
+                LIÊN KẾT BỔ SUNG
                 </p>
                 <ul className="mt-[35px] text-[#666] text-[14px]">
                   <li className="py-[3px] hover:text-blue-400">
@@ -49,7 +47,7 @@ const Footer = () => {
                       <span>
                         <i className="fa fa-angle-right"></i>
                       </span>{" "}
-                      Absolute
+                      Tuyệt đối
                     </Link>
                   </li>
                   <li className="py-[3px] hover:text-blue-400">
@@ -58,7 +56,7 @@ const Footer = () => {
                       <span>
                         <i className="fa fa-angle-right"></i>
                       </span>{" "}
-                      Terms and conditions
+                      Các điều khoản và điều kiện
                     </Link>
                   </li>
                   <li className="py-[3px] hover:text-blue-400">
@@ -66,7 +64,7 @@ const Footer = () => {
                       <span>
                         <i className="fa fa-angle-right"></i>
                       </span>{" "}
-                      Privacy policy
+                      Chính sách bảo mật
                     </Link>
                   </li>
                   <li className="py-[3px] hover:text-blue-400">
@@ -74,7 +72,7 @@ const Footer = () => {
                       <span>
                         <i className="fa fa-angle-right"></i>
                       </span>{" "}
-                      News
+                      mới
                     </Link>
                   </li>
                   <li className="py-[3px] hover:text-blue-400">
@@ -89,7 +87,7 @@ const Footer = () => {
               </div>
               <div className="mt-[25px]">
                 <p className="text-[14px] font-bold text-[#eee] relative before:content-[''] before:absolute before:w-[40px] before:h-[4px] before:bg-blue-400 before:top-[30px] before:left-0">
-                  SERVICES
+                DỊCH VỤ
                 </p>
                 <ul className="mt-[35px] text-[#666] text-[14px]">
                   <li className="py-[3px] hover:text-blue-400">
@@ -98,7 +96,7 @@ const Footer = () => {
                       <span>
                         <i className="fa fa-angle-right"></i>
                       </span>{" "}
-                      Absolute
+                      Tuyệt đối
                     </Link>
                   </li>
                   <li className="py-[3px] hover:text-blue-400">
@@ -107,7 +105,7 @@ const Footer = () => {
                       <span>
                         <i className="fa fa-angle-right"></i>
                       </span>{" "}
-                      Terms and conditions
+                      Các điều khoản và điều kiện
                     </Link>
                   </li>
                   <li className="py-[3px] hover:text-blue-400">
@@ -115,7 +113,7 @@ const Footer = () => {
                       <span>
                         <i className="fa fa-angle-right"></i>
                       </span>{" "}
-                      Privacy policy
+                      Chính sách bảo mật
                     </Link>
                   </li>
                   <li className="py-[3px] hover:text-blue-400">
@@ -123,7 +121,7 @@ const Footer = () => {
                       <span>
                         <i className="fa fa-angle-right"></i>
                       </span>{" "}
-                      News
+                      Mới
                     </Link>
                   </li>
                   <li className="py-[3px] hover:text-blue-400">
@@ -131,14 +129,14 @@ const Footer = () => {
                       <span>
                         <i className="fa fa-angle-right"></i>
                       </span>{" "}
-                      Contact Us
+                      LIÊN HỆ CHÚNG TÔI
                     </Link>
                   </li>
                 </ul>
               </div>
               <div className="mt-[25px]">
                 <p className="text-[14px] font-bold text-[#eee] relative before:content-[''] before:absolute before:w-[40px] before:h-[4px] before:bg-blue-400 before:top-[30px] before:left-0">
-                  CONTACT US
+                LIÊN HỆ CHÚNG TÔI
                 </p>
                 <p className="text-[#666] text-[14px] leading-[24px] mt-[40px]">
                   123 Second Street Fifth Avenue,
