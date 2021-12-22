@@ -31,6 +31,8 @@ import NotfoundPage from "../Pages/Private/Notfound";
 import AboutPage from "../Pages/Public/About";
 import BlogPage from "../Pages/Public/Blog";
 import BlogDetail from "../Pages/Public/BlogDetail";
+
+
 const RootRoute = () => {
   return (
    

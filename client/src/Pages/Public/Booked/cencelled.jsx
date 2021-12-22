@@ -70,17 +70,13 @@ const CencelledBookedUserPage = () => {
                                 <button className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
                                     Liên hệ
                                 </button>
-                                {/* <button className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
-                                    Hủy lịch
-                                </button> */}
                             </div>
                         </div>
                     </div>
                 </div>
-            )) : ('Không tìm thấy đơn đặt lịch nào')}
+            )) : <div className="text-red-500 text-center mt-[50px] text-[18px]">Không tìm thấy đơn đặt lịch nào</div>}
         </div>
     );
 };
-
 
 export default CencelledBookedUserPage

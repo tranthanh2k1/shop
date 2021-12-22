@@ -80,7 +80,7 @@ const SuccessfullBookedPage = () => {
                         </div>
                     </div>
                 </div>
-            )) : ('Không tìm thấy đơn đặt lịch nào')}
+            )) :<div className="text-red-500 text-center mt-[50px] text-[18px]">Không tìm thấy đơn đặt lịch nào</div>}
         </div>
     );
 };
