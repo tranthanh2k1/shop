@@ -78,3 +78,8 @@
 .noti-box-number:hover:before {
   border-color: #ff0000 transparent transparent;
 }
+
+.warning {
+  background-color: #fea47f;
+  color: white;
+}

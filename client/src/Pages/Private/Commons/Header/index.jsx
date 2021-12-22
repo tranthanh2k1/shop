@@ -9,6 +9,7 @@ const Header = () => {
   const [boxUser, setBoxUser] = useState(false);
   const [isLogged, setIsLogged] = useState(false)
   const [repairToday, setRepairToday] = useState([])
+  console.log("datann", repairToday)
 
   const { user } = isAuthenticated()
 
@@ -48,35 +49,42 @@ const Header = () => {
     setNotitify(!notitify);
   }
 
-  const popupNoti =
-    <div className="dropdown-list drop-style flex-1" aria-labelledby="alertsDropdown">
-      <h6 className="dropdown-header">
-        Thông báo
-      </h6>
-      {repairToday && repairToday.map(item => (
+  function correctionFn(correction) {
+    var dateObj = new Date();
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate();
+    var year = dateObj.getUTCFullYear();
+
+    const newdate = year + "/" + month + "/" + day;
+
+    const correctionWarning = moment(new Date(`${newdate} ${correction}`)).subtract(15, "minutes").format("")
+
+    const timeNow = moment(new Date()).format("")
+
+    if (timeNow >= correctionWarning) {
+      return 'warning'
+    } else {
+      return 'notwarn'
+    }
+  }
+
+  const popupNoti = <div className="dropdown-list drop-style flex-1" aria-labelledby="alertsDropdown">
+    <h6 className="dropdown-header">
+      Thông báo
+    </h6>
+    {repairToday && repairToday.map(item => (
+      <div className={correctionFn(item.correction_time)} >
         <Link to="" key={item._id} className="dropdown-item">
           <div className='content'>
-            <span>Mã đơn: #{item.code_bill}</span>
+            <p>Mã đơn: #{item.code_bill}</p>
             <p className="font-weight-bold">Lỗi máy: {item.description_error}</p>
             <div className="small text-gray-500">Thời gian hẹn sửa: {item.correction_time}</div>
             <p>Trạng thái: {item.status}</p>
           </div>
         </Link>
-      ))}
-
-      {/* <a className="dropdown-item">
-        <div className='content'>
-          <div className="small text-gray-500">December 12, 2019</div>
-          <span className="font-weight-bold">A new monthly report is ready to download!</span>
-        </div>
-      </a>
-      <a className="dropdown-item">
-        <div className='content'>
-          <div className="small text-gray-500">December 12, 2019</div>
-          <span className="font-weight-bold">A new monthly report is ready to download!</span>
-        </div>
-      </a> */}
-    </div>
+      </div>
+    ))}
+  </div>
 
   return (
     <header className="w-full bg-white dark:bg-gray-700 items-center h-16 rounded-xl z-40">
