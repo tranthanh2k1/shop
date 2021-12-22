@@ -1,4 +1,4 @@
-const { Contact } = require("../routers/contact.js");
+const Contact = require("../models/contact.js");
 
 exports.createContact = (req, res) => {
   const { userName, phone, address, email, contact } = req.body;
@@ -23,7 +23,7 @@ exports.createContact = (req, res) => {
           error: "Không thể thêm liên hệ",
         });
       }
-      res.status(400).json({
+      res.status(200).json({
         success: true,
         message: "Gửi liên hệ thành công",
         contact,

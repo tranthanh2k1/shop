@@ -1,14 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import inner_page_banner from "../../../Images/inner_page_banner.jpg";
 import test_bg from "../../../Images/test_bg.png";
 import phone_icon from "../../../Images/phone_icon.png";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { API } from "../../../constant";
 
 const ContactPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
 
-  const onSubmit = () => { }
+  const history = useHistory()
+
+  const onSubmit = async (dataForm) => {
+    try {
+      const { data } = await axios.post(`${API}/contact`, dataForm)
+
+      if (data.success) {
+        alert("Bạn đã gửi liên hệ thành công")
+        history.push('/')
+      }
+    } catch (error) {
+      console.log("error", error.response)
+    }
+  }
 
   return (
     <>
@@ -79,12 +94,13 @@ const ContactPage = () => {
               type="text"
               className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
               placeholder=" Họ và tên"
-            // {...register('')}
+              {...register('userName')}
             />
             <input
               type="text"
               className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
               placeholder="Phone number"
+              {...register('phone')}
             />
           </div>
           <div className="mt-[10px] grid grid-cols-2 gap-[10px]">
@@ -92,11 +108,13 @@ const ContactPage = () => {
               type="text"
               className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
               placeholder=" Email"
+              {...register('email')}
             />
             <input
               type="text"
               className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
               placeholder="Địa chỉ"
+              {...register('address')}
             />
           </div>
           <div className="mt-[10px] ">
@@ -105,6 +123,7 @@ const ContactPage = () => {
               type="text"
               className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px]  bg-[#f8f8f8] focus:outline-none focus:border focus:border-gray-600"
               placeholder="Mô tả lỗi"
+              {...register('contact')}
             />
           </div>
           <div className="text-center mt-[25px]">

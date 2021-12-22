@@ -1,13 +1,14 @@
-
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { isAuthenticated } from '../../../../constant'
-// import { path } from "src/Constants/";
-// import { ActionLogout } from "src/Redux/Actions/Auth.action";
+import { API, isAuthenticated } from '../../../../constant'
+import './header.css'
+import moment from 'moment'
 
 const Header = () => {
   const [boxUser, setBoxUser] = useState(false);
   const [isLogged, setIsLogged] = useState(false)
+  const [repairToday, setRepairToday] = useState([])
 
   const { user } = isAuthenticated()
 
@@ -17,6 +18,16 @@ const Header = () => {
   useEffect(() => {
     isAuthenticated() && setIsLogged(true)
   }, [pathname, isLogged])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get(`${API}/booking/admin/notificationRepair`)
+
+      setRepairToday(data)
+    }
+
+    fetchData()
+  }, [])
 
   const signout = (next) => {
     if (typeof window !== 'undefined') {
@@ -31,18 +42,59 @@ const Header = () => {
     return lastName[lastName.length - 1]
   }
 
+  const [notitify, setNotitify] = useState(false);
+
+  function handlernoty() {
+    setNotitify(!notitify);
+  }
+
+  const popupNoti =
+    <div className="dropdown-list drop-style flex-1" aria-labelledby="alertsDropdown">
+      <h6 className="dropdown-header">
+        Thông báo
+      </h6>
+      {repairToday && repairToday.map(item => (
+        <Link to="" key={item._id} className="dropdown-item">
+          <div className='content'>
+            <span>Mã đơn: #{item.code_bill}</span>
+            <p className="font-weight-bold">Lỗi máy: {item.description_error}</p>
+            <div className="small text-gray-500">Thời gian hẹn sửa: {item.correction_time}</div>
+            <p>Trạng thái: {item.status}</p>
+          </div>
+        </Link>
+      ))}
+
+      {/* <a className="dropdown-item">
+        <div className='content'>
+          <div className="small text-gray-500">December 12, 2019</div>
+          <span className="font-weight-bold">A new monthly report is ready to download!</span>
+        </div>
+      </a>
+      <a className="dropdown-item">
+        <div className='content'>
+          <div className="small text-gray-500">December 12, 2019</div>
+          <span className="font-weight-bold">A new monthly report is ready to download!</span>
+        </div>
+      </a> */}
+    </div>
+
   return (
     <header className="w-full bg-white dark:bg-gray-700 items-center h-16 rounded-xl z-40">
       <div className="relative z-20 flex flex-col justify-center h-full px-3 mx-auto flex-center">
         <div className="relative items-center pl-[20px] flex w-full lg:max-w-68 sm:pr-[30px] sm:ml-0">
-          <div className="container relative left-0 z-50 flex w-3/4 h-full">
-            <div className="relative flex items-center w-full lg:w-64 h-full group">
+          <div className="container relative left-0 z-50 flex w-4/4 h-full flex justify-end">
+            <div className="relative items-center w-full lg:w-64 h-full group ml-[50px]">
+              {notitify ? popupNoti : null}
             </div>
           </div>
           <div className="relative p-1 flex items-center justify-end w-1/4 ml-5 mr-4 sm:mr-0 sm:right-auto">
+            <span className="noti-box" onClick={handlernoty}>
+              <i class="far fa-bell"></i>
+            </span>
+
             <div className="relative flex items-center">
+
               <span className="mr-[20px] text-[18px]">
-                <i class="far fa-bell"></i>
               </span>
               {user && (
                 <div className="py-[20px] ml-[15px] mt-[6px] text-sm">

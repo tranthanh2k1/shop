@@ -18,7 +18,6 @@ exports.create = async (req, res) => {
   if (
     !name ||
     !email ||
-    !address ||
     !phone ||
     !repair_time ||
     !correction_time ||

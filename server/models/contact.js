@@ -11,7 +11,7 @@ const contentSchema = new Schema(
       required: true,
     },
     phone: {
-      type: Number,
+      type: String,
     },
     address: {
       type: String,
