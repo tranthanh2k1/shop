@@ -70,10 +70,10 @@ const ServicesList = () => {
         <div className="container mx-auto">
           <div className=" text-left ">
             <p className="text-[30px] sm:text-[35px] text-[#000] font-medium mt-[15px] uppercase">
-              EXPERIENCED STAFF
+              NHÂN VIÊN CÓ KINH NGHIỆM
             </p>
             <p className=" text-[18px] sm:text-[20px] text-[#898989] relative before:content-[''] before:absolute before:w-[80px] before:h-[5px] before:bg-blue-400 before:top-[70px] sm:before:top-[50px] before:left-0 ">
-              Our experts have been featured in press numerous times.
+            Các chuyên gia của chúng tôi đã được giới thiệu trên báo chí nhiều lần.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px] lg:gap-[40px] mt-[70px]">
@@ -158,17 +158,15 @@ const ServicesList = () => {
         <div className="container mx-auto">
           <div className="text-white">
             <p className="text-[35px] leading-[36px] font-medium mb-[15px]">
-              What Clients Say?
+            Khách hàng nói gì?
             </p>
             <p className="text-[20px] mb-[10px] relative before:content-[''] before:absolute before:w-[80px] before:h-[4px] before:bg-blue-400 before:top-[45px] before:left-0">
-              Here are testimonials from clients..
+            Đây là lời chứng thực từ khách hàng ..
             </p>
 
             <div className="md:w-[500px] mt-[50px]">
               <p className="">
-                You guys rock! Thank you for making it painless, pleasant and
-                most of all hassle free! I wish I would have thought of it
-                first. I am really satisfied with my first laptop service.
+              Các bạn rock! Cảm ơn bạn đã làm cho nó không đau, dễ chịu và hơn hết là không rắc rối! Tôi ước gì tôi sẽ nghĩ về nó đầu tiên. Tôi thực sự hài lòng với dịch vụ máy tính xách tay đầu tiên của mình.
               </p>
               <p className="text-[18px] mt-[30px]  font-medium">
                 Maria Anderson
@@ -184,10 +182,10 @@ const ServicesList = () => {
             </div>
             <div className="text-white  ml-[30px]">
               <p className="mt-[8px] mb-[5px] text-[24px] md:text-[35px] font-bold">
-                REQUEST A FREE QUOTE
+              YÊU CẦU BÁO GIÁ MIỄN PHÍ
               </p>
               <p className="">
-                Get answers and advice from people you want it from.
+              Nhận câu trả lời và lời khuyên từ những người bạn muốn.
               </p>
             </div>
           </div>
