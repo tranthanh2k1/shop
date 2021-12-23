@@ -129,6 +129,17 @@ const Header = () => {
                         : "hidden"
                     }
                   >
+                    {user.role === 1 && (
+                      <li className=" text-[14px] text-blue-600 hover:bg-blue-200 ">
+                        {" "}
+                        <Link
+                          to="/admin"
+                          className="py-[5px] px-[15px] inline-block "
+                        >
+                          Trang quản trị
+                        </Link>
+                      </li>
+                    )}
                     <li className=" text-[14px] text-blue-600 hover:bg-blue-200 ">
                       {" "}
                       <Link

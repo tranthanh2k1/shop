@@ -56,6 +56,11 @@ const ListBookedFixingUser = () => {
                             <p className="text-gray-600 pt-[5px]">
                                 Dịch vụ: {item?.service_id?.name || 'không tìm thấy dịch vụ'}
                             </p>
+                            {item.intend_time && (
+                                <p className="text-gray-600 pt-[5px]">
+                                    Thời gian hẹn hoàn thành: {item.intend_time}
+                                </p>
+                            )}
                         </div>
                         <div className="flex justify-end pb-[20px]">
                             <div className="text-[14px]">
@@ -70,14 +75,11 @@ const ListBookedFixingUser = () => {
                                 <button className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
                                     Liên hệ
                                 </button>
-                                {/* <button className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
-                                    Hủy lịch
-                                </button> */}
                             </div>
                         </div>
                     </div>
                 </div>
-            )) : ('Không tìm thấy đơn đặt lịch nào')}
+            )) : (<div className="text-red-500 text-center mt-[50px] text-[18px]">Không tìm thấy đơn đặt lịch nào</div>)}
         </div>
     );
 };

@@ -169,7 +169,6 @@ const MakeAppointment = () => {
                     <option key={item._id} value={item._id}>{item.name}</option>
                   </>
                 ))}
-                <option value="">Dịch vụ khác</option>
               </select>
               {errors?.service_id?.type === "required" && <p className="text-red-600">Bạn chưa chọn dịch vụ</p>}
             </div>
@@ -233,15 +232,15 @@ const MakeAppointment = () => {
           <div className="container mx-auto">
             <div className="text-white">
               <p className="text-[35px] leading-[36px] font-medium mb-[15px]">
-              Khách hàng nói gì?
+                Khách hàng nói gì?
               </p>
               <p className="text-[20px] mb-[10px] relative before:content-[''] before:absolute before:w-[80px] before:h-[4px] before:bg-blue-400 before:top-[45px] before:left-0">
-              Đây là lời chứng thực từ khách hàng ..
+                Đây là lời chứng thực từ khách hàng ..
               </p>
 
               <div className="md:w-[500px] mt-[50px]">
                 <p className="">
-                Các bạn rock! Cảm ơn bạn đã làm cho nó không đau, dễ chịu và hơn hết là không rắc rối! Tôi ước gì tôi sẽ nghĩ về nó đầu tiên. Tôi thực sự hài lòng với dịch vụ máy tính xách tay đầu tiên của mình.
+                  Các bạn rock! Cảm ơn bạn đã làm cho nó không đau, dễ chịu và hơn hết là không rắc rối! Tôi ước gì tôi sẽ nghĩ về nó đầu tiên. Tôi thực sự hài lòng với dịch vụ máy tính xách tay đầu tiên của mình.
                 </p>
                 <p className="text-[18px] mt-[30px]  font-medium">
                   Maria Anderson
@@ -257,10 +256,10 @@ const MakeAppointment = () => {
               </div>
               <div className="text-white  ml-[30px]">
                 <p className="mt-[8px] mb-[5px] text-[24px] md:text-[35px] font-bold">
-                YÊU CẦU BÁO GIÁ MIỄN PHÍ
+                  YÊU CẦU BÁO GIÁ MIỄN PHÍ
                 </p>
                 <p className="">
-                Nhận câu trả lời và lời khuyên từ những người bạn muốn.
+                  Nhận câu trả lời và lời khuyên từ những người bạn muốn.
                 </p>
               </div>
             </div>

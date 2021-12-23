@@ -11,7 +11,6 @@ import ListServicePage from "../Pages/Private/Service";
 import AddServicePage from "../Pages/Private/Service/add-service";
 import EditServicePage from "../Pages/Private/Service/edit-service";
 import Booking from "../Pages/Private/Booking";
-import DetailBookingPage from "../Pages/Private/Booking/detail-booking";
 import SearchBookingAdmin from "../Pages/Private/Booking/search-booking";
 import MakeAppointment from "../Pages/Public/MakeAppointmentPage";
 import Booked from "../Pages/Public/Booked";
@@ -32,6 +31,7 @@ import AboutPage from "../Pages/Public/About";
 import BlogPage from "../Pages/Public/Blog";
 import BlogAdminPage from "../Pages/Private/Blog";
 import AddBlogPage from "../Pages/Private/Blog/add-blog";
+import MakeAppointmentAdmin from "../Pages/Private/MakeAppointment";
 
 const RootRoute = () => {
   return (
@@ -64,6 +64,9 @@ const RootRoute = () => {
               </PrivateRouter>
               <PrivateRouter exact path="/admin/booking/list">
                 <Booking />
+              </PrivateRouter>
+              <PrivateRouter exact path="/admin/booking/make-appointment">
+                <MakeAppointmentAdmin />
               </PrivateRouter>
               <PrivateRouter exact path="/admin/booking/detail/:id">
                 <Bookingdetail />
@@ -99,8 +102,6 @@ const RootRoute = () => {
               <Route exact path={path.CONTACT} component={ContactPage} />
               <Route exact path="/about" component={AboutPage} />
               <Route exact path="/blog" component={BlogPage} />
-              {/* <BookedUserPage> */}
-              {/* <Switch> */}
               <Booked>
                 <Switch>
                   <Route exact path="/user/booked">
@@ -123,28 +124,9 @@ const RootRoute = () => {
                   </Route>
                 </Switch>
               </Booked>
-
-              {/* <Route exact path="/user/booked/type1">
-                    <WaitForComfirmationPage />
-                  </Route>
-                  <Route exact path="/user/booked/type2">
-                    <ConfirmBookingUser />
-                  </Route>
-                  <Route exact path="/user/booked/type3">
-                    <ListBookedFixingUser />
-                  </Route>
-                  <Route exact path="/user/booked/type4">
-                    <SuccessfullBookedPage />
-                  </Route>
-                  <Route exact path="/user/booked/type5">
-                    <CencelledBookedUserPage />
-                  </Route> */}
             </Switch>
-            {/* </BookedUserPage> */}
-            {/* </Switch> */}
           </SiteLayout>
         </Route>
-
       </Switch>
     </Router>
   );

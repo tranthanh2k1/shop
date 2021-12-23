@@ -27,6 +27,7 @@ const BookingSchema = new Schema(
       type: Date,
       // required: true,
     },
+    intend_time: String,
     user_id: {
       type: mongoose.Types.ObjectId,
       ref: "User",

@@ -124,7 +124,9 @@ const ListAllBookedUserPage = () => {
                         </div>
                     </div>
                 </div>
-            )) : ('Không tìm thấy đơn đặt lịch nào')}
+            )) : (
+                <div className="text-red-500 text-center mt-[50px] text-[18px]">Không tìm thấy đơn đặt lịch nào</div>
+            )}
             <div>
                 {showModal ? (
                     <div className="z-40 overflow-auto left-0 top-0 bottom-0 right-0 w-full h-full fixed">

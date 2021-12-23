@@ -32,6 +32,10 @@ export const updateStatusBookingAdminAction =
     const data = await updateStatusAdminApi(dataReq, id);
 
     if (data.success) {
+      if (localStorage.getItem("image_error") !== "underfine") {
+        localStorage.removeItem("image_error");
+      }
+
       dispatch({
         type: "UPDATED_STATUS_BOOKING_ADMIN",
         payload: {

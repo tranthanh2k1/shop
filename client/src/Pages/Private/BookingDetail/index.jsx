@@ -5,6 +5,7 @@ import { useHistory, useLocation } from "react-router";
 import { convertNumber, convertStatusString } from "../../../constant";
 import { detaiBookingAction, updateStatusBookingAdminAction } from "../../../redux/actions/booking-admin";
 import firebase from '../../../firebase'
+import Swal from 'sweetalert2'
 
 const Bookingdetail = () => {
   const [isDisableWaitConfirmation, setIsDisableWaitConfirmation] = useState('true')
@@ -16,8 +17,8 @@ const Bookingdetail = () => {
   const [errorPrice, setErrorPrice] = useState('')
   const [status, setStatus] = useState('')
   const [showModal, setShowModal] = useState(false)
+  const [intendTime, setIntendTime] = useState('')
 
-  const [imageError, setImageError] = useState('')
   const [exactError, setExactError] = useState('')
 
   const { pathname } = useLocation()
@@ -78,6 +79,7 @@ const Bookingdetail = () => {
     if (status === 'Fixing') {
       dataReq = {
         status,
+        intend_time: intendTime,
         image_desc_error: JSON.parse(localStorage.getItem("image_error")) || '',
         exact_error: exactError
       }
@@ -101,6 +103,14 @@ const Bookingdetail = () => {
     if (!errorPrice) {
       dispatch(updateStatusBookingAdminAction(dataReq, id))
       setShowModal(false)
+
+      Swal.fire(
+        `${message && message}`,
+        'You clicked the button!',
+        'success'
+      )
+
+      history.push('/admin/booking/list')
     }
   }
 
@@ -121,14 +131,18 @@ const Bookingdetail = () => {
     setExactError(e.target.value)
   }
 
+  const handleIntendTime = e => {
+    setIntendTime(e.target.value)
+  }
+
   return (
     <>
       {error && alert(error)}
-      {message && alert(message)}
+      {/* {message && alert(message)} */}
       {checkMessage()}
       {detailBooking && (
         <div className="p-4 bg-white block w-full sm:flex items-center justify-between rounded-xl  border-b border-gray-200">
-          <div className="mb-1 w-full ">
+          <div className="mb-1 w-full">
             <div className="px-0">
               <p className="text-[22px] font-medium ">
                 Chi tiết đơn đặt lịch #{detailBooking.code_bill}
@@ -203,6 +217,19 @@ const Bookingdetail = () => {
                         placeholder="Mô tả lỗi chính xác"
                         value={exactError}
                         onChange={handleExactError}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                      Thời gian dự kiến(nếu có)
+                    </label>
+                    <div className="mt-[10px]">
+                      <input
+                        name="intend_time"
+                        type="date"
+                        className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] text-gray-400 bg-[#f8f8f8]  focus:outline-none focus:border focus:border-gray-600"
+                        onChange={handleIntendTime}
                       />
                     </div>
                   </div>

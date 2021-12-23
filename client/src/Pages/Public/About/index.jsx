@@ -48,7 +48,7 @@ const AboutPage = () => {
                                     Chúng ta làm gì
                                 </p>
                                 <p className="leading-[24px] text-[15px] text-[#707070]">
-                                Lorem Ipsum chỉ đơn giản là văn bản giả của ngành in ấn và sắp chữ. Lorem Ipsum đã trở thành văn bản giả tiêu chuẩn của ngành kể từ những năm 1500, khi một máy in không xác định chiếm được ...
+                                    Lorem Ipsum chỉ đơn giản là văn bản giả của ngành in ấn và sắp chữ. Lorem Ipsum đã trở thành văn bản giả tiêu chuẩn của ngành kể từ những năm 1500, khi một máy in không xác định chiếm được ...
                                 </p>
                                 <ul className="mt-[15px] list-none">
                                     <li className="flex items-center w-full my-[5px] text-[15px] text-[#555454] font-medium">
@@ -107,7 +107,7 @@ const AboutPage = () => {
                         </div>
                         <div className={box1 ? "px-[25px] mt-[15px]" : "hidden"}>
                             <p className=" text-box  text-[14px] leading-[24px] text-[#707070]">
-                               Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
+                                Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
                             </p>
                         </div>
                     </div>
@@ -144,7 +144,7 @@ const AboutPage = () => {
                         </div>
                         <div className={box2 ? "px-[25px] mt-[15px]" : "hidden"}>
                             <p className="text-[14px] leading-[24px] text-[#707070]">
-                               Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
+                                Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
                             </p>
                         </div>
                     </div>
@@ -181,7 +181,7 @@ const AboutPage = () => {
                         </div>
                         <div className={box3 ? "px-[25px] mt-[15px]" : "hidden"}>
                             <p className="text-[14px] leading-[24px] text-[#707070]">
-                               Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
+                                Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
                             </p>
                         </div>
                     </div>
@@ -218,7 +218,7 @@ const AboutPage = () => {
                         </div>
                         <div className={box4 ? "px-[25px] mt-[15px]" : "hidden"}>
                             <p className="text-[14px] leading-[24px] text-[#707070]">
-                               Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
+                                Trái với suy nghĩ của nhiều người, Lorem Ipsum không chỉ đơn giản là văn bản ngẫu nhiên. Nó có nguồn gốc từ một tác phẩm văn học Latinh cổ điển từ năm 45 trước Công nguyên, khiến nó hơn 2000 năm tuổi. Richard McClintock, một giáo sư tiếng Latinh tại Đại học Hampden-Sydney ở Virginia, đã tra cứu một trong những từ Latinh khó hiểu hơn, consectetur, từ một đoạn văn của Lorem Ipsum, và xem qua các trích dẫn của từ này trong văn học cổ điển, đã phát hiện ra nguồn gốc không thể chối cãi.{" "}
                             </p>
                         </div>
                     </div>
@@ -228,7 +228,7 @@ const AboutPage = () => {
                         Cần khôi phục tệp?
                     </p>
                     <p className="text-[15px] text-[#707070] leading-[21px]">
-                    Nhưng để bạn có thể hiểu rằng mọi lỗi lầm khi sinh ra đều là niềm vui của việc buộc tội và ca ngợi nỗi đau, tôi sẽ mở ra toàn bộ sự việc;
+                        Nhưng để bạn có thể hiểu rằng mọi lỗi lầm khi sinh ra đều là niềm vui của việc buộc tội và ca ngợi nỗi đau, tôi sẽ mở ra toàn bộ sự việc;
                     </p>
                     <button className="uppercase mt-[30px] text-[14px] text-white font-bold rounded-[100px] px-[40px] py-[15px] bg-[#17a5e9]">
                         Đọc thêm
@@ -275,7 +275,6 @@ const AboutPage = () => {
                                 <i className="fas fa-history"></i>
                             </div>
                             <p className="text-[18px] text-[#000] font-medium mt-[20px] mb-[10px]">
-
                                 Đội ngũ chuyên gia
                             </p>
                             <p className="text-[#707070]  text-[15px]">

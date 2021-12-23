@@ -129,6 +129,15 @@ const Header = () => {
                       <Link
                         to="/"
                         className="py-[5px] px-[15px] inline-block"
+                      >
+                        Trang chủ
+                      </Link>
+                    </li>
+                    <li className=" text-[14px] text-blue-600 hover:bg-blue-200">
+                      {" "}
+                      <Link
+                        to="/"
+                        className="py-[5px] px-[15px] inline-block"
                         onClick={() => signout(() => {
                           setIsLogged(false)
                           history.push('/')

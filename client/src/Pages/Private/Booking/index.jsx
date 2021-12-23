@@ -118,6 +118,7 @@ const Booking = () => {
         <div className="mb-1 w-full ">
           <div className="px-0">
             <p className="text-[22px] font-medium ">Danh sách đơn đặt lịch</p>
+            <Link to="/admin/booking/make-appointment">Đặt lich</Link>
             <div className="grid grid-cols-3 gap-[40px] mt-[25px]">
               <form action="/admin/booking/search" className="flex items-center mt-[20px]">
                 <input
