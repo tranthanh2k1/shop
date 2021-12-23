@@ -26,7 +26,7 @@ ChartJS.register(
 );
 
 const Dashboard = () => {
-  const [totalBooking, setTotalBooking] = useState([])
+  const [totalBooking, setTotalBooking] = useState()
   const [date, setDate] = useState('')
   const [dateStart, setDateStart] = useState('')
   const [dateEnd, setDateEnd] = useState('')
@@ -365,7 +365,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {totalBooking.length > 0 && (
+        {totalBooking && totalBooking.length > 0 && (
           <>
             <Bar className="mt-[30px]" options={options} data={data} />
             <p></p>
@@ -373,7 +373,7 @@ const Dashboard = () => {
         )}
 
         <div className="mx-[30px]">
-          {totalBooking.length > 0 ? (
+          {totalBooking && totalBooking.length > 0 && (
             <div className="mb-1 w-full ">
               <div className="mt-[50px]">
                 <div className="grid grid-cols-[0.5fr,1fr,1fr,1fr,0.6fr,0.8fr] font-medium pb-[15px] border-b-2 border-gray-500 px-[10px]">
@@ -411,7 +411,11 @@ const Dashboard = () => {
                   ))}
                 </div>
               </div>
-            </div>) : <span className="text-red-500 text-[14px] mt-[30px] block text-center">Không tìm thấy đơn đặt lịch nào</span>}
+            </div>)}
+          {totalBooking && totalBooking.length === 0 && (
+            <span className="text-red-500 text-[14px] mt-[30px] block text-center">Không tìm thấy đơn đặt lịch nào</span>
+          )}
+          {totalBooking === 'undefined' || totalBooking === null && ''}
         </div>
       </div>
     </>

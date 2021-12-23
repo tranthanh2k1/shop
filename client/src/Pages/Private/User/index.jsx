@@ -44,7 +44,7 @@ const Users = () => {
             <p className="text-[22px] font-medium ">Danh sách dịch vụ</p>
           </div>
           <div className="mt-[50px]">
-            <div className="grid grid-cols-[0.2fr,1.3fr,1.2fr,0.8fr,0.8fr,0.8fr] px-[10px] font-medium  pb-[15px] border-b-2 border-gray-500">
+            <div className="grid grid-cols-[0.2fr,1.3fr,1.2fr,0.8fr,0.8fr] px-[10px] font-medium  pb-[15px] border-b-2 border-gray-500">
               <div>#</div>
               <div>Tên người dùng</div>
               <div>Email</div>
@@ -55,17 +55,17 @@ const Users = () => {
             </div>
             <div className="text-[14px]">
               {dataUser && dataUser.user.map((item, index) => (
-                <div key={index} className="grid grid-cols-[0.2fr,1.3fr,1.2fr,0.8fr,0.8fr,0.8fr] py-[10px] px-[10px] border-b border-gray-300">
+                <div key={index} className="grid grid-cols-[0.2fr,1.3fr,1.2fr,0.8fr,0.8fr] py-[10px] px-[10px] border-b border-gray-300">
                   <div className="font-medium">{index + 1}</div>
                   <div className="pr-[10px]">{item.username}</div>
                   <div className="pr-[10px]">{item.email}</div>
                   <div className="pr-[10px]">{item.phone}</div>
                   <div className="pr-[10px]">{item.status ? 'Hoạt đông' : 'Dừng hoạt đông'}</div>
-                  <div className="">
+                  {/* <div className="">
                     <Link to={`/admin/user/detail/${item._id}`} className="text-white px-3 py-1 bg-blue-500 rounded-[5px]">
                       Xem chi tiết
                     </Link>
-                  </div>
+                  </div> */}
                 </div>
               ))}
             </div>

@@ -166,7 +166,7 @@ const Booking = () => {
                       <option key={item.value} value={item.value}>{item.content}</option>
                     </>
                   ))}
-                  <option value="today">Đơn sửa trong ngày hôm nay</option>
+                  <option value="today">Đơn hẹn sửa chưa xử lý trong ngày</option>
                 </select>
               </form>
             </div>

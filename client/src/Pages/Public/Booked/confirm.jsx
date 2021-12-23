@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Moment from 'react-moment'
-import { useHistory } from "react-router-dom";
 import { API, convertStatusString, isAuthenticated } from "../../../constant";
+import { useForm } from "react-hook-form";
 
 const ConfirmBookingUser = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
 
+    const { register, handleSubmit, formState: { errors } } = useForm()
+
     const [listAllBookingUser, setListAllBookingUser] = useState([]);
 
     const { token } = isAuthenticated();
-
-    const history = useHistory()
 
     useEffect(() => {
         const getListBookingUser = async () => {
@@ -31,24 +31,6 @@ const ConfirmBookingUser = () => {
 
         getListBookingUser();
     }, []);
-
-    // const handleCancelBooking = async (id) => {
-    //     try {
-    //         const { data } = await axios.get(`${API}/booking/cancel/${id}`, {
-    //             headers: {
-    //                 Accept: "application/json",
-    //                 "Content-Type": "application/json",
-    //                 Authorization: `Bearer ${token}`
-    //             }
-    //         })
-
-    //         if (data.success) {
-    //             history.push('/user/booked/type5')
-    //         }
-    //     } catch (error) {
-    //         console.log("error", error.response)
-    //     }
-    // }
 
     const handleCancelBox = () => {
         setIsModalVisible(false);
@@ -75,9 +57,9 @@ const ConfirmBookingUser = () => {
                                     Họ tên: {item.name}
                                 </p>
                                 <p className="text-gray-600 py-[5px]">Số ĐT: {item.phone}</p>
-                                <p className="text-gray-600 py-[5px]">
+                                {/* <p className="text-gray-600 py-[5px]">
                                     Địa chỉ: {item.address}
-                                </p>
+                                </p> */}
                                 <p className="text-gray-600 pt-[5px]">
                                     Lỗi máy: {item.description_error}
                                 </p>
@@ -130,12 +112,14 @@ const ConfirmBookingUser = () => {
                                                 placeholder="Họ tên"
                                                 defaultValue={item.name}
                                                 className="text-[14px] border border-gray-300 w-full px-[15px] py-[5px] focus:outline-none focus:border-blue-300"
+                                                {...register('name')}
                                             />
                                             <input
                                                 type="text"
                                                 placeholder="Số điện thoại"
                                                 defaultValue={item.phone}
                                                 className="text-[14px] border border-gray-300 w-full px-[15px] py-[5px] focus:outline-none focus:border-blue-300"
+                                                {...register('phone')}
                                             />
                                         </div>
                                         <div className="my-[15px]">
@@ -144,6 +128,7 @@ const ConfirmBookingUser = () => {
                                                 placeholder="Email"
                                                 defaultValue={item.email}
                                                 className="text-[14px] border border-gray-300 w-full px-[15px] py-[5px] focus:outline-none focus:border-blue-300"
+                                                {...register('email')}
                                             />
                                         </div>
                                         <textarea
@@ -152,12 +137,15 @@ const ConfirmBookingUser = () => {
                                             rows="4"
                                             placeholder="Lý do hủy lịch"
                                             className="text-[14px] border border-gray-300 w-full px-[15px] py-[5px] focus:outline-none focus:border-blue-300"
-                                        ></textarea>
+                                            {...register('contact_user')}
+                                        />
                                     </form>
                                 </div>
 
                                 <div className=" pb-[15px] flex justify-end">
-                                    <button className=" border border-blue-400 mr-[10px] text-white text-[14px] bg-blue-400 hover:bg-blue-600 rounded-[3px] px-[15px] py-[3px]">
+                                    <button
+                                        type="submit"
+                                        className=" border border-blue-400 mr-[10px] text-white text-[14px] bg-blue-400 hover:bg-blue-600 rounded-[3px] px-[15px] py-[3px]">
                                         Gửi
                                     </button>
                                     <button

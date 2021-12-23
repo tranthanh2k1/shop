@@ -32,6 +32,7 @@ import BlogPage from "../Pages/Public/Blog";
 import BlogAdminPage from "../Pages/Private/Blog";
 import AddBlogPage from "../Pages/Private/Blog/add-blog";
 import MakeAppointmentAdmin from "../Pages/Private/MakeAppointment";
+import ContactBookingManagerment from "../Pages/Private/ContactBooking";
 
 const RootRoute = () => {
   return (
@@ -76,6 +77,9 @@ const RootRoute = () => {
               </PrivateRouter>
               <PrivateRouter exact path="/admin/user/list">
                 <Users />
+              </PrivateRouter>
+              <PrivateRouter exact path="/admin/contact/booking">
+                <ContactBookingManagerment />
               </PrivateRouter>
               <PrivateRouter exact path="/admin/blog/list">
                 <BlogAdminPage />

@@ -47,9 +47,9 @@ const SuccessfullBookedPage = () => {
                                 Họ tên: {item.name}
                             </p>
                             <p className="text-gray-600 py-[5px]">Số ĐT: {item.phone}</p>
-                            <p className="text-gray-600 py-[5px]">
+                            {/* <p className="text-gray-600 py-[5px]">
                                 Địa chỉ: {item.address}
-                            </p>
+                            </p> */}
                             <p className="text-gray-600 pt-[5px]">
                                 Lỗi máy: {item.description_error}
                             </p>

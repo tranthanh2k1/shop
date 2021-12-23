@@ -72,7 +72,7 @@ const Header = () => {
     <h6 className="dropdown-header">
       Thông báo
     </h6>
-    {repairToday && repairToday.map(item => (
+    {repairToday.length > 0 ? (repairToday.map(item => (
       <div className={correctionFn(item.correction_time)} >
         <Link to="" key={item._id} className="dropdown-item">
           <div className='content'>
@@ -83,7 +83,13 @@ const Header = () => {
           </div>
         </Link>
       </div>
-    ))}
+    ))) : (
+      <Link to="" className="dropdown-item">
+        <div className='content'>
+          <p className="font-weight-bold">Hôm nay không có đơn nào</p>
+        </div>
+      </Link>
+    )}
   </div>
 
   return (

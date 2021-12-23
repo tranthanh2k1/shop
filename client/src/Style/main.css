@@ -949,6 +949,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 40px;
 }
 
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
 .block {
   display: block;
 }
@@ -1245,6 +1249,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .grid-cols-\[35\%\2c 65\%\] {
   grid-template-columns: 35% 65%;
+}
+
+.grid-cols-\[0\.2fr\2c 1\.3fr\2c 1\.2fr\2c 0\.8fr\2c 0\.8fr\] {
+  grid-template-columns: 0.2fr 1.3fr 1.2fr 0.8fr 0.8fr;
 }
 
 .flex-col {
