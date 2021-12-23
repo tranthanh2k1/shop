@@ -3,6 +3,9 @@ import axios from 'axios'
 import Moment from 'react-moment'
 import { API, convertStatusString, isAuthenticated } from "../../../constant";
 
+// const { detailBooking } = useSelector(state => state.bookingAdmin)
+
+
 const ListBookedFixingUser = () => {
     const [listAllBookingUser, setListAllBookingUser] = useState([]);
 
@@ -39,6 +42,7 @@ const ListBookedFixingUser = () => {
                                 </span>
                             </p>
                         </div>
+                        <div className="container mx-auto mb-12 grid sm:grid-cols-[66%,34%] pt-[15px]">
                         <div className="border-gray-400 pl-[10px] pb-[20px] text-[15px] font-medium">
                             <p className="text-gray-600 pb-[5px] text-[16px] font-bold">
                                 Mã hóa đơn: #{item.code_bill}
@@ -56,6 +60,17 @@ const ListBookedFixingUser = () => {
                             <p className="text-gray-600 pt-[5px]">
                                 Dịch vụ: {item?.service_id?.name || 'không tìm thấy dịch vụ'}
                             </p>
+                            
+                        </div>
+                        <div>
+                        <p className="text-gray-600 pt-[5px]">
+                                Mô tả lỗi của máy: {item.exact_error}
+                            </p>
+                            <p className="text-gray-600 pt-[5px]">
+                            Ảnh lỗi của máy:
+                            </p>
+                      <img  src={item.image_desc_error} alt="" className=' w-[50px] h-[auto]' />
+                        </div>
                         </div>
                         <div className="flex justify-end pb-[20px]">
                             <div className="text-[14px]">
@@ -76,8 +91,26 @@ const ListBookedFixingUser = () => {
                             </div>
                         </div>
                     </div>
+                    {/* <div>
+                    {detailBooking.status === 'Fixing' && (
+                <>
+                  {detailBooking.image_desc_error && (
+                    <>
+                      <p className="text-gray-600 pt-[5px]">
+                        Ảnh lỗi của máy:
+                      </p>
+                      <img src={detailBooking.image_desc_error} alt="" className='w-[150px] h-[auto]' />
+                    </>
+                  )}
+                  <p className="text-gray-600 pt-[5px]">
+                    Mô tả chính xác lỗi của máy: {detailBooking.exact_error}
+                  </p>
+                </>
+              )}
+                    </div> */}
                 </div>
             )) : ('Không tìm thấy đơn đặt lịch nào')}
+            
         </div>
     );
 };

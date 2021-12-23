@@ -134,7 +134,8 @@ const Bookingdetail = () => {
                 Chi tiết đơn đặt lịch #{detailBooking.code_bill}
               </p>
             </div>
-            <div className="mt-[30px] text-[14px]">
+          <div className="container mx-auto mb-36 grid sm:grid-cols-[66%,34%] ">
+              <div className="mt-[30px] text-[14px]">
               <p className="text-gray-600 pb-[5px]">Họ tên: {detailBooking.name}</p>
               <p className="text-gray-600 py-[5px]">Email: {detailBooking.email}</p>
               <p className="text-gray-600 py-[5px]">Số ĐT: {detailBooking.phone}</p>
@@ -208,6 +209,16 @@ const Bookingdetail = () => {
                   </div>
                 </>
               )}
+
+              {detailBooking.status === 'Successful fix' && (
+                <>
+                  <p className="text-gray-600 pt-[5px]">
+                    Thành tiền: {convertNumber(detailBooking.total_price)}đ
+                  </p>
+                </>
+              )}
+              </div>
+              <div className="">
               {detailBooking.status === 'Fixing' && (
                 <>
                   {detailBooking.image_desc_error && (
@@ -223,14 +234,8 @@ const Bookingdetail = () => {
                   </p>
                 </>
               )}
-              {detailBooking.status === 'Successful fix' && (
-                <>
-                  <p className="text-gray-600 pt-[5px]">
-                    Thành tiền: {convertNumber(detailBooking.total_price)}đ
-                  </p>
-                </>
-              )}
-            </div>
+              </div>
+          </div>
             <div className="mt-[20px]">
               <button
                 className="text-[14px] text-white bg-yellow-400 px-[10px] py-[5px] rounded-[5px] mx-[7px]"
