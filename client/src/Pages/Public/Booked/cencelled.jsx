@@ -51,13 +51,13 @@ const CencelledBookedUserPage = () => {
                                 Địa chỉ: {item.address}
                             </p> */}
                             <p className="text-gray-600 pt-[5px]">
-                                Lỗi máy: {item.description_error}
+                                Khách hàng mô tả lỗi: {item.description_error}
                             </p>
                             <p className="text-gray-600 pt-[5px]">
                                 Dịch vụ: {item?.service_id?.name || 'không tìm thấy dịch vụ'}
                             </p>
                         </div>
-                        <div className="flex justify-end pb-[20px]">
+                        {/* <div className="flex justify-end pb-[20px]">
                             <div className="text-[14px]">
                                 <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
                                     <Moment format="DD/MM/YYYY">
@@ -70,9 +70,26 @@ const CencelledBookedUserPage = () => {
                                 <button className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
                                     Liên hệ
                                 </button>
-                                {/* <button className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
-                                    Hủy lịch
-                                </button> */}
+                            </div>
+                        </div> */}
+                        <div className=" pb-[20px]">
+                            <div className="text-[14px] flex justify-between">
+                                <div className="">
+                                    <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
+                                        Ngày hẹn sửa:
+                                        <Moment format=" DD/MM/YYYY">
+                                            {item.repair_time}
+                                        </Moment>
+                                    </button>
+                                    <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
+                                        Thời gian hẹn sửa: {item.correction_time}
+                                    </button>
+                                </div>
+                                <div className="">
+                                    <button className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
+                                        Liên hệ
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

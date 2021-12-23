@@ -118,7 +118,7 @@ const Booking = () => {
         <div className="mb-1 w-full ">
           <div className="px-0">
             <p className="text-[22px] font-medium ">Danh sách đơn đặt lịch</p>
-            <Link to="/admin/booking/make-appointment">Đặt lich</Link>
+            <Link to="/admin/booking/make-appointment">Đặt lịch</Link>
             <div className="grid grid-cols-3 gap-[40px] mt-[25px]">
               <form action="/admin/booking/search" className="flex items-center mt-[20px]">
                 <input
@@ -172,16 +172,17 @@ const Booking = () => {
             </div>
           </div>
           <div className="mt-[50px]">
-            <div className="grid grid-cols-[0.5fr,1fr,1fr,1.2fr,0.8fr] font-medium pb-[15px] border-b-2 border-gray-500 px-[10px]">
+            <div className="grid grid-cols-[0.5fr,1fr,1fr,0.7fr,0.7fr,0.8fr] font-medium pb-[15px] border-b-2 border-gray-500 px-[10px]">
               <div>#</div>
               <div>Tên</div>
               <div>Thời gian tạo</div>
+              <div>Yêu cầu hỗ trợ</div>
               <div>Trạng thái</div>
               <div></div>
             </div>
             <div className="text-[14px]">
               {listBooking.map((item, index) => (
-                <div key={index} className="grid grid-cols-[0.5fr,1fr,1fr,1.2fr,0.8fr] py-[10px] border-b border-gray-300 px-[10px]">
+                <div key={index} className="grid grid-cols-[0.5fr,1fr,1fr,0.7fr,0.7fr,0.8fr] py-[10px] border-b border-gray-300 px-[10px]">
                   <div className="font-medium">{item.code_bill}</div>
                   <div className="pr-[10px]">{item.name}</div>
                   <div className="pr-[10px]">
@@ -189,6 +190,7 @@ const Booking = () => {
                       {item.createdAt}
                     </Moment>
                   </div>
+                  <div>{item.contact_user ? 'cần hỗ trợ' : ''}</div>
                   <div className="">
                     <button
                       className="text-white px-2 py-1 bg-yellow-400 rounded-[5px]"

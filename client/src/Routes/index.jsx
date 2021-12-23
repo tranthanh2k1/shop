@@ -33,6 +33,7 @@ import BlogAdminPage from "../Pages/Private/Blog";
 import AddBlogPage from "../Pages/Private/Blog/add-blog";
 import MakeAppointmentAdmin from "../Pages/Private/MakeAppointment";
 import ContactBookingManagerment from "../Pages/Private/ContactBooking";
+import BlogDetailPage from "../Pages/Public/BlogDetail";
 
 const RootRoute = () => {
   return (
@@ -106,6 +107,7 @@ const RootRoute = () => {
               <Route exact path={path.CONTACT} component={ContactPage} />
               <Route exact path="/about" component={AboutPage} />
               <Route exact path="/blog" component={BlogPage} />
+              <Route exact path="/blog/detail/:id" component={BlogDetailPage} />
               <Booked>
                 <Switch>
                   <Route exact path="/user/booked">

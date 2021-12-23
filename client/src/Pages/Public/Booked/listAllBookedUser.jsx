@@ -51,7 +51,7 @@ const ListAllBookedUserPage = () => {
 
     return (
         <div>
-            <form className="py-[12px] my-[12px] flex items-center shadow-sm text-[#212121] bg-[#eaeaea] rounded-[2px]">
+            {/* <form className="py-[12px] my-[12px] flex items-center shadow-sm text-[#212121] bg-[#eaeaea] rounded-[2px]">
 
                 <button>
                     <span className="text-[20px] mx-[15px]">
@@ -64,7 +64,7 @@ const ListAllBookedUserPage = () => {
                     placeholder="Tìm kiếm theo Mã hóa đơn"
                     className="flex-1 text-[14px] leading-[16px] bg-[#eaeaea] focus:outline-none"
                 />
-            </form>
+            </form> */}
             {listAllBookingUser.length > 0 ? listAllBookingUser.map((item) => (
                 <div key={item._id} className="mt-[20px] bg-white shadow-md py-[15px]">
                     <div className="px-[20px]">
@@ -75,30 +75,40 @@ const ListAllBookedUserPage = () => {
                                 </span>
                             </p>
                         </div>
-                        <div className="border-gray-400 pl-[10px] pb-[20px] text-[15px] font-medium">
-                            <p className="text-gray-600 pb-[5px] text-[16px] font-bold">
-                                Mã hóa đơn: #{item.code_bill}
-                            </p>
-                            <p className="text-gray-600 pb-[5px]">
-                                Họ tên: {item.name}
-                            </p>
-                            <p className="text-gray-600 py-[5px]">Số ĐT: {item.phone}</p>
-                            {/* <p className="text-gray-600 py-[5px]">
+                        <div className="border-gray-400 grid grid-cols-2 pl-[10px] pb-[20px] text-[15px] font-medium">
+                            <div className="">
+                                <p className="text-gray-600 pb-[5px] text-[16px] font-bold">
+                                    Mã hóa đơn: #{item.code_bill}
+                                </p>
+                                <p className="text-gray-600 pb-[5px]">
+                                    Họ tên: {item.name}
+                                </p>
+                                <p className="text-gray-600 py-[5px]">Số ĐT: {item.phone}</p>
+                                {/* <p className="text-gray-600 py-[5px]">
                                 Địa chỉ: {item.address}
                             </p> */}
-                            <p className="text-gray-600 pt-[5px]">
-                                Mô tả lỗi: {item.description_error}
-                            </p>
-                            <p className="text-gray-600 pt-[5px]">
-                                Dịch vụ: {item?.service_id?.name || 'không tìm thấy dịch vụ'}
-                            </p>
-                            {item.total_price && (
-                                <p className="text-gray-600 pt-[5px] font-bold">
-                                    Thành tiền: {convertNumber(item.total_price)}đ
+                                <p className="text-gray-600 pt-[5px]">
+                                    Khách hàng mô tả lỗi: {item.description_error}
                                 </p>
-                            )}
+                                <p className="text-gray-600 pt-[5px]">
+                                    Dịch vụ: {item?.service_id?.name || 'không tìm thấy dịch vụ'}
+                                </p>
+                                {item.total_price && (
+                                    <p className="text-gray-600 pt-[5px] font-bold">
+                                        Thành tiền: {convertNumber(item.total_price)}đ
+                                    </p>
+                                )}
+                            </div>
+                            {/* <div className="">
+                                <p className="text-gray-600 pb-[5px] text-[16px] font-bold">
+                                    Mã hóa đơn: #{item.code_bill}
+                                </p>
+                                <p className="text-gray-600 pb-[5px]">
+                                    Họ tên: {item.name}
+                                </p>
+                            </div> */}
                         </div>
-                        <div className="flex justify-end pb-[20px]">
+                        {/* <div className="flex justify-end pb-[20px]">
                             <div className="text-[14px]">
                                 <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
                                     <Moment format="DD/MM/YYYY">
@@ -120,6 +130,35 @@ const ListAllBookedUserPage = () => {
                                         Hủy lịch
                                     </button>
                                 )}
+                            </div>
+                        </div> */}
+                        <div className=" pb-[20px]">
+                            <div className="text-[14px] flex justify-between">
+                                <div className="">
+                                    <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
+                                        Ngày hẹn sửa:
+                                        <Moment format=" DD/MM/YYYY">
+                                            {item.repair_time}
+                                        </Moment>
+                                    </button>
+                                    <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
+                                        Thời gian hẹn sửa: {item.correction_time}
+                                    </button>
+                                </div>
+                                <div className="">
+                                    <button className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
+                                        Liên hệ
+                                    </button>
+                                    {item.status === 'Wait for confirmation' && (
+                                        <button onClick={() => {
+                                            setShowModal(true)
+                                            setBookedId(item._id)
+                                        }}
+                                            className="text-gray-700 hover:bg-red-500 hover:text-white border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
+                                            Hủy lịch
+                                        </button>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>

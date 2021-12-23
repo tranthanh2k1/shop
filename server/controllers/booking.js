@@ -743,3 +743,31 @@ exports.notificationRepair = (req, res) => {
     res.status(200).json(booking);
   });
 };
+
+exports.contactUser = async (req, res) => {
+  const { contact_user } = req.body;
+
+  if (!contact_user) {
+    return res.status(400).json({
+      success: false,
+      message: "Gửi liên hệ thất bại",
+    });
+  }
+
+  const bookingId = req.params.bookingId;
+
+  const updatedContactBookingUser = await Booking.findOneAndUpdate(
+    { _id: bookingId },
+    { contact_user },
+    { new: true }
+  );
+
+  if (!updatedContactBookingUser) {
+    return res.status(401).json({
+      success: false,
+      message: "Liên hệ không thành công",
+    });
+  }
+
+  res.status(200).json({ message: "Liên hệ thành công" });
+};

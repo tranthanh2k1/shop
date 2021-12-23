@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { API, isAuthenticated } from '../../../../constant'
 import './header.css'
@@ -49,22 +49,24 @@ const Header = () => {
     setNotitify(!notitify);
   }
 
-  function correctionFn(correction) {
-    var dateObj = new Date();
-    var month = dateObj.getUTCMonth() + 1; //months from 1-12
-    var day = dateObj.getUTCDate();
-    var year = dateObj.getUTCFullYear();
+  function correctionFn(correction, repair) {
+    // var dateObj = new Date();
+    // var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    // var day = dateObj.getUTCDate();
+    // var year = dateObj.getUTCFullYear();
+    // console.log("re", repair)
 
-    const newdate = year + "/" + month + "/" + day;
+    // const newdate = year + "/" + month + "/" + day;
+    const date = moment(repair).format("YYYY/MM/DD")
 
-    const correctionWarning = moment(new Date(`${newdate} ${correction}`)).subtract(15, "minutes").format("")
+    const correctionWarning = moment(new Date(`${date} ${correction}`)).subtract(15, "minutes").format("")
 
     const timeNow = moment(new Date()).format("")
 
     if (timeNow >= correctionWarning) {
       return 'warning'
     } else {
-      return 'notwarn'
+      return 'not'
     }
   }
 
@@ -73,9 +75,9 @@ const Header = () => {
       Thông báo
     </h6>
     {repairToday.length > 0 ? (repairToday.map(item => (
-      <div className={correctionFn(item.correction_time)} >
+      <div>
         <Link to="" key={item._id} className="dropdown-item">
-          <div className='content'>
+          <div className={correctionFn(item.correction_time, item.repair_time)}>
             <p>Mã đơn: #{item.code_bill}</p>
             <p className="font-weight-bold">Lỗi máy: {item.description_error}</p>
             <div className="small text-gray-500">Thời gian hẹn sửa: {item.correction_time}</div>
@@ -103,7 +105,7 @@ const Header = () => {
           </div>
           <div className="relative p-1 flex items-center justify-end w-1/4 ml-5 mr-4 sm:mr-0 sm:right-auto">
             <span className="noti-box" onClick={handlernoty}>
-              <i class="far fa-bell"></i>
+              <i class="far fa-bell" style={{ color: 'black' }}></i>
             </span>
 
             <div className="relative flex items-center">

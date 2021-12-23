@@ -10,6 +10,7 @@ import Swal from 'sweetalert2'
 const MakeAppointmentAdmin = () => {
     const [error, setError] = useState("")
     const [message, setMessage] = useState("")
+    const [startDate, setStartDate] = useState(new Date());
 
     const { register, handleSubmit, formState: { errors } } = useForm()
 
@@ -153,8 +154,8 @@ const MakeAppointmentAdmin = () => {
                                         name="correction_time"
                                         type="time"
                                         className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] text-gray-400 bg-[#f8f8f8]  focus:outline-none focus:border focus:border-gray-600"
-                                        min="08:00"
-                                        max="18:00"
+                                        min={startDate}
+                                        // max="18:00"
                                         {...register('correction_time', {
                                             required: true,
                                         })}

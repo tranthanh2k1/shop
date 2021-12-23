@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 
 const ConfirmBookingUser = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [bookingId, setBookingId] = useState()
 
     const { register, handleSubmit, formState: { errors } } = useForm()
 
@@ -36,6 +37,19 @@ const ConfirmBookingUser = () => {
         setIsModalVisible(false);
     };
 
+    const onSubmit = async (dataForm) => {
+        setIsModalVisible(false)
+        try {
+            const { data } = await axios.put(`${API}/booking/user/contact/${bookingId}`, dataForm)
+
+            if (data) {
+                alert(data.message)
+            }
+        } catch (error) {
+            console.log("error", error.response)
+        }
+    }
+
     return (
         <div>
             {listAllBookingUser.length > 0 ? listAllBookingUser.map((item) => (
@@ -61,13 +75,13 @@ const ConfirmBookingUser = () => {
                                     Địa chỉ: {item.address}
                                 </p> */}
                                 <p className="text-gray-600 pt-[5px]">
-                                    Lỗi máy: {item.description_error}
+                                    Khách hàng mô tả lỗi: {item.description_error}
                                 </p>
                                 <p className="text-gray-600 pt-[5px]">
                                     Dịch vụ: {item?.service_id?.name || 'không tìm thấy dịch vụ'}
                                 </p>
                             </div>
-                            <div className="flex justify-end pb-[20px]">
+                            {/* <div className="flex justify-end pb-[20px]">
                                 <div className="text-[14px]">
                                     <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
                                         <Moment format="DD/MM/YYYY">
@@ -82,6 +96,31 @@ const ConfirmBookingUser = () => {
                                         className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
                                         Liên hệ
                                     </button>
+                                </div>
+                            </div> */}
+                            <div className=" pb-[20px]">
+                                <div className="text-[14px] flex justify-between">
+                                    <div className="">
+                                        <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
+                                            Ngày hẹn sửa:
+                                            <Moment format=" DD/MM/YYYY">
+                                                {item.repair_time}
+                                            </Moment>
+                                        </button>
+                                        <button className="text-white mx-[7px] bg-red-500 rounded-[5px] px-[10px] py-[6px] ">
+                                            Thời gian hẹn sửa: {item.correction_time}
+                                        </button>
+                                    </div>
+                                    <div className="">
+                                        <button
+                                            onClick={() => {
+                                                setBookingId(item._id)
+                                                setIsModalVisible(true)
+                                            }}
+                                            className="text-gray-700 border border-gray-700 mx-[7px] bg-white rounded-[5px] px-[10px] py-[6px] ">
+                                            Liên hệ
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -105,55 +144,33 @@ const ConfirmBookingUser = () => {
                                     <p className="text-[14px] mb-[5px]">
                                         Mã đơn hàng: <span className="text-red-500">#{item.code_bill}</span>
                                     </p>
-                                    <form action="">
+                                    <form action="" onSubmit={handleSubmit(onSubmit)}>
                                         <div className="grid grid-cols-2 gap-[15px]">
-                                            <input
-                                                type="text"
-                                                placeholder="Họ tên"
-                                                defaultValue={item.name}
-                                                className="text-[14px] border border-gray-300 w-full px-[15px] py-[5px] focus:outline-none focus:border-blue-300"
-                                                {...register('name')}
-                                            />
-                                            <input
-                                                type="text"
-                                                placeholder="Số điện thoại"
-                                                defaultValue={item.phone}
-                                                className="text-[14px] border border-gray-300 w-full px-[15px] py-[5px] focus:outline-none focus:border-blue-300"
-                                                {...register('phone')}
-                                            />
                                         </div>
                                         <div className="my-[15px]">
-                                            <input
-                                                type="text"
-                                                placeholder="Email"
-                                                defaultValue={item.email}
-                                                className="text-[14px] border border-gray-300 w-full px-[15px] py-[5px] focus:outline-none focus:border-blue-300"
-                                                {...register('email')}
-                                            />
                                         </div>
                                         <textarea
                                             name=""
                                             id=""
                                             rows="4"
-                                            placeholder="Lý do hủy lịch"
+                                            placeholder="Nội dung liên hệ"
                                             className="text-[14px] border border-gray-300 w-full px-[15px] py-[5px] focus:outline-none focus:border-blue-300"
                                             {...register('contact_user')}
                                         />
+                                        <div className=" pb-[15px] flex justify-end">
+                                            <button
+                                                type="submit"
+                                                className=" border border-blue-400 mr-[10px] text-white text-[14px] bg-blue-400 hover:bg-blue-600 rounded-[3px] px-[15px] py-[3px]">
+                                                Gửi
+                                            </button>
+                                            <button
+                                                onClick={() => handleCancelBox()}
+                                                className=" border border-gray-400 text-gray-500 text-[14px] hover:bg-blue-50  hover:text-blue-400 rounded-[3px] px-[15px] py-[3px]"
+                                            >
+                                                Đóng
+                                            </button>
+                                        </div>
                                     </form>
-                                </div>
-
-                                <div className=" pb-[15px] flex justify-end">
-                                    <button
-                                        type="submit"
-                                        className=" border border-blue-400 mr-[10px] text-white text-[14px] bg-blue-400 hover:bg-blue-600 rounded-[3px] px-[15px] py-[3px]">
-                                        Gửi
-                                    </button>
-                                    <button
-                                        onClick={() => handleCancelBox()}
-                                        className=" border border-gray-400 text-gray-500 text-[14px] hover:bg-blue-50  hover:text-blue-400 rounded-[3px] px-[15px] py-[3px]"
-                                    >
-                                        Đóng
-                                    </button>
                                 </div>
                             </div>
                         </div>

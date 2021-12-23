@@ -16,6 +16,7 @@ const {
   businessResultDay,
   revenueByMonth,
   notificationRepair,
+  contactUser,
 } = require("../controllers/booking.js");
 const { verifyToken, isAdmin } = require("../middleware/auth.js");
 const router = express.Router();
@@ -44,5 +45,6 @@ router.get("/booking/cancel/:bookingId", verifyToken, cancelBooking);
 router.get("/booking/user", verifyToken, getListBookingUser);
 router.get("/booking/user/status", verifyToken, getBookingStatusUser);
 router.post("/booking/user/search", verifyToken, searchBookingUser);
+router.put("/booking/user/contact/:bookingId", contactUser);
 
 module.exports = router;

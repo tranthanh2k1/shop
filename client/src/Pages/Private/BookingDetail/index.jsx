@@ -157,6 +157,11 @@ const Bookingdetail = () => {
                 <p className="text-gray-600 py-[5px]">
                   Khách hàng mô tả lỗi: {detailBooking.description_error}
                 </p>
+                {detailBooking.contact_user && (
+                  <p className="text-gray-600 py-[5px] font-bold">
+                    Liên hệ của khách hàng: {detailBooking.contact_user}
+                  </p>
+                )}
                 <p className="text-gray-600 py-[5px]">
                   Dịch vụ: {detailBooking?.service_id?.name || 'Dịch vụ ảo'}
                 </p>

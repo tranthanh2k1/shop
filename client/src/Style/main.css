@@ -656,6 +656,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 0.25rem;
 }
 
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .mx-\[30px\] {
   margin-left: 30px;
   margin-right: 30px;
@@ -777,6 +782,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 0.25rem;
 }
 
+.mb-36 {
+  margin-bottom: 9rem;
+}
+
 .mt-\[30px\] {
   margin-top: 30px;
 }
@@ -819,10 +828,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mr-\[10px\] {
   margin-right: 10px;
-}
-
-.mb-36 {
-  margin-bottom: 9rem;
 }
 
 .mr-\[15px\] {
@@ -883,6 +888,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mr-\[3px\] {
   margin-right: 3px;
+}
+
+.mb-12 {
+  margin-bottom: 3rem;
 }
 
 .mb-\[70px\] {
@@ -947,10 +956,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mr-\[40px\] {
   margin-right: 40px;
-}
-
-.mb-12 {
-  margin-bottom: 3rem;
 }
 
 .block {
@@ -1089,6 +1094,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 90vw;
 }
 
+.w-\[50px\] {
+  width: 50px;
+}
+
 .w-\[45px\] {
   width: 45px;
 }
@@ -1111,10 +1120,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-\[33px\] {
   width: 33px;
-}
-
-.w-\[50px\] {
-  width: 50px;
 }
 
 .w-\[50vh\] {
@@ -1219,6 +1224,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.grid-cols-\[0\.5fr\2c 1fr\2c 1fr\2c 0\.7fr\2c 0\.8fr\] {
+  grid-template-columns: 0.5fr 1fr 1fr 0.7fr 0.8fr;
+}
+
 .grid-cols-\[0\.5fr\2c 1fr\2c 1fr\2c 1\.2fr\2c 0\.8fr\] {
   grid-template-columns: 0.5fr 1fr 1fr 1.2fr 0.8fr;
 }
@@ -1231,8 +1240,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   grid-template-columns: 0.2fr 1.7fr 0.7fr 1.7fr 1fr;
 }
 
-.grid-cols-\[0\.2fr\2c 1\.3fr\2c 1\.2fr\2c 0\.8fr\2c 0\.8fr\2c 0\.8fr\] {
-  grid-template-columns: 0.2fr 1.3fr 1.2fr 0.8fr 0.8fr 0.8fr;
+.grid-cols-\[0\.2fr\2c 1\.3fr\2c 1\.2fr\2c 0\.8fr\2c 0\.8fr\] {
+  grid-template-columns: 0.2fr 1.3fr 1.2fr 0.8fr 0.8fr;
 }
 
 .grid-cols-1 {
@@ -1251,8 +1260,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   grid-template-columns: 35% 65%;
 }
 
-.grid-cols-\[0\.2fr\2c 1\.3fr\2c 1\.2fr\2c 0\.8fr\2c 0\.8fr\] {
-  grid-template-columns: 0.2fr 1.3fr 1.2fr 0.8fr 0.8fr;
+.grid-cols-\[0\.5fr\2c 1fr\2c 1fr\2c 0\.7fr\2c 0\.7fr\2c 0\.8fr\] {
+  grid-template-columns: 0.5fr 1fr 1fr 0.7fr 0.7fr 0.8fr;
 }
 
 .flex-col {

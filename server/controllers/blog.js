@@ -32,6 +32,21 @@ exports.listBlog = (req, res) => {
     });
 };
 
+exports.detailBlog = (req, res) => {
+  const blogId = req.params.id;
+
+  Blog.findOne({ _id: blogId }).exec((err, blog) => {
+    if (err) {
+      return res.status(401).json({
+        success: false,
+        message: "Không tìm thấy bài viết",
+      });
+    }
+
+    res.status(200).json(blog);
+  });
+};
+
 exports.removeBlog = async (req, res) => {
   const removeBlog = await Blog.findByIdAndDelete(req.params.blogId).catch(
     (err) => {

@@ -16,7 +16,7 @@ const Booked = ({ children }) => {
               </div>
               <div className="ml-[15px]">
                 <p className="font-bold">{user.username}</p>
-                <Link
+                {/* <Link
                   to=""
                   className="text-gray-500 inline-block hover:text-gray-700 text-[14px] mt-[5px]"
                 >
@@ -24,7 +24,7 @@ const Booked = ({ children }) => {
                     <i class="fas fa-pen"></i>
                   </span>{" "}
                   Sửa hồ sơ
-                </Link>
+                </Link> */}
               </div>
             </div>
             <div className="border-t border-gray-300 mt-[30px] pt-[25px] pl-[15px]">
@@ -51,17 +51,6 @@ const Booked = ({ children }) => {
                   >
                     Hóa đơn
                   </NavLink>
-                </li>
-                <li className="mt-4 ">
-                  <Link
-                    to=""
-                    className="text-[15px] text-gray-800 hover:text-blue-700"
-                  >
-                    <span class="mr-3">
-                      <i class="fal fa-bell"></i>
-                    </span>
-                    Thông báo
-                  </Link>
                 </li>
               </ul>
             </div>

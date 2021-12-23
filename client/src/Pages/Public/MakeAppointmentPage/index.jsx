@@ -8,11 +8,13 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import inner_page_banner from "../../../Images/inner_page_banner.jpg";
 import test_bg from "../../../Images/test_bg.png";
 import phone_icon from "../../../Images/phone_icon.png";
+import moment from 'moment'
 
 const MakeAppointment = () => {
   const [error, setError] = useState("")
   const [message, setMessage] = useState("")
   const [booking, setBooking] = useState(false)
+  const [startDate, setStartDate] = useState(new Date());
 
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { listService } = useSelector(state => state.service)
@@ -61,8 +63,13 @@ const MakeAppointment = () => {
     }
   }
 
+  function timet() {
+    console.log(moment(startDate).format('h:mm'))
+  }
+
   return (
     <>
+      {timet()}
       <div className="m-0">
         {booking && (
           <div
@@ -192,7 +199,7 @@ const MakeAppointment = () => {
                   name="correction_time"
                   type="time"
                   className="border border-[#e1e1e1] w-full min-h-[50px] text-[14px] px-[20px] py-[5px] text-gray-400 bg-[#f8f8f8]  focus:outline-none focus:border focus:border-gray-600"
-                  min="08:00"
+                  // min="08:00"
                   max="18:00"
                   {...register('correction_time', {
                     required: true,

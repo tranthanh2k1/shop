@@ -28,7 +28,7 @@ const BlogPage = () => {
                         {blog && blog.map(item => (
                             <div className="mb-[50px] w-full">
                                 <div className="w-full">
-                                    <img src={item.image_blog} alt="" className="max-w-full" />
+                                    <img src={item.image_blog} alt="" className="w-full" />
                                 </div>
                                 <div className="py-[30px] w-full border-t-[8px] border-[#039ee3] ">
                                     <p className="leading-[24px] text-[18px] text-[#000] font-medium">
@@ -55,7 +55,7 @@ const BlogPage = () => {
                                     <div className="flex justify-between mt-[30px]">
                                         <div className="">
                                             <Link
-                                                to=""
+                                                to={`/blog/detail/${item._id}`}
                                                 className="cursor-pointer text-white bg-[#039ee3] hover:text-white hover:bg-[#000] text-[14px] font-medium px-[30px] py-[13px] uppercase"
                                             >
                                                 ĐỌC THÊM
@@ -158,21 +158,21 @@ const BlogPage = () => {
                                 VỀ TÁC GIẢ
                             </p>
                             <p className="text-[#707070] text-[15px] leading-[21px] mb-[1rem]">
-                            Bản thân nỗi đau là rất nhiều nỗi đau nhưng tôi cho nó mọi lúc.
+                                Bản thân nỗi đau là rất nhiều nỗi đau nhưng tôi cho nó mọi lúc.
                             </p>
                             <p className="text-[#707070] text-[15px] leading-[21px] mb-[1rem]">
-                            Bản thân nỗi đau là quan trọng, nhưng nỗi đau được tăng cường bởi quá trình tạo mỡ, nhưng tôi cho nó thời gian để cắt giảm nó để tôi làm một số công việc lớn và đau đớn.
+                                Bản thân nỗi đau là quan trọng, nhưng nỗi đau được tăng cường bởi quá trình tạo mỡ, nhưng tôi cho nó thời gian để cắt giảm nó để tôi làm một số công việc lớn và đau đớn.
                             </p>
                         </div>
                         <div className="mb-[50px] w-full">
                             <p className="text-[18px] font-medium text-[#000] leading-[21px]  mb-[20px]">
-                            BÀI ĐĂNG GẦN ĐÂY
+                                BÀI ĐĂNG GẦN ĐÂY
                             </p>
                             <div className="p-0">
                                 <ul className="list-none">
                                     <li className="mb-[20px]">
                                         <p className="font-medium text-[15px] leading-[21px] text-[#2c2c2c]">
-                                        Cách tra cứu
+                                            Cách tra cứu
                                         </p>
                                         <p className="mt-[5px] text-[12px] text-gray-500">
                                             <i className="fas fa-calendar mr-[7px]"></i>
@@ -202,7 +202,7 @@ const BlogPage = () => {
                         </div>
                         <div className="mb-[50px] w-full">
                             <p className="text-[18px] font-medium text-[#000] leading-[21px]  mb-[20px]">
-                            THỂ LOẠI
+                                THỂ LOẠI
                             </p>
                             <div className="text-[15px] ">
                                 <ul className="list-none">

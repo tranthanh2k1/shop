@@ -4,6 +4,7 @@ import { API, convertNumber } from '../../../constant'
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import moment from 'moment'
+import { CSVLink } from "react-csv";
 
 import {
   Chart as ChartJS,
@@ -27,6 +28,7 @@ ChartJS.register(
 
 const Dashboard = () => {
   const [totalBooking, setTotalBooking] = useState()
+  console.log("data", totalBooking)
   const [date, setDate] = useState('')
   const [dateStart, setDateStart] = useState('')
   const [dateEnd, setDateEnd] = useState('')
@@ -36,7 +38,7 @@ const Dashboard = () => {
   const [selectInput, setSelectInput] = useState(false);
   const [choseFilter, setChoseFilter] = useState('Thống kê theo ngày')
 
-  const dataChoseFilter = ['Thống kê theo ngày', 'Thống kê theo nhiều ngày', 'Thống kê theo tháng']
+  const dataChoseFilter = ['Thống kê theo ngày', 'Thống kê theo nhiều ngày', 'Thống kê các ngày theo tháng']
 
   const convertStatusString = (status) => {
     if (status === 'Wait for confirmation') {
@@ -201,19 +203,33 @@ const Dashboard = () => {
     ],
   };
 
+  // export data
+  const headers = [
+    { label: "Mã đơn", key: "code_bill" },
+    { label: "Họ và tên", key: "name" },
+    { label: "Địa chỉ nhận hàng", key: "address" },
+    { label: "Ca sửa", key: "correction_time" },
+    { label: "Email", key: "email" },
+    { label: "Số diện thoại", key: "phone" },
+    { label: "Trạng thái", key: "status" },
+    { label: "Tình trạng thanh toán", key: "payment_method" },
+    { label: "Mô tả lỗi", key: "description_error" },
+    { label: "Thành tiền", key: "total_price" }
+  ];
+
   return (
     <>
       <div className="p-4 bg-white block w-full items-center justify-between rounded-xl  border-b border-gray-200">
-        <div className="mb-1 w-full ">Thống kê doanh thu</div>
+        <div className="mb-1 w-full text-[24px] font-medium ">Thống kê doanh thu</div>
         <div className="p-4 bg-white block w-full sm:flex items-center justify-between rounded-xl  border-b border-gray-200">
           <div className="mb-1 w-full ">
-            <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+            <main className="flex-1 overflow-x-hidden overflow-y-auto ">
               <div className="container mx-auto px-6 py-8">
-                <h3 className="text-gray-700 text-3xl font-medium">Kết quả kinh doanh trong ngày</h3>
+                <h3 className="text-gray-700 text-center text-[18px] font-medium">Kết quả kinh doanh trong ngày</h3>
                 <div className="">
                   <div className="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-8">
                     <div className="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
-                      <div className="w-full lg:w-1/3">
+                      <div className="w-full shadow-lg lg:w-1/3">
                         <div className="widget w-full p-4 rounded-lg bg-white border-l-4 border-green-400">
                           <div className="flex items-center">
                             <div className="icon w-14 p-3.5 bg-green-400 text-white rounded-full mr-3">
@@ -228,7 +244,7 @@ const Dashboard = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="w-full lg:w-1/3">
+                      <div className="w-full shadow-lg lg:w-1/3">
                         <div className="widget w-full p-4 rounded-lg bg-white border-l-4 border-yellow-400">
                           <div className="flex items-center">
                             <div className="icon w-14 p-3.5 bg-yellow-400 text-white rounded-full mr-3">
@@ -243,7 +259,7 @@ const Dashboard = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="w-full lg:w-1/3">
+                      <div className="w-full shadow-lg lg:w-1/3">
                         <div className="widget w-full p-4 rounded-lg bg-white border-l-4 border-red-400">
                           <div className="flex items-center">
                             <div className="icon w-14 p-3.5 bg-red-400 text-white rounded-full mr-3">
@@ -344,7 +360,7 @@ const Dashboard = () => {
             </div>
 
             <div className="text-center">
-              {choseFilter === 'Thống kê theo tháng' && (
+              {choseFilter === 'Thống kê các ngày theo tháng' && (
                 <>
                   <h5 className="text-[15px] mb-[7px] text-gray-600 font-medium">Thống kê doanh thu tháng: <span>{month || '...'} là: {totalBooking && convertNumber(convertNumber(totalRevenue))}đ</span></h5>
                   <div>
@@ -367,6 +383,20 @@ const Dashboard = () => {
 
         {totalBooking && totalBooking.length > 0 && (
           <>
+            <CSVLink
+              data={totalBooking}
+              headers={headers}
+              filename='data'
+              className="btn btn-primary my-4"
+              onClick={() => {
+                if (totalBooking.length === 0) {
+                  alert('Không có dữ liệu')
+                  return false
+                }
+              }}
+            >
+              Xuất ra file excel
+            </CSVLink>
             <Bar className="mt-[30px]" options={options} data={data} />
             <p></p>
           </>
