@@ -52,7 +52,7 @@ const ServicesList = () => {
                 <p className="text-[#707070] text-justify text-[15px] leading-[21px]">
                   {item.description || 'Mô tả lỗi'}
                 </p>
-                <div className="absolute bottom-0 left-0">
+                {/* <div className="absolute bottom-0 left-0">
                   <Link
                     to=""
                     className=" bg-[#039ee3] hover:bg-[#252525] text-white px-[30px] py-[15px] uppercase text-[14px] font-medium  text-white "
@@ -60,7 +60,7 @@ const ServicesList = () => {
                     {" "}
                     Chi tiết dịch vụ
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
           ))}
@@ -73,7 +73,7 @@ const ServicesList = () => {
               NHÂN VIÊN CÓ KINH NGHIỆM
             </p>
             <p className=" text-[18px] sm:text-[20px] text-[#898989] relative before:content-[''] before:absolute before:w-[80px] before:h-[5px] before:bg-blue-400 before:top-[70px] sm:before:top-[50px] before:left-0 ">
-            Các chuyên gia của chúng tôi đã được giới thiệu trên báo chí nhiều lần.
+              Các chuyên gia của chúng tôi đã được giới thiệu trên báo chí nhiều lần.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px] lg:gap-[40px] mt-[70px]">
@@ -158,15 +158,15 @@ const ServicesList = () => {
         <div className="container mx-auto">
           <div className="text-white">
             <p className="text-[35px] leading-[36px] font-medium mb-[15px]">
-            Khách hàng nói gì?
+              Khách hàng nói gì?
             </p>
             <p className="text-[20px] mb-[10px] relative before:content-[''] before:absolute before:w-[80px] before:h-[4px] before:bg-blue-400 before:top-[45px] before:left-0">
-            Đây là lời chứng thực từ khách hàng ..
+              Đây là lời chứng thực từ khách hàng ..
             </p>
 
             <div className="md:w-[500px] mt-[50px]">
               <p className="">
-              Các bạn rock! Cảm ơn bạn đã làm cho nó không đau, dễ chịu và hơn hết là không rắc rối! Tôi ước gì tôi sẽ nghĩ về nó đầu tiên. Tôi thực sự hài lòng với dịch vụ máy tính xách tay đầu tiên của mình.
+                Các bạn rock! Cảm ơn bạn đã làm cho nó không đau, dễ chịu và hơn hết là không rắc rối! Tôi ước gì tôi sẽ nghĩ về nó đầu tiên. Tôi thực sự hài lòng với dịch vụ máy tính xách tay đầu tiên của mình.
               </p>
               <p className="text-[18px] mt-[30px]  font-medium">
                 Maria Anderson
@@ -182,10 +182,10 @@ const ServicesList = () => {
             </div>
             <div className="text-white  ml-[30px]">
               <p className="mt-[8px] mb-[5px] text-[24px] md:text-[35px] font-bold">
-              YÊU CẦU BÁO GIÁ MIỄN PHÍ
+                YÊU CẦU BÁO GIÁ MIỄN PHÍ
               </p>
               <p className="">
-              Nhận câu trả lời và lời khuyên từ những người bạn muốn.
+                Nhận câu trả lời và lời khuyên từ những người bạn muốn.
               </p>
             </div>
           </div>

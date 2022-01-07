@@ -52,7 +52,7 @@ const SuccessfullBookedPage = () => {
                                 Địa chỉ: {item.address}
                             </p> */}
                                 <p className="text-gray-600 pt-[5px]">
-                                    Lỗi máy: {item.description_error}
+                                    Khách hàng mô tả lỗi: {item.description_error}
                                 </p>
                                 <p className="text-gray-600 pt-[5px]">
                                     Dịch vụ: {item?.service_id?.name || 'không tìm thấy dịch vụ'}
@@ -63,7 +63,7 @@ const SuccessfullBookedPage = () => {
                             </div>
                             <div>
                                 <p className="text-gray-600 pt-[5px]">
-                                    Khách hàng mô tả lỗi: {item.exact_error}
+                                    Cửa hàng mô tả lỗi thực: {item.exact_error}
                                 </p>
                                 <p className="text-gray-600 pt-[5px]">
                                     Ảnh lỗi của máy:

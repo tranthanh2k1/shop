@@ -1,5 +1,5 @@
 // export const API = "http://14.225.192.218:4000/api";
-export const API = "http://localhost:4000/api";
+export const API = "http://localhost:4002/api";
 // export const API = "http://103.82.25.122:4000/api";
 
 export const isAuthenticated = () => {

@@ -295,7 +295,7 @@ const AboutPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-white mt-[20px] py-[100px]">
+            {/* <div className="bg-white mt-[20px] py-[100px]">
                 <div className="container mx-auto">
                     <div className=" text-left ">
                         <p className="text-[30px] sm:text-[35px] text-[#000] font-medium mt-[15px] uppercase">
@@ -376,7 +376,7 @@ const AboutPage = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     );
 };

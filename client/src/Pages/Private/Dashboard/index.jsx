@@ -387,7 +387,7 @@ const Dashboard = () => {
               data={totalBooking}
               headers={headers}
               filename='data'
-              className="btn btn-primary my-4"
+              className="rounded-full bg-blue-500 text-white px-2 py-1 mt-2"
               onClick={() => {
                 if (totalBooking.length === 0) {
                   alert('Không có dữ liệu')

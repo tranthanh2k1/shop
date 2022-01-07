@@ -76,7 +76,7 @@ const Header = () => {
     </h6>
     {repairToday.length > 0 ? (repairToday.map(item => (
       <div>
-        <Link to="" key={item._id} className="dropdown-item">
+        <Link to={`/admin/booking/detail/${item._id}`} onClick={() => setNotitify(false)} key={item._id} className="dropdown-item">
           <div className={correctionFn(item.correction_time, item.repair_time)}>
             <p>Mã đơn: #{item.code_bill}</p>
             <p className="font-weight-bold">Lỗi máy: {item.description_error}</p>
@@ -101,6 +101,7 @@ const Header = () => {
           <div className="container relative left-0 z-50 flex w-4/4 h-full flex justify-end">
             <div className="relative items-center w-full lg:w-64 h-full group ml-[50px]">
               {notitify ? popupNoti : null}
+              <span className="number-noti">{repairToday.length}</span>
             </div>
           </div>
           <div className="relative p-1 flex items-center justify-end w-1/4 ml-5 mr-4 sm:mr-0 sm:right-auto">

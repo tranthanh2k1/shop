@@ -71,7 +71,7 @@ const ListBookedFixingUser = () => {
                             </div>
                             <div>
                                 <p className="text-gray-600 pt-[5px]">
-                                    Mô tả lỗi của máy: {item.exact_error}
+                                    Cửa hàng mô tả lỗi thực: {item.exact_error}
                                 </p>
                                 <p className="text-gray-600 pt-[5px]">
                                     Ảnh lỗi của máy:
